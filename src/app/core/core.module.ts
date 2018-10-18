@@ -7,6 +7,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,16 @@ import { LoginComponent } from './components/login/login.component';
   ],
   exports: [
     HeaderComponent
+  ],
+  providers: [
+    AuthService
   ]
 })
 export class CoreModule {
 
   constructor(@Optional() @SkipSelf() core: CoreModule) {
     if (core) {
-      throw new Error('CoreModule has already been injected');
+      throw new Error('CoreModule is already loaded. Import it in the AppModule only');
     }
   }
 

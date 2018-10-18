@@ -1,4 +1,4 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark deep-purple darken-4">
   <mdb-navbar-brand class="white-text">
     <a routerLink="/" class="navbar-brand"><i class="fa fa-quote-left"></i> Quote Island</a>
   </mdb-navbar-brand>
@@ -18,7 +18,7 @@
   <links>
     <form class="form-inline waves-light ml-auto" mdbWavesEffect>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Quote IsLand" aria-label="Search" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
         <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit" mdbWavesEffect>Search</button>
       </div>
     </form>
@@ -26,11 +26,14 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/about">About</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/register">Register</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="isLoggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link waves-light" mdbWavesEffect (click)="logout()">Logout</a>
       </li>
     </ul>
   </links>
