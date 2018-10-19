@@ -1,76 +1,79 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1">
-      <mdb-card>
-        <mdb-card-header class="deep-purple darken-4 white-text text-center py-4">
-          <h5>
-            <strong>Sign Up</strong>
-          </h5>
-        </mdb-card-header>
-        <mdb-card-body class="px-lg-5 pt-0">
-          <form [formGroup]="registerForm" (ngSubmit)="register()" class="text-center">
-            <div class="form-row">
-              <div class="col">
-                <div class="md-form">
-                  <input type="text" id="firstName" formControlName="firstName" class="form-control" mdbInputDirective
-                    [mdbValidate]="false">
-                  <label for="firstName">First name</label>
-                  <div *ngIf="controlHasError('firstName', 'required')" class="invalid-message">
-                    First name is required
+<div class="background-image">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1">
+        <mdb-card>
+          <mdb-card-header class="primary-color white-text text-center py-4">
+            <h3>
+              <strong>Sign Up</strong>
+            </h3>
+          </mdb-card-header>
+          <mdb-card-body class="px-lg-5 pt-0">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" class="text-center">
+              <div class="form-row">
+                <div class="col">
+                  <div class="md-form">
+                    <input type="text" id="firstName" formControlName="firstName" class="form-control"
+                      mdbInputDirective [mdbValidate]="false">
+                    <label for="firstName">First name</label>
+                    <div *ngIf="controlHasError('firstName', 'required')" class="invalid-message">
+                      First name is required
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="md-form">
+                    <input type="email" id="lastName" formControlName="lastName" class="form-control" mdbInputDirective
+                      [mdbValidate]="false">
+                    <label for="lastName">Last name</label>
+                    <div *ngIf="controlHasError('lastName', 'required')" class="invalid-message">
+                      Lastname is required
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col">
-                <div class="md-form">
-                  <input type="email" id="lastName" formControlName="lastName" class="form-control" mdbInputDirective
-                    [mdbValidate]="false">
-                  <label for="lastName">Last name</label>
-                  <div *ngIf="controlHasError('lastName', 'required')" class="invalid-message">
-                    Lastname is required
-                  </div>
+              <div class="md-form mt-0">
+                <input type="text" id="username" formControlName="username" class="form-control" mdbInputDirective
+                  [mdbValidate]="false">
+                <label for="username">Username</label>
+                <div *ngIf="controlHasError('username', 'required')" class="invalid-message">
+                  Username is required
+                </div>
+                <div *ngIf="controlHasError('username', 'minlength')" class="invalid-message">
+                  Username must be at least 4 characters
                 </div>
               </div>
-            </div>
-            <div class="md-form mt-0">
-              <input type="text" id="username" formControlName="username" class="form-control" mdbInputDirective
-                [mdbValidate]="false">
-              <label for="username">Username</label>
-              <div *ngIf="controlHasError('username', 'required')" class="invalid-message">
-                Username is required
+              <div class="md-form">
+                <input type="password" id="password" formControlName="password" class="form-control" mdbInputDirective
+                  [mdbValidate]="false">
+                <label for="password">Password</label>
+                <div *ngIf="controlHasError('password', 'required')" class="invalid-message">
+                  Password is required
+                </div>
+                <div *ngIf="controlHasError('password', 'minlength')" class="invalid-message">
+                  Password must be at least 4 characters
+                </div>
               </div>
-              <div *ngIf="controlHasError('username', 'minlength')" class="invalid-message">
-                Username must be at least 4 characters
+              <div class="md-form">
+                <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
+                  mdbInputDirective [mdbValidate]="false">
+                <label for="confirmPassword">Confirm Password</label>
+                <div *ngIf="registerForm.get('confirmPassword').touched && registerForm.hasError('passwordMatch')"
+                  class="invalid-message">
+                  Password must match
+                </div>
               </div>
-            </div>
-            <div class="md-form">
-              <input type="password" id="password" formControlName="password" class="form-control" mdbInputDirective
-                [mdbValidate]="false">
-              <label for="password">Password</label>
-              <div *ngIf="controlHasError('password', 'required')" class="invalid-message">
-                Password is required
-              </div>
-              <div *ngIf="controlHasError('password', 'minlength')" class="invalid-message">
-                Password must be at least 4 characters
-              </div>
-            </div>
-            <div class="md-form">
-              <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
-                mdbInputDirective [mdbValidate]="false">
-              <label for="confirmPassword">Confirm Password</label>
-              <div *ngIf="registerForm.get('confirmPassword').touched && registerForm.hasError('passwordMatch')" class="invalid-message">
-                Password must match
-              </div>
-            </div>
-            <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
-              mdbWavesEffect type="submit" [disabled]="registerForm.invalid">Sign Up</button>
-            <p>
-              By clicking
-              <em>Sign up</em> you agree to our
-              <a routerLink="/terms-of-service">terms of service.</a>
-            </p>
-          </form>
-        </mdb-card-body>
-      </mdb-card>
+              <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
+                mdbWavesEffect type="submit" [disabled]="registerForm.invalid">Sign Up</button>
+              <p>
+                By clicking
+                <em>Sign up</em> you agree to our
+                <a routerLink="/terms-of-service">terms of service.</a>
+              </p>
+            </form>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
     </div>
   </div>
 </div>

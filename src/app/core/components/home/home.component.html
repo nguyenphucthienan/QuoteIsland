@@ -1,3 +1,11 @@
-<p>
-  home works!
-</p>
+<mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let image of images; let index = index">
+    <div class="view w-100" [style.background-image]="getBackgroundIndex(index)">
+      <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">Image {{ index + 1 }}</h3>
+        <p>Lorem ipsum</p>
+      </div>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
