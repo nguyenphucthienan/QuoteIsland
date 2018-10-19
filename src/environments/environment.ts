@@ -7,7 +7,8 @@ export const environment = {
   apiUrl: 'http://localhost:3000/api',
   bannerImageUrls: {
     registerPage: 'https://images.pexels.com/photos/1053775/pexels-photo-1053775.jpeg?auto=compress&cs=tinysrgb',
-    loginPage: 'https://images.pexels.com/photos/1170572/pexels-photo-1170572.jpeg?auto=compress&cs=tinysrgb'
+    loginPage: 'https://images.pexels.com/photos/1170572/pexels-photo-1170572.jpeg?auto=compress&cs=tinysrgb',
+    adminPage: 'https://images.pexels.com/photos/1436129/pexels-photo-1436129.jpeg?auto=compress&cs=tinysrgb'
   }
 };
 

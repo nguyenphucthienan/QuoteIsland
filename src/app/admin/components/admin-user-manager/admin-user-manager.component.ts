@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-admin-user-manager',
+  templateUrl: './admin-user-manager.component.html',
+  styleUrls: ['./admin-user-manager.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminUserManagerComponent implements OnInit {
 
   bannerImageUrl = environment.bannerImageUrls.adminPage;
 
