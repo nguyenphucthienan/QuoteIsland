@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
@@ -12,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  bannerImageUrl = environment.bannerImageUrls.loginPage;
   loginForm: FormGroup;
 
   constructor(private router: Router,
