@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'quotes', loadChildren: './quotes/quotes.module#QuotesModule' },
+  { path: 'authors', loadChildren: './authors/authors.module#AuthorsModule' }
 ];
 
 @NgModule({
