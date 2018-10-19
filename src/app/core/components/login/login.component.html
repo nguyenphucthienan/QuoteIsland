@@ -1,40 +1,41 @@
-<div class="background-image">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1">
-        <mdb-card>
-          <mdb-card-header class="primary-color white-text text-center py-4">
-            <h3>
-              <strong>Sign In</strong>
-            </h3>
-          </mdb-card-header>
-          <mdb-card-body class="px-lg-5 pt-0">
-            <form [formGroup]="loginForm" (ngSubmit)="login()" class="text-center">
-              <div class="md-form">
-                <label for="username">Username</label>
-                <input type="text" id="username" class="form-control" formControlName="username" mdbInputDirective
-                  [mdbValidate]="false" required>
-                <div *ngIf="controlHasError('username', 'required')" class="invalid-message">
-                  Username is required
-                </div>
+<div class="background white-text d-flex justify-content-center align-items-center">
+  <h1>Sign In</h1>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1">
+      <mdb-card>
+        <mdb-card-header class="primary-color white-text text-center py-4">
+          <h3>
+            <strong>Sign In</strong>
+          </h3>
+        </mdb-card-header>
+        <mdb-card-body class="px-lg-5 pt-0">
+          <form [formGroup]="loginForm" (ngSubmit)="login()" class="text-center">
+            <div class="md-form">
+              <label for="username">Username</label>
+              <input type="text" id="username" class="form-control" formControlName="username" mdbInputDirective
+                [mdbValidate]="false" required>
+              <div *ngIf="controlHasError('username', 'required')" class="invalid-message">
+                Username is required
               </div>
-              <div class=" md-form">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" formControlName="password" mdbInputDirective
-                  [mdbValidate]="false" required>
-                <div *ngIf="controlHasError('password', 'required')" class="invalid-message">
-                  Password is required
-                </div>
+            </div>
+            <div class=" md-form">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="form-control" formControlName="password" mdbInputDirective
+                [mdbValidate]="false" required>
+              <div *ngIf="controlHasError('password', 'required')" class="invalid-message">
+                Password is required
               </div>
-              <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
-                mdbWavesEffect type="submit" [disabled]="loginForm.invalid">Sign In</button>
-              <p>Not a member?
-                <a routerLink="/register">Register</a>
-              </p>
-            </form>
-          </mdb-card-body>
-        </mdb-card>
-      </div>
+            </div>
+            <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
+              mdbWavesEffect type="submit" [disabled]="loginForm.invalid">Sign In</button>
+            <p>Not a member?
+              <a routerLink="/register">Register</a>
+            </p>
+          </form>
+        </mdb-card-body>
+      </mdb-card>
     </div>
   </div>
 </div>
