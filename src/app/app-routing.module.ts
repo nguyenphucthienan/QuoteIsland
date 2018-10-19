@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
   { path: 'quotes', loadChildren: './quotes/quotes.module#QuotesModule' },
   { path: 'authors', loadChildren: './authors/authors.module#AuthorsModule' },
   { path: 'categories', loadChildren: './categories/categories.module#CategoriesModule' }

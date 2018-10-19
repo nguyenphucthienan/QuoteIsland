@@ -61,7 +61,7 @@
             <div class="md-form">
               <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
                 mdbInputDirective [mdbValidate]="false">
-              <label for="confirmPassword">Confirm Password</label>
+              <label for="confirmPassword">Confirm password</label>
               <div *ngIf="registerForm.get('confirmPassword').touched && registerForm.hasError('passwordMatch')" class="invalid-message">
                 Password must match
               </div>
