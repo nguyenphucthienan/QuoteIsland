@@ -30,11 +30,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .subscribe(
         () => {
-          this.alertService.success('Login successfully', 'Success');
+          this.alertService.success('Login successfully');
           this.router.navigate(['/']);
         },
-        error => this.alertService.error('Login failed', 'Error')
+        error => this.alertService.error('Login failed')
       );
+  }
+
+  controlHasError(controlName: string, errorName: string): boolean {
+    return this.loginForm.get(controlName).touched
+      && this.loginForm.get(controlName).hasError(errorName);
   }
 
 }
