@@ -5,6 +5,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 
@@ -13,7 +14,8 @@ import { QuoteCardComponent } from './components/quote-card/quote-card.component
     BannerComponent,
     DatatableComponent,
     PanelComponent,
-    QuoteCardComponent
+    QuoteCardComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { QuoteCardComponent } from './components/quote-card/quote-card.component
     MDBBootstrapModule.forRoot().ngModule,
     BannerComponent,
     PanelComponent,
+    PaginationComponent,
     DatatableComponent,
     QuoteCardComponent
   ]

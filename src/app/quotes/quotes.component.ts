@@ -12,18 +12,23 @@ import { QuoteService } from '../core/services/quote.service';
 export class QuotesComponent implements OnInit {
 
   bannerImageUrl = environment.bannerImageUrls.quotesPage;
+  quotesPerPage = 8;
 
   quotes: any[] = [];
 
   constructor(private quoteService: QuoteService) { }
 
   ngOnInit() {
-    this.getQuotes(1, 8);
+    this.getQuotes(1, this.quotesPerPage);
   }
 
   getQuotes(page: number, offset: number) {
     this.quoteService.getQuotes(page, offset)
       .subscribe((quotes: any[]) => this.quotes = quotes);
+  }
+
+  onPageChanged(page: number) {
+    this.getQuotes(page, this.quotesPerPage);
   }
 
   getColorClass(index: number) {

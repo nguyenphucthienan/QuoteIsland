@@ -1,0 +1,15 @@
+<nav>
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="previous()">Previous</a>
+    </li>
+
+    <li *ngFor="let el of totalPagesArray; let index = index" class="page-item" [class.active]="currentPage === index + 1">
+      <a class="page-link" (click)="select(index + 1)">{{ index + 1 }}</a>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="next()">Next</a>
+    </li>
+  </ul>
+</nav>
