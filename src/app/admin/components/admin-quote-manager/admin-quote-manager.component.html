@@ -3,8 +3,10 @@
     <h1>Quote Manager</h1>
   </div>
 </app-banner>
-<mdb-card>
-  <mdb-card-body>
+<app-panel>
+  <div class="panel-content">
     <app-datatable [headElements]="headElements" [elements]="elements"></app-datatable>
-  </mdb-card-body>
-</mdb-card>
+    <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
+    <button type="button" mdbBtn color="primary" (click)="addModal.show()" mdbWavesEffect>Add Quote</button>
+  </div>
+</app-panel>

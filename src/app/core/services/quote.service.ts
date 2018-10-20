@@ -17,4 +17,14 @@ export class QuoteService {
     return this.http.get(`${this.quoteUrl}`, { params: params });
   }
 
+  createQuote(rawQuote) {
+    const quote = {
+      author: rawQuote.author,
+      categories: [rawQuote.categories],
+      text: rawQuote.text
+    };
+
+    return this.http.post(`${this.quoteUrl}`, quote);
+  }
+
 }

@@ -1,0 +1,36 @@
+<div mdbModal #frame="mdbModal" class="modal fade bottom" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Quote</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form [formGroup]="addQuoteForm">
+          <div class="md-form mb-5">
+            <input type="text" id="author" class="form-control" formControlName="author" mdbInputDirective
+              [mdbValidate]="false">
+            <label for="author">Author</label>
+          </div>
+          <div class="md-form mb-5">
+            <input type="text" id="categories" class="form-control" formControlName="categories" mdbInputDirective
+              [mdbValidate]="false">
+            <label for="categories">Categories</label>
+          </div>
+          <div class="md-form mb-4">
+            <textarea type="text" id="text" class="md-textarea md-textarea-auto form-control" formControlName="text"
+              mdbInputDirective [mdbValidate]="false"></textarea>
+            <label for="text">Text</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="success" class="waves-light" mdbWavesEffect (click)="addQuote()">Add</button>
+        <button mdbBtn color="danger" class="waves-light" mdbWavesEffect (click)="hide()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
 import { environment } from 'src/environments/environment';
+
+import { AdminQuoteAddModalComponent } from './admin-quote-add-modal/admin-quote-add-modal.component';
 
 @Component({
   selector: 'app-admin-quote-manager',
@@ -8,6 +11,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./admin-quote-manager.component.scss']
 })
 export class AdminQuoteManagerComponent implements OnInit {
+
+  @ViewChild(AdminQuoteAddModalComponent) addModal;
 
   bannerImageUrl = environment.bannerImageUrls.adminPage;
 
@@ -20,9 +25,14 @@ export class AdminQuoteManagerComponent implements OnInit {
 
   elements: any = [];
 
-  constructor(private quoteService: QuoteService) { }
+  constructor(private quoteService: QuoteService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
+    this.getQuotes();
+  }
+
+  private getQuotes() {
     this.quoteService.getQuotes()
       .subscribe(quotes => this.elements = this.populateQuotesData(quotes));
   }
@@ -38,6 +48,18 @@ export class AdminQuoteManagerComponent implements OnInit {
         text: quote.text
       };
     });
+  }
+
+  addQuote(rawQuote) {
+    this.quoteService.createQuote(rawQuote)
+      .subscribe(
+        () => {
+          this.alertService.success('Add quote successfully');
+          this.addModal.reset();
+          this.getQuotes();
+        },
+        error => this.alertService.error('Add quote failed')
+      );
   }
 
 }

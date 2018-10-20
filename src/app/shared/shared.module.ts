@@ -5,11 +5,13 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 @NgModule({
   declarations: [
     BannerComponent,
-    DatatableComponent
+    DatatableComponent,
+    PanelComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { DatatableComponent } from './components/datatable/datatable.component';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot().ngModule,
     BannerComponent,
+    PanelComponent,
     DatatableComponent
   ]
 })
