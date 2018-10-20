@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { QuoteCardHelpers } from '../core/helpers/quote-card.helper';
 
 import { QuoteService } from '../core/services/quote.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quotes',
@@ -16,10 +17,13 @@ export class QuotesComponent implements OnInit {
 
   quotes: any[] = [];
 
-  constructor(private quoteService: QuoteService) { }
+  constructor(private route: ActivatedRoute,
+    private quoteService: QuoteService) { }
 
   ngOnInit() {
-    this.getQuotes(1, this.quotesPerPage);
+    this.route.data.subscribe(data => {
+      this.quotes = data['quotes'];
+    });
   }
 
   getQuotes(page: number, offset: number) {
