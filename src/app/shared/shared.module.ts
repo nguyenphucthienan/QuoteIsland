@@ -4,10 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BannerComponent } from './components/banner/banner.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
 
 @NgModule({
   declarations: [
-    BannerComponent
+    BannerComponent,
+    DatatableComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { BannerComponent } from './components/banner/banner.component';
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot().ngModule,
-    BannerComponent
+    BannerComponent,
+    DatatableComponent
   ]
 })
 export class SharedModule { }

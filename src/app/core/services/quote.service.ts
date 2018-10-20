@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -9,8 +9,12 @@ export class QuoteService {
 
   constructor(private http: HttpClient) { }
 
-  getQuotes() {
-    return this.http.get(`${this.quoteUrl}`);
+  getQuotes(page = 1, offset = 10) {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('offset', offset.toString());
+
+    return this.http.get(`${this.quoteUrl}`, { params: params });
   }
 
 }

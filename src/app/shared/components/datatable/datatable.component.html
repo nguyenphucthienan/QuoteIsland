@@ -1,0 +1,14 @@
+<div class="table-responsive">
+  <table mdbTable hover="true">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{ head.name }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let el of elements">
+        <td *ngFor="let head of headElements">{{ el[head.id] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
