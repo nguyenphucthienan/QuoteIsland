@@ -1,0 +1,11 @@
+<div class="card mt-3 mb-3">
+  <div class="card-header white-text blue-gradient">{{ header }}</div>
+  <div class="card-body">
+    <h4 class="card-title"><a>{{ title }}</a></h4>
+    <p class="card-text">{{ text.length > 100 ? text.substr(0, 100) + '...' : text }}</p>
+  </div>
+  <div class="card-footer">
+    <a type="button" class="btn-floating btn-fb"><i class="fa fa-heart"></i></a>
+    <a type="button" class="btn-floating btn-tw float-right"><i class="fa fa-share"></i></a>
+  </div>
+</div>

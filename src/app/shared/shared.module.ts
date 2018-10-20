@@ -6,12 +6,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 
 @NgModule({
   declarations: [
     BannerComponent,
     DatatableComponent,
-    PanelComponent
+    PanelComponent,
+    QuoteCardComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { PanelComponent } from './components/panel/panel.component';
     MDBBootstrapModule.forRoot().ngModule,
     BannerComponent,
     PanelComponent,
-    DatatableComponent
+    DatatableComponent,
+    QuoteCardComponent
   ]
 })
 export class SharedModule { }
