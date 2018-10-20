@@ -1,11 +1,15 @@
-<div class="card mt-3 mb-3">
-  <div class="card-header white-text blue-gradient">{{ header }}</div>
+<div class="card mt-3 mb-3 ml-2 mr-2">
+  <div class="card-header white-text blue-gradient">
+    <a type="button" class="btn-floating"><i class="fa fa-lg fa-star"></i></a>
+  </div>
   <div class="card-body">
-    <h4 class="card-title"><a>{{ title }}</a></h4>
-    <p class="card-text">{{ text.length > 100 ? text.substr(0, 100) + '...' : text }}</p>
+    <blockquote class="blockquote">
+      <p class="mb-0">{{ text.length > 150 ? text.substr(0, 150) + '...' : text }}</p>
+      <footer class="blockquote-footer float-right"><cite title="Source Title">{{ author }}</cite></footer>
+    </blockquote>
   </div>
   <div class="card-footer">
-    <a type="button" class="btn-floating btn-fb"><i class="fa fa-heart"></i></a>
-    <a type="button" class="btn-floating btn-tw float-right"><i class="fa fa-share"></i></a>
+    <a type="button" class="btn-floating"><i class="fa fa-lg fa-heart"></i></a>
+    <a type="button" class="btn-floating float-right"><i class="fa fa-lg fa-share-alt"></i></a>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-quote-card',
@@ -7,9 +7,8 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
 })
 export class QuoteCardComponent implements OnInit {
 
-  @Input() header: string;
-  @Input() title: string;
   @Input() text: string;
+  @Input() author: string;
 
   constructor() { }
 

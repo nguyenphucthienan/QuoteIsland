@@ -1,31 +1,13 @@
-<app-banner [height]="'25%'" [imageUrl]="bannerImageUrl">
-  <div class="d-flex justify-content-center align-items-center">
+<app-banner [height]="'35%'" [imageUrl]="bannerImageUrl">
+  <div class="d-flex flex-column justify-content-center align-items-center">
     <h1>Quotes</h1>
   </div>
 </app-banner>
 <app-panel class="flex-grow-1">
   <div class="panel-content">
     <div class="row">
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
-      </div>
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
-      </div>
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
-      </div>
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
-      </div>
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
-      </div>
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
-      </div>
-      <div class="col-md-3">
-        <app-quote-card [header]="'Header'" [title]="'Title'" [text]="sampleText"></app-quote-card>
+      <div *ngFor="let quote of quotes" class="col-xl-3 col-lg-4 col-md-6">
+        <app-quote-card [author]="quote.author && quote.author.fullName" [text]="quote.text"></app-quote-card>
       </div>
     </div>
   </div>
