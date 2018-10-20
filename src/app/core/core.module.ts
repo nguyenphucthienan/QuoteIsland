@@ -14,6 +14,7 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { AuthRoleGuard } from './guards/auth-role.service';
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
+import { QuoteService } from './services/quote.service';
 
 const toastrOptions = {
   timeOut: 5000,
@@ -45,7 +46,8 @@ const toastrOptions = {
   providers: [
     AuthService,
     AlertService,
-    AuthRoleGuard
+    AuthRoleGuard,
+    QuoteService
   ]
 })
 export class CoreModule {

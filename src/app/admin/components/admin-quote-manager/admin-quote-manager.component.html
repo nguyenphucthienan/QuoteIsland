@@ -1,0 +1,24 @@
+<app-banner [height]="'25%'" [imageUrl]="bannerImageUrl">
+  <div class="d-flex justify-content-center align-items-center">
+    <h1>Quote Manager</h1>
+  </div>
+</app-banner>
+<mdb-card>
+  <mdb-card-body>
+    <table mdbTable hover="true">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let el of elements">
+          <th scope="row">{{el._id}}</th>
+          <td>{{el.author && el.author.fullName}}</td>
+          <td>{{el.text}}</td>
+          <td>{{el.loves ? el.loves.length : 0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mdb-card-body>
+</mdb-card>
