@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -12,13 +13,16 @@ export class AuthService {
   private readonly AUTH_URL = `${environment.apiUrl}/auth`;
 
   jwtHelper = new JwtHelperService();
-  decodedToken: any;
+
+  private decodedToken: any;
+  private decodedTokenSubject = new BehaviorSubject(this.decodedToken);
+  decodedToken$ = this.decodedTokenSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
   readTokenFromStorage() {
     const token = localStorage.getItem('token');
-    this.decodedToken = this.jwtHelper.decodeToken(token);
+    this.changeDecodedToken(token);
   }
 
   isLoggedIn() {
@@ -36,15 +40,36 @@ export class AuthService {
         map(({ token }: any) => {
           if (token) {
             localStorage.setItem('token', token);
-            this.decodedToken = this.jwtHelper.decodeToken(token);
+            this.changeDecodedToken(token);
           }
         })
       );
   }
 
   logout() {
-    this.decodedToken = null;
+    this.changeDecodedToken(null);
     localStorage.removeItem('token');
+  }
+
+  private changeDecodedToken(token) {
+    this.decodedToken = this.jwtHelper.decodeToken(token);
+    this.decodedTokenSubject.next(this.decodedToken);
+  }
+
+  isRoleMatch(allowedRoles: string[]): boolean {
+    let result = false;
+
+    if (this.decodedToken) {
+      const userRoles = this.decodedToken.role as Array<string>;
+      allowedRoles.forEach(allowedRole => {
+        if (userRoles.includes(allowedRole)) {
+          result = true;
+          return;
+        }
+      });
+    }
+
+    return result;
   }
 
 }

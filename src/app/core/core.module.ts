@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { HasRoleDirective } from './directives/has-role.directive';
+import { AuthRoleGuard } from './guards/auth-role.service';
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
 
@@ -26,7 +28,8 @@ const toastrOptions = {
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HasRoleDirective
   ],
   imports: [
     HttpClientModule,
@@ -36,11 +39,13 @@ const toastrOptions = {
     SharedModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    HasRoleDirective
   ],
   providers: [
     AuthService,
-    AlertService
+    AlertService,
+    AuthRoleGuard
   ]
 })
 export class CoreModule {
