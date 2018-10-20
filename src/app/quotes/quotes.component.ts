@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-quotes',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quotes.component.scss']
 })
 export class QuotesComponent implements OnInit {
+
+  bannerImageUrl = environment.bannerImageUrls.quotesPage;
 
   constructor() { }
 

@@ -10,7 +10,11 @@ export const environment = {
   bannerImageUrls: {
     registerPage: 'https://images.pexels.com/photos/1053775/pexels-photo-1053775.jpeg?auto=compress&cs=tinysrgb',
     loginPage: 'https://images.pexels.com/photos/1170572/pexels-photo-1170572.jpeg?auto=compress&cs=tinysrgb',
-    adminPage: 'https://images.pexels.com/photos/1436129/pexels-photo-1436129.jpeg?auto=compress&cs=tinysrgb'
+    aboutPage: 'https://images.pexels.com/photos/1144176/pexels-photo-1144176.jpeg?auto=compress&cs=tinysrgb',
+    adminPage: 'https://images.pexels.com/photos/1436129/pexels-photo-1436129.jpeg?auto=compress&cs=tinysrgb',
+    quotesPage: 'https://images.pexels.com/photos/1470812/pexels-photo-1470812.jpeg?auto=compress&cs=tinysrgb',
+    authorsPage: 'https://images.pexels.com/photos/1461556/pexels-photo-1461556.jpeg?auto=compress&cs=tinysrgb',
+    categoriesPage: 'https://images.pexels.com/photos/1468704/pexels-photo-1468704.jpeg?auto=compress&cs=tinysrgb'
   }
 };
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-authors',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authors.component.scss']
 })
 export class AuthorsComponent implements OnInit {
+
+  bannerImageUrl = environment.bannerImageUrls.authorsPage;
 
   constructor() { }
 
