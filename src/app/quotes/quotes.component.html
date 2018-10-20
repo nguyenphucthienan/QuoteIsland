@@ -1,13 +1,13 @@
-<app-banner [height]="'35%'" [imageUrl]="bannerImageUrl">
+<app-banner [height]="'30%'" [imageUrl]="bannerImageUrl">
   <div class="d-flex flex-column justify-content-center align-items-center">
     <h1>Quotes</h1>
   </div>
 </app-banner>
-<app-panel class="flex-grow-1">
+<app-panel>
   <div class="panel-content">
     <div class="row">
-      <div *ngFor="let quote of quotes" class="col-xl-3 col-lg-4 col-md-6">
-        <app-quote-card [author]="quote.author && quote.author.fullName" [text]="quote.text"></app-quote-card>
+      <div *ngFor="let quote of quotes; let index = index" class="col-xl-3 col-lg-4 col-md-6">
+        <app-quote-card [headerClasss]="getColorClass(index)" [author]="quote.author && quote.author.fullName" [text]="quote.text"></app-quote-card>
       </div>
     </div>
   </div>

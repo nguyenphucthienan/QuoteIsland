@@ -1,10 +1,13 @@
 <div class="card mt-3 mb-3 ml-2 mr-2">
-  <div class="card-header white-text blue-gradient">
+  <div [ngClass]="'card-header white-text ' + headerClasss">
     <a type="button" class="btn-floating"><i class="fa fa-lg fa-star"></i></a>
   </div>
   <div class="card-body">
     <blockquote class="blockquote">
-      <p class="mb-0">{{ text.length > 150 ? text.substr(0, 150) + '...' : text }}</p>
+      <p class="mb-0">
+        <i class="fa fa-quote-left"></i>
+        {{ text.length > 150 ? text.substr(0, 150) + '...' : text }}
+      </p>
       <footer class="blockquote-footer float-right"><cite title="Source Title">{{ author }}</cite></footer>
     </blockquote>
   </div>

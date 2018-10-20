@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { QuoteCardHelpers } from '../core/helpers/quote-card.helper';
 
 import { QuoteService } from '../core/services/quote.service';
 
@@ -23,6 +24,10 @@ export class QuotesComponent implements OnInit {
   getQuotes(page: number, offset: number) {
     this.quoteService.getQuotes(page, offset)
       .subscribe((quotes: any[]) => this.quotes = quotes);
+  }
+
+  getColorClass(index: number) {
+    return QuoteCardHelpers.getColorClass(index);
   }
 
 }

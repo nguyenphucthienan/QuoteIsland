@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class QuoteCardComponent implements OnInit {
 
+  @Input() headerClasss = 'blue-gradient';
   @Input() text: string;
   @Input() author: string;
 
