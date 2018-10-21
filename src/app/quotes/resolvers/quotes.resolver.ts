@@ -8,8 +8,8 @@ import { QuoteService } from 'src/app/core/services/quote.service';
 @Injectable()
 export class QuotesResolver implements Resolve<any[]> {
 
-  private readonly DEFAULT_PAGE = 1;
-  private readonly DEFAULT_OFFSET = 8;
+  private readonly DEFAULT_PAGE_NUMBER = 1;
+  private readonly DEFAULT_PAGE_SIZE = 8;
 
   constructor(private router: Router,
     private quoteService: QuoteService,
@@ -17,7 +17,7 @@ export class QuotesResolver implements Resolve<any[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<any[]> {
-    return this.quoteService.getQuotes(this.DEFAULT_PAGE, this.DEFAULT_OFFSET)
+    return this.quoteService.getQuotes(this.DEFAULT_PAGE_NUMBER, this.DEFAULT_PAGE_SIZE)
       .pipe(
         catchError(error => {
           this.alertService.error('Problem retrieving data');

@@ -13,11 +13,11 @@ import { QuoteService } from '../core/services/quote.service';
 })
 export class QuotesComponent implements OnInit {
 
-  bannerImageUrl = environment.bannerImageUrls.quotesPage;
-  quotesPerPage = 8;
+  readonly bannerImageUrl = environment.bannerImageUrls.quotesPage;
 
   quotes: any[] = [];
   pagination: Pagination;
+  sortMode: string;
 
   constructor(private route: ActivatedRoute,
     private quoteService: QuoteService) { }
@@ -29,16 +29,23 @@ export class QuotesComponent implements OnInit {
     });
   }
 
-  getQuotes(pageNumber: number, pageSize: number) {
-    this.quoteService.getQuotes(pageNumber, pageSize)
+  getQuotes() {
+    this.quoteService.getQuotes(this.pagination.pageNumber,
+      this.pagination.pageSize, this.sortMode)
       .subscribe((response: any) => {
         this.quotes = response.items;
         this.pagination = response.pagination;
       });
   }
 
-  onPageChanged(page: number) {
-    this.getQuotes(page, this.quotesPerPage);
+  onPageChanged(pageNumber: number) {
+    this.pagination.pageNumber = pageNumber;
+    this.getQuotes();
+  }
+
+  onSortChanged(sortMode: string) {
+    this.sortMode = sortMode;
+    this.getQuotes();
   }
 
   getColorClass(index: number) {

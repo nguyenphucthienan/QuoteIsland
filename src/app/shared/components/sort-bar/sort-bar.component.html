@@ -1,0 +1,4 @@
+<div class=" sort-bar d-flex flex-row align-items-center m-2" (click)="sortModal.show()">
+  <i class="fa fa-sort-amount-desc mr-2"></i>Sort
+</div>
+<app-sort-modal (sortChanged)="sortChanged.emit($event)"></app-sort-modal>

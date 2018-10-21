@@ -5,6 +5,8 @@
 </app-banner>
 <app-panel>
   <div class="panel-content">
+    <app-sort-bar (sortChanged)="onSortChanged($event)"></app-sort-bar>
+    <div class="dropdown-divider"></div>
     <div class="row">
       <div *ngFor="let quote of quotes; let index = index" class="col-xl-3 col-lg-4 col-md-6">
         <app-quote-card [headerClasss]="getColorClass(index)" [author]="quote.author && quote.author.fullName" [text]="quote.text"></app-quote-card>

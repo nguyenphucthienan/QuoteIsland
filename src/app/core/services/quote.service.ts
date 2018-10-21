@@ -6,13 +6,15 @@ import { environment } from 'src/environments/environment';
 export class QuoteService {
 
   private readonly quoteUrl = `${environment.apiUrl}/quotes`;
+  private readonly defaultSortMode = '_createdAt';
 
   constructor(private http: HttpClient) { }
 
-  getQuotes(pageNumber = 1, pageSize = 10) {
+  getQuotes(pageNumber = 1, pageSize = 10, sortMode = this.defaultSortMode) {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
-      .set('pageSize', pageSize.toString());
+      .set('pageSize', pageSize.toString())
+      .set('sortMode', sortMode);
 
     return this.http.get(`${this.quoteUrl}`, { params: params });
   }
