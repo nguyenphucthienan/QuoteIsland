@@ -9,11 +9,14 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   @Input() totalItems = 0;
   @Input() itemsPerPage = 1;
+  @Input() pagesPerSide = 2;
+  @Input() showDots = false;
+
   @Output() pageChanged = new EventEmitter();
 
   totalPages = 0;
-  totalPagesArray: any[];
   currentPage = 1;
+  totalPagesArray: any[];
 
   constructor() { }
 
