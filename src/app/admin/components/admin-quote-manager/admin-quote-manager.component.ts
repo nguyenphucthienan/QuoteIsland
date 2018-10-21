@@ -34,7 +34,9 @@ export class AdminQuoteManagerComponent implements OnInit {
 
   private getQuotes() {
     this.quoteService.getQuotes()
-      .subscribe(quotes => this.elements = this.populateQuotesData(quotes));
+      .subscribe((response: any) => {
+        this.elements = this.populateQuotesData(response.items);
+      });
   }
 
   private populateQuotesData(quotes) {

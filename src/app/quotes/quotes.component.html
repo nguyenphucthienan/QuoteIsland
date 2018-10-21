@@ -1,4 +1,4 @@
-<app-banner [height]="'30%'" [imageUrl]="bannerImageUrl">
+<app-banner [height]="'35%'" [imageUrl]="bannerImageUrl">
   <div class="d-flex flex-column justify-content-center align-items-center">
     <h1>Quotes</h1>
   </div>
@@ -12,7 +12,7 @@
     </div>
     <div class="dropdown-divider"></div>
     <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-      <app-pagination [totalItems]="quotes.length" [itemsPerPage]="quotesPerPage" (pageChanged)="onPageChanged($event)"></app-pagination>
+      <app-pagination [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.pageSize" (pageChanged)="onPageChanged($event)"></app-pagination>
     </div>
   </div>
 </app-panel>

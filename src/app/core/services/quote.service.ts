@@ -9,10 +9,10 @@ export class QuoteService {
 
   constructor(private http: HttpClient) { }
 
-  getQuotes(page = 1, offset = 10) {
+  getQuotes(pageNumber = 1, pageSize = 10) {
     const params = new HttpParams()
-      .set('page', page.toString())
-      .set('offset', offset.toString());
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
 
     return this.http.get(`${this.quoteUrl}`, { params: params });
   }
