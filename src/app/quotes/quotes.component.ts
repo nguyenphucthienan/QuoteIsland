@@ -17,7 +17,7 @@ export class QuotesComponent implements OnInit {
 
   quotes: any[] = [];
   pagination: Pagination;
-  sortMode: string;
+  sortString: string;
 
   constructor(private route: ActivatedRoute,
     private quoteService: QuoteService) { }
@@ -31,7 +31,7 @@ export class QuotesComponent implements OnInit {
 
   getQuotes() {
     this.quoteService.getQuotes(this.pagination.pageNumber,
-      this.pagination.pageSize, this.sortMode)
+      this.pagination.pageSize, this.sortString)
       .subscribe((response: any) => {
         this.quotes = response.items;
         this.pagination = response.pagination;
@@ -43,8 +43,8 @@ export class QuotesComponent implements OnInit {
     this.getQuotes();
   }
 
-  onSortChanged(sortMode: string) {
-    this.sortMode = sortMode;
+  onSortChanged(sortString: string) {
+    this.sortString = sortString;
     this.getQuotes();
   }
 

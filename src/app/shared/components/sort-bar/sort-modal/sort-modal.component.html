@@ -10,17 +10,17 @@
       <div class="modal-body">
         <div class="container">
           <div class="sort-option row d-flex flex-column align-items-center flex-row border border-info rounded"
-            (click)="select('text')">
+            (click)="select('+text')">
             <i class="fa fa-sort-alpha-asc fa-3x animated rotateIn"></i>
             <span class="sort-name mt-2">ALPHABETICAL</span>
           </div>
           <div class="sort-option row d-flex flex-column align-items-center flex-row border border-info rounded"
-            (click)="select('_createdAt')">
+            (click)="select('-createdAt')">
             <i class="fa fa-clock-o fa-3x animated rotateIn"></i>
             <span class="sort-name mt-2">LASTEST</span>
           </div>
           <div class="sort-option row d-flex flex-column align-items-center flex-row border border-info rounded"
-            (click)="select('mostLove')">
+            (click)="select('+mostLove')">
             <i class="fa fa-heart fa-3x animated rotateIn"></i>
             <span class="sort-name mt-2">MOST LOVE</span>
           </div>

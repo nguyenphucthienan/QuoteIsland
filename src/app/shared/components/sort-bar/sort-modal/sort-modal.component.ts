@@ -24,7 +24,7 @@ export class SortModalComponent implements OnInit {
     this.sortModal.hide();
   }
 
-  select(sortMode = 'text') {
+  select(sortMode) {
     this.sortChanged.emit(sortMode);
     this.hide();
   }
