@@ -10,6 +10,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.component';
+import { ModalHolderDirective } from './directives/modal-holder.directive';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.
     PanelComponent,
     QuoteCardComponent,
     PaginationComponent,
+    SortBarComponent,
     SortModalComponent,
-    SortBarComponent
+    ModalHolderDirective
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,9 @@ import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.
     SortBarComponent,
     DatatableComponent,
     QuoteCardComponent
+  ],
+  entryComponents: [
+    SortModalComponent
   ]
 })
 export class SharedModule { }

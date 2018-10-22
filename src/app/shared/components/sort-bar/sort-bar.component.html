@@ -1,4 +1,6 @@
-<div class=" sort-bar d-flex flex-row align-items-center m-2" (click)="sortModal.show()">
+<!-- <div class=" sort-bar d-flex flex-row align-items-center m-2" (click)="sortModal.show()"> -->
+<div class=" sort-bar d-flex flex-row align-items-center m-2" (click)="showSortModal()">
   <i class="fa fa-sort-amount-desc mr-2"></i>Sort
 </div>
-<app-sort-modal (sortChanged)="sortChanged.emit($event)"></app-sort-modal>
+<!-- <app-sort-modal (sortChanged)="sortChanged.emit($event)"></app-sort-modal> -->
+<ng-template appModalHolder></ng-template>

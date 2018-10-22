@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ModalDirective } from 'angular-bootstrap-md';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
+declare const $;
 
 @Component({
   selector: 'app-sort-modal',
@@ -8,7 +9,6 @@ import { ModalDirective } from 'angular-bootstrap-md';
 })
 export class SortModalComponent implements OnInit {
 
-  @ViewChild(ModalDirective) sortModal: ModalDirective;
   @Output() sortChanged = new EventEmitter();
 
   constructor() { }
@@ -17,16 +17,19 @@ export class SortModalComponent implements OnInit {
   }
 
   show() {
-    this.sortModal.show();
+    $('#myModal').modal('show');
+
   }
 
   hide() {
-    this.sortModal.hide();
+    $('#myModal').modal('hide');
   }
 
   select(sortMode) {
-    this.sortChanged.emit(sortMode);
-    this.hide();
+    $('#myModal').modal('hide');
+    $('#myModal').on('hidden.bs.modal', () => {
+      this.sortChanged.emit(sortMode);
+    });
   }
 
 }
