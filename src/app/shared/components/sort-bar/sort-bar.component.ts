@@ -22,8 +22,8 @@ export class SortBarComponent implements OnInit {
   openSortModal() {
     const modal = this.modalService.open(SortModalComponent, null);
 
-    modal.afterClosed.subscribe(result => {
-      console.log('Modal closed', result);
+    modal.afterClosed.subscribe(sortMode => {
+      this.sortChanged.emit(sortMode);
     });
   }
 

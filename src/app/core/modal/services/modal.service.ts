@@ -65,4 +65,8 @@ export class ModalService {
     return modalRef;
   }
 
+  public getInstance() {
+    return this.modalComponentRef && this.modalComponentRef.instance.getInstance();
+  }
+
 }
