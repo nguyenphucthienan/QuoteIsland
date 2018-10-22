@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-declare const $;
-
 @Component({
   selector: 'app-sort-modal',
   templateUrl: './sort-modal.component.html',
@@ -17,19 +15,13 @@ export class SortModalComponent implements OnInit {
   }
 
   show() {
-    $('#myModal').modal('show');
-
   }
 
   hide() {
-    $('#myModal').modal('hide');
   }
 
   select(sortMode) {
-    $('#myModal').modal('hide');
-    $('#myModal').on('hidden.bs.modal', () => {
-      this.sortChanged.emit(sortMode);
-    });
+    this.sortChanged.emit(sortMode);
   }
 
 }

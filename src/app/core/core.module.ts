@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { AuthRoleGuard } from './guards/auth-role.service';
+import { ModalModule } from './modal/modal.module';
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
 import { QuoteService } from './services/quote.service';
@@ -52,7 +53,8 @@ const toastrOptions = {
     BrowserAnimationsModule,
     JwtModule.forRoot(jwtOptions),
     ToastrModule.forRoot(toastrOptions),
-    SharedModule
+    SharedModule,
+    ModalModule
   ],
   exports: [
     HeaderComponent,

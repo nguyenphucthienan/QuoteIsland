@@ -1,6 +1,7 @@
-import { Component, ComponentFactoryResolver, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ModalHolderDirective } from 'src/app/core/modal/modal-holder.directive';
+import { ModalService } from 'src/app/core/modal/modal.service';
 
-import { ModalHolderDirective } from '../../directives/modal-holder.directive';
 import { SortModalComponent } from './sort-modal/sort-modal.component';
 
 @Component({
@@ -13,23 +14,16 @@ export class SortBarComponent implements OnInit {
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
   @Output() sortChanged = new EventEmitter();
 
-  componentRef;
-
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
   }
 
-  showSortModal() {
-    const viewContainerRef = this.modalHolder.viewContainerRef;
-    viewContainerRef.clear();
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(SortModalComponent);
-    this.componentRef = viewContainerRef.createComponent(componentFactory);
-    this.componentRef.instance.show();
-    this.componentRef.instance.sortChanged.subscribe(value => {
-      this.sortChanged.emit(value);
-      this.componentRef.destroy();
-      viewContainerRef.clear();
+  openSortModal() {
+    const modal = this.modalService.open(SortModalComponent, null);
+
+    modal.afterClosed.subscribe(result => {
+      console.log('Modal closed', result);
     });
   }
 

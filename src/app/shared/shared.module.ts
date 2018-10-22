@@ -10,7 +10,6 @@ import { PanelComponent } from './components/panel/panel.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.component';
-import { ModalHolderDirective } from './directives/modal-holder.directive';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { ModalHolderDirective } from './directives/modal-holder.directive';
     QuoteCardComponent,
     PaginationComponent,
     SortBarComponent,
-    SortModalComponent,
-    ModalHolderDirective
+    SortModalComponent
   ],
   imports: [
     CommonModule,
