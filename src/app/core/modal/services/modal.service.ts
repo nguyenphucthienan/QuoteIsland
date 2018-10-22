@@ -22,10 +22,16 @@ export class ModalService {
     private applicationRef: ApplicationRef,
     private injector: Injector) { }
 
-  appendModalComponentToBody(config: ModalConfig) {
+  public open(componentType: Type<any>, config: ModalConfig) {
+    const modalRef = this.appendModalComponentToBody();
+    this.modalComponentRef.instance.childComponentType = componentType;
+    this.attachModalConfig(config);
+    return modalRef;
+  }
+
+  private appendModalComponentToBody() {
     // Create map config
     const map = new WeakMap();
-    map.set(ModalConfig, config);
 
     // Add the ModalRef to Dependency Injection
     const modalRef = new ModalRef();
@@ -46,7 +52,6 @@ export class ModalService {
     document.body.appendChild(domElement);
 
     this.modalComponentRef = componentRef;
-
     this.modalComponentRef.instance.onClose.subscribe(() => {
       this.removeModalComponentFromBody();
     });
@@ -59,14 +64,21 @@ export class ModalService {
     this.modalComponentRef.destroy();
   }
 
-  public open(componentType: Type<any>, config: ModalConfig) {
-    const modalRef = this.appendModalComponentToBody(config);
-    this.modalComponentRef.instance.childComponentType = componentType;
-    return modalRef;
-  }
+  private attachModalConfig(config) {
+    this.modalComponentRef.instance.config = config;
+    const { inputs, outputs } = config;
 
-  public getInstance() {
-    return this.modalComponentRef && this.modalComponentRef.instance.getInstance();
+    for (const key in inputs) {
+      if (inputs.hasOwnProperty(key)) {
+        this.modalComponentRef.instance[key] = inputs[key];
+      }
+    }
+
+    for (const key in outputs) {
+      if (outputs.hasOwnProperty(key)) {
+        this.modalComponentRef.instance[key].subscribe(outputs[key]);
+      }
+    }
   }
 
 }

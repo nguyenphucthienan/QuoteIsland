@@ -4,6 +4,7 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
+  Input,
   OnDestroy,
   OnInit,
   Type,
@@ -12,6 +13,7 @@ import {
 import { Subject } from 'rxjs';
 
 import { ModalHolderDirective } from './directives/modal-holder.directive';
+import { ModalConfig } from './helpers/modal-config';
 import { ModalRef } from './helpers/modal-ref';
 
 @Component({
@@ -22,12 +24,14 @@ import { ModalRef } from './helpers/modal-ref';
 export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
-
-  childComponentType: Type<any>;
-  componentRef: ComponentRef<any>;
+  @Input() title: string;
 
   private readonly onCloseSubject = new Subject<any>();
   public onClose = this.onCloseSubject.asObservable();
+
+  childComponentType: Type<any>;
+  componentRef: ComponentRef<any>;
+  config: ModalConfig;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef,
@@ -37,7 +41,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.loadChildComponent(this.childComponentType);
+    this.loadChildComponent();
     this.cd.detectChanges();
   }
 
@@ -49,11 +53,28 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
     e.stopPropagation();
   }
 
-  loadChildComponent(componentType: Type<any>) {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+  private loadChildComponent() {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.childComponentType);
     const viewContainerRef = this.modalHolder.viewContainerRef;
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent(componentFactory);
+    this.attachChildComponentConfig();
+  }
+
+  private attachChildComponentConfig() {
+    const { inputs, outputs } = this.config.childComponent;
+
+    for (const key in inputs) {
+      if (inputs.hasOwnProperty(key)) {
+        this.componentRef.instance[key] = inputs[key];
+      }
+    }
+
+    for (const key in outputs) {
+      if (outputs.hasOwnProperty(key)) {
+        this.componentRef.instance[key].subscribe(outputs[key]);
+      }
+    }
   }
 
   close() {

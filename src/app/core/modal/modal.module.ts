@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ModalHolderDirective } from './directives/modal-holder.directive';
-import { ModalConfig } from './helpers/modal-config';
 import { ModalRef } from './helpers/modal-ref';
 import { ModalComponent } from './modal.component';
 import { ModalService } from './services/modal.service';
@@ -17,8 +16,7 @@ import { ModalService } from './services/modal.service';
   ],
   providers: [
     ModalService,
-    ModalRef,
-    ModalConfig,
+    ModalRef
   ],
   entryComponents: [
     ModalComponent

@@ -8,22 +8,16 @@ import { ModalRef } from 'src/app/core/modal/helpers/modal-ref';
 })
 export class SortModalComponent implements OnInit {
 
-  // @Output() sortChanged = new EventEmitter();
+  @Output() sortChanged = new EventEmitter();
 
   constructor(private modalRef: ModalRef) { }
 
   ngOnInit() {
   }
 
-  show() {
-  }
-
-  hide() {
-  }
-
   select(sortMode) {
-    // this.sortChanged.emit(sortMode);
-    this.modalRef.close(sortMode);
+    this.sortChanged.emit(sortMode);
+    this.modalRef.close();
   }
 
 }

@@ -1,3 +1,8 @@
 export class ModalConfig<T = any> {
-  data?: T;
+  inputs?: T;
+  outputs?: T;
+  childComponent?: {
+    inputs?: T;
+    outputs?: T;
+  };
 }
