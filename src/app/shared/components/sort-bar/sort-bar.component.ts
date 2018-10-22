@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ModalHolderDirective } from 'src/app/core/modal/modal-holder.directive';
-import { ModalService } from 'src/app/core/modal/modal.service';
+import { ModalHolderDirective } from 'src/app/core/modal/directives/modal-holder.directive';
+import { ModalService } from 'src/app/core/modal/services/modal.service';
 
 import { SortModalComponent } from './sort-modal/sort-modal.component';
 

@@ -8,10 +8,10 @@ import {
   Type,
 } from '@angular/core';
 
-import { ModalConfig } from '../modal/modal-config';
-import { ModalInjector } from '../modal/modal-injector';
-import { ModalRef } from '../modal/modal-ref';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalConfig } from '../helpers/modal-config';
+import { ModalInjector } from '../helpers/modal-injector';
+import { ModalRef } from '../helpers/modal-ref';
+import { ModalComponent } from '../modal.component';
 
 @Injectable()
 export class ModalService {

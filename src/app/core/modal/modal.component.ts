@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { ModalHolderDirective } from './modal-holder.directive';
-import { ModalRef } from './modal-ref';
+import { ModalHolderDirective } from './directives/modal-holder.directive';
+import { ModalRef } from './helpers/modal-ref';
 
 @Component({
   selector: 'app-modal',
