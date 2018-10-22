@@ -14,7 +14,8 @@ import { Subject } from 'rxjs';
 
 import { ModalHolderDirective } from './directives/modal-holder.directive';
 import { ModalConfig } from './helpers/modal-config';
-import { ModalRef } from './helpers/modal-ref';
+
+declare const $;
 
 @Component({
   selector: 'app-modal',
@@ -34,8 +35,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   config: ModalConfig;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
-    private cd: ChangeDetectorRef,
-    private modalRef: ModalRef) { }
+    private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -46,7 +46,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onOverlayClicked(e: MouseEvent) {
-    this.modalRef.close();
+    this.close();
   }
 
   onModalClicked(e: MouseEvent) {
@@ -78,8 +78,10 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   close() {
-    this.modalRef.close();
-    this.onCloseSubject.next();
+    $('.modal-container').addClass('animated fadeOut');
+    $('.modal-container').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+      this.onCloseSubject.next();
+    });
   }
 
   ngOnDestroy() {

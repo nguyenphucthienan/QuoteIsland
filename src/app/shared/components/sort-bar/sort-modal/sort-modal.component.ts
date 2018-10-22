@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ModalRef } from 'src/app/core/modal/helpers/modal-ref';
 
 @Component({
   selector: 'app-sort-modal',
@@ -10,14 +9,13 @@ export class SortModalComponent implements OnInit {
 
   @Output() sortChanged = new EventEmitter();
 
-  constructor(private modalRef: ModalRef) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   select(sortMode) {
     this.sortChanged.emit(sortMode);
-    this.modalRef.close();
   }
 
 }

@@ -9,8 +9,6 @@ import {
 } from '@angular/core';
 
 import { ModalConfig } from '../helpers/modal-config';
-import { ModalInjector } from '../helpers/modal-injector';
-import { ModalRef } from '../helpers/modal-ref';
 import { ModalComponent } from '../modal.component';
 
 @Injectable()
@@ -22,30 +20,16 @@ export class ModalService {
     private applicationRef: ApplicationRef,
     private injector: Injector) { }
 
-  public open(componentType: Type<any>, config: ModalConfig) {
+  public open(componentType: Type<any>, config: ModalConfig): ComponentRef<ModalComponent> {
     const modalRef = this.appendModalComponentToBody();
     this.modalComponentRef.instance.childComponentType = componentType;
     this.attachModalConfig(config);
     return modalRef;
   }
 
-  private appendModalComponentToBody() {
-    // Create map config
-    const map = new WeakMap();
-
-    // Add the ModalRef to Dependency Injection
-    const modalRef = new ModalRef();
-    map.set(ModalRef, modalRef);
-
-    // When somebody called the close method
-    const subscription = modalRef.afterClosed.subscribe(() => {
-      // Close the dialog
-      this.removeModalComponentFromBody();
-      subscription.unsubscribe();
-    });
-
+  private appendModalComponentToBody(): ComponentRef<ModalComponent> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-    const componentRef = componentFactory.create(new ModalInjector(this.injector, map));
+    const componentRef = componentFactory.create(this.injector);
 
     this.applicationRef.attachView(componentRef.hostView);
     const domElement = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
@@ -56,7 +40,7 @@ export class ModalService {
       this.removeModalComponentFromBody();
     });
 
-    return modalRef;
+    return componentRef;
   }
 
   private removeModalComponentFromBody() {
