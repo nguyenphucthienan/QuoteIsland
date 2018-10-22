@@ -12,6 +12,8 @@ import { ModalComponent } from 'src/app/core/modal/modal.component';
 })
 export class SortBarComponent implements OnInit {
 
+  private readonly modalTitle = 'Sort Quotes';
+
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
   @Output() sortChanged = new EventEmitter();
 
@@ -25,7 +27,7 @@ export class SortBarComponent implements OnInit {
   openSortModal() {
     this.modalComponentRef = this.modalService.open(SortModalComponent, {
       inputs: {
-        title: 'Sort Quotes'
+        title: this.modalTitle
       },
       childComponent: {
         outputs: {

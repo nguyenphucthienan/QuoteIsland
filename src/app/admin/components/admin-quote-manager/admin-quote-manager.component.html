@@ -5,9 +5,11 @@
 </app-banner>
 <app-panel>
   <div class="panel-content">
-    <app-datatable [headElements]="headElements" [elements]="elements"></app-datatable>
-    <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
-    <div class="dropdown-divider"></div>
-    <button type="button" mdbBtn color="primary" (click)="addModal.show()" mdbWavesEffect>Add Quote</button>
+    <div class="container-fluid">
+      <app-datatable [headElements]="headElements" [elements]="elements"></app-datatable>
+      <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
+      <div class="dropdown-divider"></div>
+      <button type="button" mdbBtn color="primary" (click)="addModal.show()" mdbWavesEffect>Add Quote</button>
+    </div>
   </div>
 </app-panel>
