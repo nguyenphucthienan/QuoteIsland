@@ -1,9 +1,9 @@
 import { Component, ComponentRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalHolderDirective } from 'src/app/core/modal/directives/modal-holder.directive';
+import { ModalComponent } from 'src/app/core/modal/modal.component';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
 
 import { SortModalComponent } from './sort-modal/sort-modal.component';
-import { ModalComponent } from 'src/app/core/modal/modal.component';
 
 @Component({
   selector: 'app-sort-bar',

@@ -17,6 +17,7 @@ import { AuthRoleGuard } from './guards/auth-role.service';
 import { ModalModule } from './modal/modal.module';
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
+import { AuthorService } from './services/author.service';
 import { QuoteService } from './services/quote.service';
 
 export function tokenGetter() {
@@ -64,7 +65,8 @@ const toastrOptions = {
     AuthService,
     AlertService,
     AuthRoleGuard,
-    QuoteService
+    QuoteService,
+    AuthorService
   ]
 })
 export class CoreModule {

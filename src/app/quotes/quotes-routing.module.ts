@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: QuotesComponent,
-    resolve: {quotes: QuotesResolver}
+    resolve: { quotes: QuotesResolver }
   }
 ];
 

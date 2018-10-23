@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthorsComponent } from './authors.component';
+import { AuthorsResolver } from './resolvers/authors.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthorsComponent
+    component: AuthorsComponent,
+    resolve: { authors: AuthorsResolver }
   }
 ];
 
