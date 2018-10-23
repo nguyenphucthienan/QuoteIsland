@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgModuleRef, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModalService } from 'src/app/core/modal/services/modal.service';
+
+import { AuthorInfoModalComponent } from '../author-info-modal/author-info-modal.component';
 
 @Component({
   selector: 'app-author-card',
@@ -8,12 +11,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AuthorCardComponent implements OnInit {
 
+  readonly infoModalTitle = 'Author Info';
+  readonly quotePluralMapping = {
+    '=0': '0 quote',
+    'other': '# quotes'
+  };
+
   @Input() headerClasss = 'blue-gradient';
   @Input() author: any;
 
   private photoHover = false;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer,
+    private moduleRef: NgModuleRef<any>,
+    private modalService: ModalService) { }
 
   ngOnInit() {
   }
@@ -25,6 +36,16 @@ export class AuthorCardComponent implements OnInit {
 
     return this.sanitizer
       .bypassSecurityTrustStyle(`linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${this.author.photoUrl})`);
+  }
+
+  openInfoModal() {
+    this.modalService.open(AuthorInfoModalComponent, {
+      inputs: {
+        title: this.infoModalTitle,
+        hasBottomClose: true,
+        closeOnBackdrop: true
+      },
+    }, this.moduleRef);
   }
 
 }

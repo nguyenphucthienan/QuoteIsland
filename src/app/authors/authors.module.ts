@@ -4,12 +4,14 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthorsRoutingModule } from './authors-routing.module';
 import { AuthorsComponent } from './authors.component';
 import { AuthorCardComponent } from './components/author-card/author-card.component';
+import { AuthorInfoModalComponent } from './components/author-info-modal/author-info-modal.component';
 import { AuthorsResolver } from './resolvers/authors.resolver';
 
 @NgModule({
   declarations: [
     AuthorsComponent,
-    AuthorCardComponent
+    AuthorCardComponent,
+    AuthorInfoModalComponent
   ],
   imports: [
     SharedModule,
@@ -17,6 +19,9 @@ import { AuthorsResolver } from './resolvers/authors.resolver';
   ],
   providers: [
     AuthorsResolver
+  ],
+  entryComponents: [
+    AuthorInfoModalComponent
   ]
 })
 export class AuthorsModule { }

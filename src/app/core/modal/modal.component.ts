@@ -5,6 +5,7 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   Input,
+  NgModuleRef,
   OnDestroy,
   OnInit,
   Type,
@@ -35,6 +36,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   childComponentType: Type<any>;
   componentRef: ComponentRef<any>;
   config: ModalConfig;
+  moduleRef: NgModuleRef<any>;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef) { }
@@ -58,7 +60,12 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private loadChildComponent() {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.childComponentType);
+    // Use moduleRef when open modal from a lazy-loading feature module
+    const componentFactoryResolver = this.moduleRef
+      ? this.moduleRef.componentFactoryResolver
+      : this.componentFactoryResolver;
+
+    const componentFactory = componentFactoryResolver.resolveComponentFactory(this.childComponentType);
     const viewContainerRef = this.modalHolder.viewContainerRef;
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent(componentFactory);
@@ -66,6 +73,10 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private attachChildComponentConfig() {
+    if (!this.config.childComponent) {
+      return;
+    }
+
     const { inputs, outputs } = this.config.childComponent;
 
     for (const key in inputs) {

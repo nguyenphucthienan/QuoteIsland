@@ -17,7 +17,7 @@ export class SortBarComponent implements OnInit {
   @Input() modalSortOptions: any[];
   @Output() sortChanged = new EventEmitter();
 
-  modalComponentRef: ComponentRef<ModalComponent>;
+  private modalComponentRef: ComponentRef<ModalComponent>;
 
   constructor(private modalService: ModalService) { }
 

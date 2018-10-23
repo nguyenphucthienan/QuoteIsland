@@ -5,6 +5,7 @@ import {
   EmbeddedViewRef,
   Injectable,
   Injector,
+  NgModuleRef,
   Type,
 } from '@angular/core';
 
@@ -20,15 +21,22 @@ export class ModalService {
     private applicationRef: ApplicationRef,
     private injector: Injector) { }
 
-  public open(componentType: Type<any>, config: ModalConfig): ComponentRef<ModalComponent> {
-    const modalRef = this.appendModalComponentToBody();
+  public open(componentType: Type<any>, config: ModalConfig, moduleRef?: NgModuleRef<any>): ComponentRef<ModalComponent> {
+    // Use moduleRef when open modal from a lazy-loading feature module
+    const componentFactoryResolver = moduleRef
+      ? moduleRef.componentFactoryResolver
+      : this.componentFactoryResolver;
+
+    const modalRef = this.appendModalComponentToBody(componentFactoryResolver);
+
     this.modalComponentRef.instance.childComponentType = componentType;
-    this.attachModalConfig(config);
+    this.attachModalConfig(config, moduleRef);
+
     return modalRef;
   }
 
-  private appendModalComponentToBody(): ComponentRef<ModalComponent> {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+  private appendModalComponentToBody(componentFactoryResolver: ComponentFactoryResolver): ComponentRef<ModalComponent> {
+    const componentFactory = componentFactoryResolver.resolveComponentFactory(ModalComponent);
     const componentRef = componentFactory.create(this.injector);
 
     this.applicationRef.attachView(componentRef.hostView);
@@ -48,8 +56,10 @@ export class ModalService {
     this.modalComponentRef.destroy();
   }
 
-  private attachModalConfig(config) {
+  private attachModalConfig(config: ModalConfig, moduleRef: NgModuleRef<any>) {
     this.modalComponentRef.instance.config = config;
+    this.modalComponentRef.instance.moduleRef = moduleRef;
+
     const { inputs, outputs } = config;
 
     for (const key in inputs) {
