@@ -6,7 +6,7 @@
 <app-panel>
   <div class="panel-content">
     <div class="container-fluid">
-      <app-sort-bar (sortChanged)="onSortChanged($event)"></app-sort-bar>
+      <app-sort-bar [modalTitle]="'Sort Quotes'" [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
       <div class="dropdown-divider"></div>
       <div class="row">
         <div *ngFor="let quote of quotes; let index = index" class="col-xl-3 col-lg-4 col-md-6">

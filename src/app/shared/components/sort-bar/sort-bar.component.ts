@@ -1,4 +1,4 @@
-import { Component, ComponentRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ComponentRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalHolderDirective } from 'src/app/core/modal/directives/modal-holder.directive';
 import { ModalComponent } from 'src/app/core/modal/modal.component';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
@@ -12,9 +12,9 @@ import { SortModalComponent } from './sort-modal/sort-modal.component';
 })
 export class SortBarComponent implements OnInit {
 
-  private readonly modalTitle = 'Sort Quotes';
-
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
+  @Input() modalTitle: string;
+  @Input() modalSortOptions: any[];
   @Output() sortChanged = new EventEmitter();
 
   modalComponentRef: ComponentRef<ModalComponent>;
@@ -32,6 +32,9 @@ export class SortBarComponent implements OnInit {
         closeOnBackdrop: true
       },
       childComponent: {
+        inputs: {
+          sortOptions: this.modalSortOptions
+        },
         outputs: {
           sortChanged: this.onSortChanged.bind(this)
         }

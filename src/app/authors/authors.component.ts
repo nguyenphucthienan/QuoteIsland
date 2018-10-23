@@ -13,7 +13,12 @@ import { AuthorService } from '../core/services/author.service';
 })
 export class AuthorsComponent implements OnInit {
 
-  bannerImageUrl = environment.bannerImageUrls.authorsPage;
+  readonly bannerImageUrl = environment.bannerImageUrls.authorsPage;
+  readonly modalSortOptions: any[] = [
+    { name: 'Alphabetical', id: '+fullName', iconClassName: 'fa fa-sort-alpha-asc' },
+    { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
+    { name: 'Most Love', id: '+loveCount', iconClassName: 'fa fa-heart' }
+  ];
 
   authors: any[] = [];
   pagination: Pagination;
