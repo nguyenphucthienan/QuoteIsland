@@ -27,7 +27,9 @@ export class SortBarComponent implements OnInit {
   openSortModal() {
     this.modalComponentRef = this.modalService.open(SortModalComponent, {
       inputs: {
-        title: this.modalTitle
+        title: this.modalTitle,
+        hasBottomClose: true,
+        closeOnBackdrop: true
       },
       childComponent: {
         outputs: {

@@ -26,6 +26,8 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
   @Input() title: string;
+  @Input() hasBottomClose: false;
+  @Input() closeOnBackdrop: false;
 
   private readonly onCloseSubject = new Subject<any>();
   public onClose = this.onCloseSubject.asObservable();
@@ -46,7 +48,9 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onOverlayClicked(e: MouseEvent) {
-    this.close();
+    if (this.closeOnBackdrop) {
+      this.close();
+    }
   }
 
   onModalClicked(e: MouseEvent) {

@@ -12,7 +12,7 @@
           <ng-template appModalHolder></ng-template>
         </div>
       </div>
-      <div class="modal-footer">
+      <div *ngIf="hasBottomClose" class="modal-footer">
         <a class="btn btn-primary btn-block" (click)="close()">Close</a>
       </div>
     </div>
