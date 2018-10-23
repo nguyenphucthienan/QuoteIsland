@@ -18,7 +18,9 @@ export class BannerComponent implements OnInit {
 
   getSanitizedImageUrl() {
     return this.sanitizer
-      .bypassSecurityTrustStyle(`linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${this.imageUrl})`);
+      .bypassSecurityTrustStyle(`linear-gradient(rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)),
+        url(${this.imageUrl})`);
   }
 
 }

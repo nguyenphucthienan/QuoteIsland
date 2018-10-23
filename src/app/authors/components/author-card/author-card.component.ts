@@ -35,7 +35,9 @@ export class AuthorCardComponent implements OnInit {
     }
 
     return this.sanitizer
-      .bypassSecurityTrustStyle(`linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${this.author.photoUrl})`);
+      .bypassSecurityTrustStyle(`linear-gradient(rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)),
+        url(${this.author.photoUrl})`);
   }
 
   openInfoModal() {
@@ -45,6 +47,11 @@ export class AuthorCardComponent implements OnInit {
         hasBottomClose: true,
         closeOnBackdrop: true
       },
+      childComponent: {
+        inputs: {
+          author: this.author
+        }
+      }
     }, this.moduleRef);
   }
 

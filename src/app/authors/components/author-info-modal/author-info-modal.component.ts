@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-author-info-modal',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author-info-modal.component.scss']
 })
 export class AuthorInfoModalComponent implements OnInit {
+
+  @Input() author: any;
 
   constructor() { }
 

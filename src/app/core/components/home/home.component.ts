@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
   }
 
   getBackgroundIndex(index: number) {
-    return this.sanitizer.bypassSecurityTrustStyle(`url(${this.images[index]})`);
+    return this.sanitizer
+      .bypassSecurityTrustStyle(`url(${this.images[index]})`);
   }
 
 }
