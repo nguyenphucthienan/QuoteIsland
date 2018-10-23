@@ -1,4 +1,4 @@
-export class QuoteCardHelpers {
+export class CardHelpers {
 
   private static readonly cardsPerPage = 8;
 
@@ -6,11 +6,11 @@ export class QuoteCardHelpers {
     'blue-gradient',
     'ripe-malinka-gradient',
     'tempting-azure-gradient',
-    'night-fade-gradient',
+    'mean-fruit-gradient',
     'sunny-morning-gradient',
-    'dusty-grass-gradient',
     'winter-neva-gradient',
-    'young-passion-gradient'
+    'young-passion-gradient',
+    'dusty-grass-gradient'
   ];
 
   static getColorClass(index: number) {

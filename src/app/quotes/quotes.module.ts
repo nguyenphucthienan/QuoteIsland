@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { QuotesRoutingModule } from './quotes-routing.module';
 import { QuotesComponent } from './quotes.component';
 import { QuotesResolver } from './resolvers/quotes.resolver';
 
 @NgModule({
   declarations: [
-    QuotesComponent
+    QuotesComponent,
+    QuoteCardComponent
   ],
   imports: [
     SharedModule,
     QuotesRoutingModule
-  ],
-  exports: [
-    QuotesComponent
   ],
   providers: [
     QuotesResolver

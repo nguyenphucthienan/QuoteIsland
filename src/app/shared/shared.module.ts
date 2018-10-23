@@ -7,7 +7,6 @@ import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PanelComponent } from './components/panel/panel.component';
-import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.component';
 
@@ -16,7 +15,6 @@ import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.
     BannerComponent,
     DatatableComponent,
     PanelComponent,
-    QuoteCardComponent,
     PaginationComponent,
     SortBarComponent,
     SortModalComponent
@@ -36,8 +34,7 @@ import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.
     PanelComponent,
     PaginationComponent,
     SortBarComponent,
-    DatatableComponent,
-    QuoteCardComponent
+    DatatableComponent
   ],
   entryComponents: [
     SortModalComponent

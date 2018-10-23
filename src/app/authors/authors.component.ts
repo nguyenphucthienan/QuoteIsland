@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-import { QuoteCardHelpers } from '../core/helpers/quote-card.helper';
+import { CardHelpers } from '../core/helpers/card.helper';
 import { Pagination } from '../core/models/pagination.interface';
 import { AuthorService } from '../core/services/author.service';
 
@@ -54,7 +54,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   getColorClass(index: number) {
-    return QuoteCardHelpers.getColorClass(index);
+    return CardHelpers.getColorClass(index);
   }
 
 }
