@@ -3,25 +3,24 @@ import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertService } from 'src/app/core/services/alert.service';
-import { QuoteService } from 'src/app/core/services/quote.service';
+import { AuthorService } from 'src/app/core/services/author.service';
 
 @Injectable()
-export class QuotesResolver implements Resolve<any[]> {
-
-  private readonly defaultPageNumber = 1;
-  private readonly defaultPageSize = 8;
+export class AuthorResolver implements Resolve<any[]> {
 
   constructor(private router: Router,
-    private quoteService: QuoteService,
+    private authorService: AuthorService,
     private alertService: AlertService) {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<any[]> {
-    return this.quoteService.getQuotes(this.defaultPageNumber, this.defaultPageSize)
+    const authorId = route.paramMap.get('id');
+
+    return this.authorService.getAuthor(authorId)
       .pipe(
         catchError(error => {
           this.alertService.error('Problem retrieving data');
-          this.router.navigate(['/']);
+          this.router.navigate(['/authors']);
           return of(null);
         })
       );

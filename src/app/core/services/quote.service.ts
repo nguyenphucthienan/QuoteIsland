@@ -29,4 +29,15 @@ export class QuoteService {
     return this.http.post(`${this.quoteUrl}`, quote);
   }
 
+  getQuotesByAuthor(authorId: string, pageNumber = 1, pageSize = 10,
+    sortString = this.defaultSortString) {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString())
+      .set('filter', `author:${authorId}`)
+      .set('sort', sortString);
+
+    return this.http.get(`${this.quoteUrl}`, { params: params });
+  }
+
 }

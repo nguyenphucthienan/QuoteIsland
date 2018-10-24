@@ -6,7 +6,7 @@ import { AlertService } from 'src/app/core/services/alert.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
 
 @Injectable()
-export class QuotesResolver implements Resolve<any[]> {
+export class AuthorQuotesResolver implements Resolve<any[]> {
 
   private readonly defaultPageNumber = 1;
   private readonly defaultPageSize = 8;
@@ -17,11 +17,14 @@ export class QuotesResolver implements Resolve<any[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<any[]> {
-    return this.quoteService.getQuotes(this.defaultPageNumber, this.defaultPageSize)
+    const authorId = route.paramMap.get('id');
+
+    return this.quoteService.getQuotesByAuthor(authorId,
+      this.defaultPageNumber, this.defaultPageSize)
       .pipe(
         catchError(error => {
           this.alertService.error('Problem retrieving data');
-          this.router.navigate(['/']);
+          this.router.navigate(['/authors']);
           return of(null);
         })
       );
