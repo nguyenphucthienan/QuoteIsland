@@ -6,13 +6,16 @@
     <blockquote class="blockquote">
       <p class="quote-text mb-0">
         <i class="fa fa-quote-left"></i>
-        {{ text.length > 150 ? text.substr(0, 150) + '...' : text }}
+        {{ quote.text.length > 150 ? quote.text.substr(0, 150) + '...' : quote.text }}
       </p>
-      <footer class="quote-author blockquote-footer float-right"><cite>{{ author }}</cite></footer>
+      <footer class="quote-author blockquote-footer float-right"><cite>{{ quote.author.fullName }}</cite></footer>
     </blockquote>
   </div>
   <div class="card-footer">
-    <a type="button" class="btn-floating"><i class="fa fa-lg fa-heart"></i></a>
+    <a type="button" class="btn-floating" (click)="loveQuote()">
+      <i class="fa fa-lg fa-heart" [class.pink-color]="isLoved"></i>
+      {{ numOfLoves > 0 ? numOfLoves : null }}
+    </a>
     <a type="button" class="btn-floating float-right"><i class="fa fa-lg fa-share-alt"></i></a>
   </div>
 </div>
