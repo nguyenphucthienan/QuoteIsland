@@ -1,0 +1,16 @@
+<div class="card mt-3 mb-3">
+  <div [ngClass]="'card-header white-text ' + headerClasss">
+    <a type="button" class="btn-floating"><i class="fa fa-lg fa-star"></i></a>
+  </div>
+  <div class="card-body d-flex justify-content-center align-items-center" [style.background-image]="getSanitizedImageUrl()"
+    (mouseover)="photoHover = true" (mouseleave)="photoHover = false" [routerLink]="['/categories', category._id]">
+    <div *ngIf="!photoHover" class="d-flex flex-column justify-content-center align-items-center white-text">
+      <p class="category-name">{{ category.name }}</p>
+      <p>{{ category.quoteCount | i18nPlural: quotePluralMapping | uppercase }}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a type="button" class="btn-floating"><i class="fa fa-lg fa-heart"></i></a>
+    <a type="button" class="btn-floating float-right" (click)="openInfoModal()"><i class="fa fa-lg fa-info-circle"></i></a>
+  </div>
+</div>

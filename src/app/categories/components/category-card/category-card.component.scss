@@ -1,0 +1,27 @@
+.card-body {
+  min-height: 220px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-body:hover {
+  cursor: pointer;
+}
+
+.fa.fa-star:hover {
+  cursor: default;
+}
+
+.fa.fa-heart {
+  color: #ff4081;
+}
+
+.fa.fa-info-circle {
+  color: #9e9e9e;
+}
+
+.category-name {
+  font-size: 30px;
+  font-weight: lighter;
+}
