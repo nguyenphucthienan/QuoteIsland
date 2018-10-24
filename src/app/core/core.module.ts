@@ -11,6 +11,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { AuthRoleGuard } from './guards/auth-role.service';
@@ -47,6 +48,7 @@ const toastrOptions = {
     AboutComponent,
     LoginComponent,
     RegisterComponent,
+    NotFoundComponent,
     HasRoleDirective
   ],
   imports: [

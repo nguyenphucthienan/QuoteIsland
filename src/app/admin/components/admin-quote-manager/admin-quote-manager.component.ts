@@ -14,9 +14,9 @@ export class AdminQuoteManagerComponent implements OnInit {
 
   @ViewChild(AdminQuoteAddModalComponent) addModal;
 
-  bannerImageUrl = environment.bannerImageUrls.adminPage;
+  readonly bannerImageUrl = environment.bannerImageUrls.adminPage;
 
-  headElements: any = [
+  readonly headElements: any = [
     { id: 'id', name: 'ID' },
     { id: 'author', name: 'Author' },
     { id: 'categories', name: 'Categories' },

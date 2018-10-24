@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AboutComponent implements OnInit {
 
-  bannerImageUrl = environment.bannerImageUrls.aboutPage;
+  readonly bannerImageUrl = environment.bannerImageUrls.aboutPage;
 
   constructor() { }
 

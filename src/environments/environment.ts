@@ -11,6 +11,7 @@ export const environment = {
     registerPage: 'https://images.pexels.com/photos/1053775/pexels-photo-1053775.jpeg?auto=compress&cs=tinysrgb',
     loginPage: 'https://images.pexels.com/photos/1170572/pexels-photo-1170572.jpeg?auto=compress&cs=tinysrgb',
     aboutPage: 'https://images.pexels.com/photos/1144176/pexels-photo-1144176.jpeg?auto=compress&cs=tinysrgb',
+    notFoundPage: 'https://images.pexels.com/photos/1332373/pexels-photo-1332373.jpeg?auto=compress&cs=tinysrgb',
     adminPage: 'https://images.pexels.com/photos/1436129/pexels-photo-1436129.jpeg?auto=compress&cs=tinysrgb',
     quotesPage: 'https://images.pexels.com/photos/1470812/pexels-photo-1470812.jpeg?auto=compress&cs=tinysrgb',
     authorsPage: 'https://images.pexels.com/photos/1461556/pexels-photo-1461556.jpeg?auto=compress&cs=tinysrgb',

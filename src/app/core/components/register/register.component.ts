@@ -13,7 +13,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  bannerImageUrl = environment.bannerImageUrls.registerPage;
+  readonly bannerImageUrl = environment.bannerImageUrls.registerPage;
+
   registerForm: FormGroup;
 
   constructor(private router: Router,

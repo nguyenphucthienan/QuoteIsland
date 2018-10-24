@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminComponent implements OnInit {
 
-  bannerImageUrl = environment.bannerImageUrls.adminPage;
+  readonly bannerImageUrl = environment.bannerImageUrls.adminPage;
 
   constructor() { }
 
