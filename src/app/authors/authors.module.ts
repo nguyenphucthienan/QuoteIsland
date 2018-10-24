@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthorsRoutingModule } from './authors-routing.module';
 import { AuthorsComponent } from './authors.component';
 import { AuthorCardComponent } from './components/author-card/author-card.component';
+import { AuthorDetailComponent } from './components/author-detail/author-detail.component';
 import { AuthorInfoModalComponent } from './components/author-info-modal/author-info-modal.component';
 import { AuthorsResolver } from './resolvers/authors.resolver';
 
@@ -11,7 +12,8 @@ import { AuthorsResolver } from './resolvers/authors.resolver';
   declarations: [
     AuthorsComponent,
     AuthorCardComponent,
-    AuthorInfoModalComponent
+    AuthorInfoModalComponent,
+    AuthorDetailComponent
   ],
   imports: [
     SharedModule,

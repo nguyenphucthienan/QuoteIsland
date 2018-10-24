@@ -3,20 +3,16 @@
     <h1>Authors</h1>
   </div>
 </app-banner>
-<app-panel>
-  <div class="panel-content">
-    <div class="container-fluid">
-      <app-sort-bar [modalTitle]="'Sort Authors'" [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
-      <div class="dropdown-divider"></div>
-      <div class="row">
-        <div *ngFor="let author of authors; let index = index" class="col-xl-3 col-lg-4 col-md-6">
-          <app-author-card [headerClasss]="getColorClass(index)" [author]="author"></app-author-card>
-        </div>
-      </div>
-      <div class="dropdown-divider"></div>
-      <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-        <app-pagination [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.pageSize" (pageChanged)="onPageChanged($event)"></app-pagination>
-      </div>
+<div class="authors-container container-fluid">
+  <app-sort-bar [modalTitle]="'Sort Authors'" [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
+  <div class="dropdown-divider"></div>
+  <div class="row">
+    <div *ngFor="let author of authors; let index = index" class="col-xl-3 col-lg-4 col-md-6">
+      <app-author-card [headerClasss]="getColorClass(index)" [author]="author"></app-author-card>
     </div>
   </div>
-</app-panel>
+  <div class="dropdown-divider"></div>
+  <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+    <app-pagination [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.pageSize" (pageChanged)="onPageChanged($event)"></app-pagination>
+  </div>
+</div>
