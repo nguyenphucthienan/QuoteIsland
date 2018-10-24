@@ -10,7 +10,7 @@ export class QuoteService {
 
   constructor(private http: HttpClient) { }
 
-  getQuotes(pageNumber = 1, pageSize = 10, sortString = this.defaultSortString) {
+  getQuotes(pageNumber = 1, pageSize = 8, sortString = this.defaultSortString) {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
@@ -29,7 +29,7 @@ export class QuoteService {
     return this.http.post(`${this.quoteUrl}`, quote);
   }
 
-  getQuotesByAuthor(authorId: string, pageNumber = 1, pageSize = 10,
+  getQuotesByAuthor(authorId: string, pageNumber = 1, pageSize = 8,
     sortString = this.defaultSortString) {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())

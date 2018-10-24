@@ -14,6 +14,7 @@ import { QuoteService } from '../core/services/quote.service';
 export class QuotesComponent implements OnInit {
 
   readonly bannerImageUrl = environment.bannerImageUrls.quotesPage;
+  readonly modalTitle = 'Sort Quotes';
   readonly modalSortOptions: any[] = [
     { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
     { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },

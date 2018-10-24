@@ -4,7 +4,7 @@
   </div>
 </app-banner>
 <div class="authors-container container-fluid">
-  <app-sort-bar [modalTitle]="'Sort Authors'" [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
+  <app-sort-bar [modalTitle]="modalTitle" [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
   <div class="dropdown-divider"></div>
   <div class="row">
     <div *ngFor="let author of authors; let index = index" class="col-xl-3 col-lg-4 col-md-6">
