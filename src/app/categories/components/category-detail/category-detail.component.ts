@@ -5,20 +5,20 @@ import { Pagination } from 'src/app/core/models/pagination.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
 
 @Component({
-  selector: 'app-author-detail',
-  templateUrl: './author-detail.component.html',
-  styleUrls: ['./author-detail.component.scss']
+  selector: 'app-category-detail',
+  templateUrl: './category-detail.component.html',
+  styleUrls: ['./category-detail.component.scss']
 })
-export class AuthorDetailComponent implements OnInit {
+export class CategoryDetailComponent implements OnInit {
 
   readonly modalTitle = 'Sort Quotes';
   readonly modalSortOptions: any[] = [
-    { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
+    { name: 'Alphabetical', id: '+name', iconClassName: 'fa fa-sort-alpha-asc' },
     { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
     { name: 'Most Love', id: '+loveCount', iconClassName: 'fa fa-heart' }
   ];
 
-  author: any;
+  category: any;
   quotes: any[] = [];
   pagination: Pagination;
   sortString: string;
@@ -28,15 +28,15 @@ export class AuthorDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.author = data['author'];
+      this.category = data['category'];
       this.quotes = data['quotes'].items;
       this.pagination = data['quotes'].pagination;
     });
   }
 
   getQuotes() {
-    this.quoteService.getQuotesByAuthor(
-      this.author._id,
+    this.quoteService.getQuotesByCategory(
+      this.category._id,
       this.pagination.pageNumber,
       this.pagination.pageSize,
       this.sortString)

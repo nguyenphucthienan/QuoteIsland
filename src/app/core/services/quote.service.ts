@@ -40,4 +40,15 @@ export class QuoteService {
     return this.http.get(`${this.quoteUrl}`, { params: params });
   }
 
+  getQuotesByCategory(categoryId: string, pageNumber = 1, pageSize = 8,
+    sortString = this.defaultSortString) {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString())
+      .set('filter', `categories:${categoryId}`)
+      .set('sort', sortString);
+
+    return this.http.get(`${this.quoteUrl}`, { params: params });
+  }
+
 }

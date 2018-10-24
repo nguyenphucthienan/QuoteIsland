@@ -11,12 +11,17 @@ const routes: Routes = [
   {
     path: '',
     component: AuthorsComponent,
-    resolve: { authors: AuthorsResolver }
+    resolve: {
+      authors: AuthorsResolver
+    }
   },
   {
     path: ':id',
     component: AuthorDetailComponent,
-    resolve: { author: AuthorResolver, quotes: AuthorQuotesResolver }
+    resolve: {
+      author: AuthorResolver,
+      quotes: AuthorQuotesResolver
+    }
   }
 ];
 
