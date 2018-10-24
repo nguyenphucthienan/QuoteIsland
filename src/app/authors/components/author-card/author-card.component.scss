@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.fa.fa-star:hover {
+  cursor: default;
+}
+
 .fa.fa-heart {
   color: #ff4081;
 }

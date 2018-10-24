@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CardHelpers } from 'src/app/core/helpers/card.helper';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-author-detail',
@@ -12,7 +11,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthorDetailComponent implements OnInit {
 
-  readonly bannerImageUrl = environment.bannerImageUrls.quotesPage;
   readonly modalSortOptions: any[] = [
     { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
     { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },

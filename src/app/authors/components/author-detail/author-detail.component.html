@@ -1,6 +1,7 @@
-<app-banner [height]="'35%'" [imageUrl]="bannerImageUrl">
+<app-banner [height]="'35%'" [imageUrl]="author.photoUrl">
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <h1>Quotes</h1>
+    <h1>{{ author.fullName }}</h1>
+    <p>{{ author.description }}</p>
   </div>
 </app-banner>
 <div class="quotes-container container-fluid">
@@ -8,7 +9,7 @@
   <div class="dropdown-divider"></div>
   <div class="row">
     <div *ngFor="let quote of quotes; let index = index" class="col-xl-3 col-lg-4 col-md-6">
-      {{ quote | json }}
+      <app-quote-card [headerClasss]="getColorClass(index)" [author]="quote.author && quote.author.fullName" [text]="quote.text"></app-quote-card>
     </div>
   </div>
   <div class="dropdown-divider"></div>

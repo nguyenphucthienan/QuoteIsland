@@ -1,0 +1,17 @@
+.quote-text:hover,
+.quote-author:hover {
+  cursor: pointer;
+}
+
+.fa.fa-star:hover {
+  cursor: default;
+}
+
+.fa.fa-heart {
+  color: #ff4081;
+}
+
+.fa.fa-quote-left,
+.fa.fa-share-alt {
+  color: #9e9e9e;
+}
