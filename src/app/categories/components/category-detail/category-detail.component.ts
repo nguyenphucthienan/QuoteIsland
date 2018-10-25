@@ -15,7 +15,7 @@ export class CategoryDetailComponent implements OnInit {
   readonly modalSortOptions: any[] = [
     { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
     { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
-    { name: 'Most Love', id: '+loveCount', iconClassName: 'fa fa-heart' }
+    { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
   ];
 
   category: any;

@@ -18,7 +18,7 @@ export class AuthorsComponent implements OnInit {
   readonly modalSortOptions: any[] = [
     { name: 'Alphabetical', id: '+fullName', iconClassName: 'fa fa-sort-alpha-asc' },
     { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
-    { name: 'Most Love', id: '+loveCount', iconClassName: 'fa fa-heart' }
+    { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
   ];
 
   authors: any[] = [];
