@@ -1,4 +1,4 @@
-<app-banner [height]="'35%'" [imageUrl]="quote?.photoUrl">
+<app-banner [height]="'35%'" [imageUrl]="bannerImageUrl">
   <div class="d-flex flex-column justify-content-center align-items-center">
     <h1>Quote Detail</h1>
   </div>
@@ -13,7 +13,7 @@
         <div class="card-body d-flex flex-row align-items-center">
           <blockquote class="blockquote">
             <p class="quote-text mb-0">
-              <i class="fa fa-2x fa-quote-left"></i>
+              <i class="fa fa-quote-left"></i>
               {{ quote.text }}
             </p>
             <footer class="quote-author blockquote-footer float-right" [routerLink]="['/authors', quote.author._id]">
@@ -30,7 +30,7 @@
           <div class="d-flex align-items-center">
             <a type="button"><i class="fa fa-lg fa-heart"></i></a>
           </div>
-          <div>
+          <div class="categories-list">
             <a *ngFor="let category of quote.categories" class="btn btn-sm white-text blue-gradient">
               {{ category.name}}
             </a>
@@ -42,13 +42,7 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <div class="card">
-        <div class="card-header white-text purple-gradient">
-          COMMENTS
-        </div>
-        <div class="card-body">
-        </div>
-      </div>
+      <app-comment-section [quoteId]="quote._id" [comments]="comments"></app-comment-section>
     </div>
   </div>
 </div>

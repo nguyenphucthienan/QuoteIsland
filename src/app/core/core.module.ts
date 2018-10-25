@@ -20,6 +20,7 @@ import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
 import { AuthorService } from './services/author.service';
 import { CategoryService } from './services/category.service';
+import { CommentService } from './services/comment.service';
 import { QuoteService } from './services/quote.service';
 
 export function tokenGetter() {
@@ -70,7 +71,8 @@ const toastrOptions = {
     AuthRoleGuard,
     QuoteService,
     AuthorService,
-    CategoryService
+    CategoryService,
+    CommentService
   ]
 })
 export class CoreModule {

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { QuoteDetailComponent } from './components/quote-detail/quote-detail.component';
 import { QuotesComponent } from './quotes.component';
+import { CommentsResolver } from './resolvers/comments.resolver';
 import { QuoteResolver } from './resolvers/quote.resolver';
 import { QuotesResolver } from './resolvers/quotes.resolver';
 
@@ -10,12 +11,17 @@ const routes: Routes = [
   {
     path: '',
     component: QuotesComponent,
-    resolve: { quotes: QuotesResolver }
+    resolve: {
+      quotes: QuotesResolver
+    }
   },
   {
     path: ':id',
     component: QuoteDetailComponent,
-    resolve: { quote: QuoteResolver }
+    resolve: {
+      quote: QuoteResolver,
+      comments: CommentsResolver
+    }
   }
 ];
 

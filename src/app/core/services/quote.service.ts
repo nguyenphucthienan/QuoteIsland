@@ -55,7 +55,7 @@ export class QuoteService {
     return this.http.get(`${this.quoteUrl}`, { params: params });
   }
 
-  loveQuote(id: number) {
+  loveQuote(id: string) {
     return this.http.post(`${this.quoteUrl}/${id}/love`, null);
   }
 
