@@ -23,4 +23,8 @@ export class AuthorService {
     return this.http.get(`${this.authorUrl}/${authorId}`);
   }
 
+  loveAuthor(id: number) {
+    return this.http.post(`${this.authorUrl}/${id}/love`, null);
+  }
+
 }

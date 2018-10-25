@@ -13,7 +13,7 @@ export class CategoryDetailComponent implements OnInit {
 
   readonly modalTitle = 'Sort Quotes';
   readonly modalSortOptions: any[] = [
-    { name: 'Alphabetical', id: '+name', iconClassName: 'fa fa-sort-alpha-asc' },
+    { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
     { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
     { name: 'Most Love', id: '+loveCount', iconClassName: 'fa fa-heart' }
   ];

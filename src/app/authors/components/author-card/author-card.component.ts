@@ -1,6 +1,10 @@
-import { Component, Input, NgModuleRef, OnInit } from '@angular/core';
+import { Component, Input, NgModuleRef, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthorService } from 'src/app/core/services/author.service';
 
 import { AuthorInfoModalComponent } from '../author-info-modal/author-info-modal.component';
 
@@ -9,7 +13,7 @@ import { AuthorInfoModalComponent } from '../author-info-modal/author-info-modal
   templateUrl: './author-card.component.html',
   styleUrls: ['./author-card.component.scss']
 })
-export class AuthorCardComponent implements OnInit {
+export class AuthorCardComponent implements OnInit, OnDestroy {
 
   readonly infoModalTitle = 'Author Info';
   readonly quotePluralMapping = {
@@ -21,12 +25,28 @@ export class AuthorCardComponent implements OnInit {
   @Input() author: any;
 
   private photoHover = false;
+  private tokenSubscription: Subscription;
+  private currentUserId: string;
+
+  isLoved: boolean;
+  numOfLoves: number;
 
   constructor(private sanitizer: DomSanitizer,
     private moduleRef: NgModuleRef<any>,
-    private modalService: ModalService) { }
+    private modalService: ModalService,
+    private authService: AuthService,
+    private authorService: AuthorService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
+    this.tokenSubscription = this.authService.decodedToken$
+      .subscribe(token => {
+        if (token) {
+          this.currentUserId = token.id;
+        }
+      });
+
+    this.updateValues();
   }
 
   getSanitizedImageUrl() {
@@ -38,6 +58,32 @@ export class AuthorCardComponent implements OnInit {
       .bypassSecurityTrustStyle(`linear-gradient(rgba(0, 0, 0, 0.4),
         rgba(0, 0, 0, 0.4)),
         url(${this.author.photoUrl})`);
+  }
+
+  loveAuthor() {
+    if (!this.currentUserId) {
+      this.alertService.error('You need to login to love this author');
+      return;
+    }
+
+    if (this.isLoved) {
+      this.numOfLoves -= 1;
+    } else {
+      this.numOfLoves += 1;
+    }
+
+    this.isLoved = !this.isLoved;
+
+    this.authorService.loveAuthor(this.author._id)
+      .subscribe(author => {
+        this.author = author;
+        this.updateValues();
+      });
+  }
+
+  private updateValues() {
+    this.isLoved = this.currentUserId && this.author.loves.includes(this.currentUserId);
+    this.numOfLoves = this.author.loves.length;
   }
 
   openInfoModal() {
@@ -53,6 +99,10 @@ export class AuthorCardComponent implements OnInit {
         }
       }
     }, this.moduleRef);
+  }
+
+  ngOnDestroy() {
+    this.tokenSubscription.unsubscribe();
   }
 
 }
