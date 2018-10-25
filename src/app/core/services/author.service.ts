@@ -19,8 +19,8 @@ export class AuthorService {
     return this.http.get(`${this.authorUrl}`, { params: params });
   }
 
-  getAuthor(authorId: string) {
-    return this.http.get(`${this.authorUrl}/${authorId}`);
+  getAuthor(id: string) {
+    return this.http.get(`${this.authorUrl}/${id}`);
   }
 
   loveAuthor(id: number) {

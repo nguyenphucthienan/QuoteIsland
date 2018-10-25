@@ -19,8 +19,8 @@ export class CategoryService {
     return this.http.get(`${this.categoryUrl}`, { params: params });
   }
 
-  getCategory(categoryId: string) {
-    return this.http.get(`${this.categoryUrl}/${categoryId}`);
+  getCategory(id: string) {
+    return this.http.get(`${this.categoryUrl}/${id}`);
   }
 
   loveCategory(id: number) {
