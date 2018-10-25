@@ -10,7 +10,10 @@
     </div>
   </div>
   <div class="card-footer">
-    <a type="button" class="btn-floating"><i class="fa fa-lg fa-heart"></i></a>
+    <a type="button" class="btn-floating" (click)="loveCategory()">
+      <i class="fa fa-lg fa-heart" [class.pink-color]="isLoved"></i>
+      {{ numOfLoves > 0 ? numOfLoves : null }}
+    </a>
     <a type="button" class="btn-floating float-right" (click)="openInfoModal()"><i class="fa fa-lg fa-info-circle"></i></a>
   </div>
 </div>
