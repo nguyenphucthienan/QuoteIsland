@@ -4,12 +4,14 @@
   </div>
 </app-banner>
 <app-panel>
-  <div class="panel-content">
+  <div class="panel-header">Quotes</div>
+  <div class="panel-body">
     <div class="container-fluid">
       <app-datatable [headElements]="headElements" [elements]="elements"></app-datatable>
       <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
-      <div class="dropdown-divider"></div>
-      <button type="button" mdbBtn color="primary" (click)="addModal.show()" mdbWavesEffect>Add Quote</button>
     </div>
+  </div>
+  <div class="panel-footer">
+    <button type="button" class="btn btn-primary" (click)="addModal.show()">Add Quote</button>
   </div>
 </app-panel>
