@@ -23,4 +23,8 @@ export class CommentService {
     return this.http.post(`${this.quoteUrl}/${quoteId}/comments`, { content });
   }
 
+  deleteComment(quoteId: string, commentId: string) {
+    return this.http.delete(`${this.quoteUrl}/${quoteId}/comments/${commentId}`);
+  }
+
 }

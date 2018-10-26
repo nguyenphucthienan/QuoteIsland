@@ -2,7 +2,7 @@
   <div class="card-header white-text purple-gradient">COMMENTS</div>
   <div class="card-body">
     <div *ngFor="let comment of comments">
-      <app-comment-item [comment]="comment"></app-comment-item>
+      <app-comment-item [comment]="comment" (deleteSuccess)="onDeleteSuccess($event)"></app-comment-item>
     </div>
     <div>
       <form [formGroup]="commentForm">

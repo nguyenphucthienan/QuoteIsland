@@ -66,4 +66,15 @@ export class CommentSectionComponent implements OnInit {
       });
   }
 
+  onDeleteSuccess(comment: any) {
+    let pageToNavigate;
+    if (this.pagination.totalItems % this.pagination.pageSize === 1) {
+      pageToNavigate = this.pagination.pageNumber - 1;
+    } else {
+      pageToNavigate = this.pagination.pageNumber;
+    }
+
+    this.paginationRef.select(pageToNavigate);
+  }
+
 }

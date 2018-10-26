@@ -1,8 +1,10 @@
-import { Component, ComponentRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalComponent } from 'src/app/core/modal/modal.component';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { CommentService } from 'src/app/core/services/comment.service';
 import { ConfirmModalComponent } from 'src/app/shared/components/modals/confirm-modal/confirm-modal.component';
 import { environment } from 'src/environments/environment';
 
@@ -16,6 +18,7 @@ export class CommentItemComponent implements OnInit, OnDestroy {
   readonly defaultPhotoUrl = environment.defaultUserPhotoUrl;
 
   @Input() comment: any;
+  @Output() deleteSuccess = new EventEmitter();
 
   private tokenSubscription: Subscription;
   private currentUserId: string;
@@ -24,7 +27,9 @@ export class CommentItemComponent implements OnInit, OnDestroy {
   canDelele: boolean;
 
   constructor(private authService: AuthService,
-    private modalService: ModalService) { }
+    private commentService: CommentService,
+    private modalService: ModalService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.tokenSubscription = this.authService.decodedToken$
@@ -54,7 +59,18 @@ export class CommentItemComponent implements OnInit, OnDestroy {
   }
 
   confirmDeleteComment() {
-    this.modalComponentRef.instance.close();
+    this.commentService.deleteComment(this.comment.quote, this.comment._id)
+      .subscribe(
+        () => {
+          this.alertService.success('Delete comment successfully');
+          this.deleteSuccess.emit(this.comment);
+          this.modalComponentRef.instance.close();
+        },
+        error => {
+          this.alertService.error('Delete comment failed');
+          this.modalComponentRef.instance.close();
+        }
+      );
   }
 
   cancelDeleteComment() {
