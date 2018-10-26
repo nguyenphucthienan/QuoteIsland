@@ -50,17 +50,13 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   first() {
-    if (this.currentPage !== 1) {
-      this.currentPage = 1;
-      this.pageChanged.emit(this.currentPage);
-    }
+    this.currentPage = 1;
+    this.pageChanged.emit(this.currentPage);
   }
 
   last() {
-    if (this.currentPage !== this.totalPages) {
-      this.currentPage = this.totalPages;
-      this.pageChanged.emit(this.currentPage);
-    }
+    this.currentPage = this.totalPages;
+    this.pageChanged.emit(this.currentPage);
   }
 
   private fakeArray(numberOfItems: number) {

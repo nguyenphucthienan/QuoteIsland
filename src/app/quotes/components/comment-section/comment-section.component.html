@@ -5,13 +5,14 @@
       <app-comment-item [comment]="comment"></app-comment-item>
     </div>
     <div>
-      <form>
+      <form [formGroup]="commentForm">
         <div class="d-flex flex-row">
           <div class="md-form flex-grow-1">
-            <textarea #text type="text" id="text" class="md-textarea form-control pt-0" rows="3" placeholder="Enter your comment"></textarea>
+            <textarea type="text" id="text" formControlName="content" class="md-textarea form-control pt-0" rows="3"
+              placeholder="Enter your comment"></textarea>
           </div>
           <div class="align-self-center">
-            <button type="submit" class="btn tempting-azure-gradient" (click)="postComment(text.value)">
+            <button type="submit" class="btn tempting-azure-gradient" (click)="postComment()" [disabled]="commentForm.invalid">
               <i class="fa fa-lg fa-send-o"></i>
             </button>
           </div>
