@@ -1,6 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
+import { Author } from '../models/author.interface';
 
 @Injectable()
 export class AuthorService {
@@ -10,21 +13,22 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(pageNumber = 1, pageSize = 8, sortString = this.defaultSortString) {
+  getAuthors(pageNumber = 1, pageSize = 8,
+    sortString = this.defaultSortString): Observable<Author[]> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('sort', sortString);
 
-    return this.http.get(`${this.authorUrl}`, { params: params });
+    return this.http.get<Author[]>(`${this.authorUrl}`, { params: params });
   }
 
-  getAuthor(id: string) {
-    return this.http.get(`${this.authorUrl}/${id}`);
+  getAuthor(id: string): Observable<Author> {
+    return this.http.get<Author>(`${this.authorUrl}/${id}`);
   }
 
-  loveAuthor(id: string) {
-    return this.http.post(`${this.authorUrl}/${id}/love`, null);
+  loveAuthor(id: string): Observable<Author> {
+    return this.http.post<Author>(`${this.authorUrl}/${id}/love`, null);
   }
 
 }

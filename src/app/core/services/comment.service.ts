@@ -1,6 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
+import { Comment } from '../models/comment.interface';
 
 @Injectable()
 export class CommentService {
@@ -10,21 +13,23 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  getComments(quoteId: string, pageNumber = 1, pageSize = 5, sortString = this.defaultSortString) {
+  getComments(quoteId: string,
+    pageNumber = 1, pageSize = 5,
+    sortString = this.defaultSortString): Observable<Comment[]> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('sort', sortString);
 
-    return this.http.get(`${this.quoteUrl}/${quoteId}/comments`, { params });
+    return this.http.get<Comment[]>(`${this.quoteUrl}/${quoteId}/comments`, { params });
   }
 
-  commentQuote(quoteId: string, content: string) {
-    return this.http.post(`${this.quoteUrl}/${quoteId}/comments`, { content });
+  commentQuote(quoteId: string, content: string): Observable<Comment> {
+    return this.http.post<Comment>(`${this.quoteUrl}/${quoteId}/comments`, { content });
   }
 
-  deleteComment(quoteId: string, commentId: string) {
-    return this.http.delete(`${this.quoteUrl}/${quoteId}/comments/${commentId}`);
+  deleteComment(quoteId: string, commentId: string): Observable<Comment> {
+    return this.http.delete<Comment>(`${this.quoteUrl}/${quoteId}/comments/${commentId}`);
   }
 
 }

@@ -1,6 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
+import { Quote } from '../models/quote.interface';
 
 @Injectable()
 export class QuoteService {
@@ -10,53 +13,56 @@ export class QuoteService {
 
   constructor(private http: HttpClient) { }
 
-  getQuotes(pageNumber = 1, pageSize = 8, sortString = this.defaultSortString) {
+  getQuotes(pageNumber = 1, pageSize = 8,
+    sortString = this.defaultSortString): Observable<Quote[]> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('sort', sortString);
 
-    return this.http.get(`${this.quoteUrl}`, { params: params });
+    return this.http.get<Quote[]>(`${this.quoteUrl}`, { params: params });
   }
 
-  getQuote(id: string) {
-    return this.http.get(`${this.quoteUrl}/${id}`);
+  getQuote(id: string): Observable<Quote> {
+    return this.http.get<Quote>(`${this.quoteUrl}/${id}`);
   }
 
-  createQuote(rawQuote) {
+  createQuote(rawQuote): Observable<Quote> {
     const quote = {
       author: rawQuote.author,
       categories: [rawQuote.categories],
       text: rawQuote.text
     };
 
-    return this.http.post(`${this.quoteUrl}`, quote);
+    return this.http.post<Quote>(`${this.quoteUrl}`, quote);
   }
 
-  getQuotesByAuthor(authorId: string, pageNumber = 1, pageSize = 8,
-    sortString = this.defaultSortString) {
+  getQuotesByAuthor(authorId: string,
+    pageNumber = 1, pageSize = 8,
+    sortString = this.defaultSortString): Observable<Quote[]> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('filter', `author:${authorId}`)
       .set('sort', sortString);
 
-    return this.http.get(`${this.quoteUrl}`, { params: params });
+    return this.http.get<Quote[]>(`${this.quoteUrl}`, { params: params });
   }
 
-  getQuotesByCategory(categoryId: string, pageNumber = 1, pageSize = 8,
-    sortString = this.defaultSortString) {
+  getQuotesByCategory(categoryId: string,
+    pageNumber = 1, pageSize = 8,
+    sortString = this.defaultSortString): Observable<Quote[]> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('filter', `categories:${categoryId}`)
       .set('sort', sortString);
 
-    return this.http.get(`${this.quoteUrl}`, { params: params });
+    return this.http.get<Quote[]>(`${this.quoteUrl}`, { params: params });
   }
 
-  loveQuote(id: string) {
-    return this.http.post(`${this.quoteUrl}/${id}/love`, null);
+  loveQuote(id: string): Observable<Quote> {
+    return this.http.post<Quote>(`${this.quoteUrl}/${id}/love`, null);
   }
 
 }
