@@ -1,10 +1,9 @@
 <div class="d-flex flex-row mb-3">
-  <img src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" class="card-img-64 rounded-circle">
+  <img [src]="comment.user.photoUrl || defaultPhotoUrl" class="card-img-64 rounded-circle border border-primary">
   <div class="media-body text-left ml-3">
     <h5 class="mt-0 mb-0">
       <a class="username">{{ comment.user.username }}</a>
-      <a class="pull-right">
-        <i *ngIf="comment.isNew" class="fa fa-star orange-text"></i>
+      <a *ngIf="canDelele" class="pull-right">
         <i class="fa fa-remove red-text"></i>
       </a>
     </h5>

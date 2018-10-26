@@ -43,10 +43,9 @@ export class CategoryCardComponent implements OnInit, OnDestroy {
       .subscribe(token => {
         if (token) {
           this.currentUserId = token.id;
+          this.updateValues();
         }
       });
-
-    this.updateValues();
   }
 
   getSanitizedImageUrl() {

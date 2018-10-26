@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { CommentService } from 'src/app/core/services/comment.service';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-comment-section',
@@ -10,6 +11,7 @@ import { CommentService } from 'src/app/core/services/comment.service';
 })
 export class CommentSectionComponent implements OnInit {
 
+  @ViewChild(PaginationComponent) paginationRef: PaginationComponent;
   @Input() quoteId: string;
 
   comments: any;
@@ -42,15 +44,8 @@ export class CommentSectionComponent implements OnInit {
 
   postComment(content: string) {
     this.commentService.commentQuote(this.quoteId, content)
-      .subscribe((comment: any) => {
-        comment.isNew = true;
-
-        if (this.comments) {
-          this.comments = this.comments.slice(0, 4);
-          this.comments.unshift(comment);
-        } else {
-          this.comments = [comment];
-        }
+      .subscribe((comment) => {
+        this.paginationRef.last();
       });
   }
 

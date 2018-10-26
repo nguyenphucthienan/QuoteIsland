@@ -17,7 +17,8 @@ export const environment = {
     quoteDetailPage: 'https://images.pexels.com/photos/1123484/pexels-photo-1123484.jpeg?auto=compress&cs=tinysrgb',
     authorsPage: 'https://images.pexels.com/photos/1461556/pexels-photo-1461556.jpeg?auto=compress&cs=tinysrgb',
     categoriesPage: 'https://images.pexels.com/photos/1468704/pexels-photo-1468704.jpeg?auto=compress&cs=tinysrgb'
-  }
+  },
+  defaultUserPhotoUrl: 'https://ubisoft-avatars.akamaized.net/5421b9bc-da64-4fc3-ab00-7504339743fc/default_146_146.png'
 };
 
 /*
