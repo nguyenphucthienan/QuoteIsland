@@ -2,6 +2,7 @@ import { Component, ComponentRef, EventEmitter, Input, OnDestroy, OnInit, Output
 import { Subscription } from 'rxjs';
 import { ModalComponent } from 'src/app/core/modal/modal.component';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
+import { Comment } from 'src/app/core/models/comment.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CommentService } from 'src/app/core/services/comment.service';
@@ -17,7 +18,7 @@ export class CommentItemComponent implements OnInit, OnDestroy {
 
   readonly defaultPhotoUrl = environment.defaultUserPhotoUrl;
 
-  @Input() comment: any;
+  @Input() comment: Comment;
   @Output() deleteSuccess = new EventEmitter();
 
   private tokenSubscription: Subscription;

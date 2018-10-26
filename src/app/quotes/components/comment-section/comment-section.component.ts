@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Comment } from 'src/app/core/models/comment.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
@@ -16,7 +17,7 @@ export class CommentSectionComponent implements OnInit {
   @Input() quoteId: string;
 
   commentForm: FormGroup;
-  comments: any;
+  comments: Comment[];
   pagination: Pagination;
 
   constructor(private route: ActivatedRoute,
