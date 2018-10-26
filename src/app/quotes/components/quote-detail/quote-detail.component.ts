@@ -12,14 +12,12 @@ export class QuoteDetailComponent implements OnInit {
   bannerImageUrl = environment.bannerImageUrls.quoteDetailPage;
 
   quote: any;
-  comments: any[];
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.quote = data['quote'];
-      this.comments = data['comments'];
 
       if (this.quote.photoUrl) {
         this.bannerImageUrl = this.quote.photoUrl;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
 import { CommentSectionComponent } from './components/comment-section/comment-section.component';
 import { QuoteDetailComponent } from './components/quote-detail/quote-detail.component';
 import { QuotesRoutingModule } from './quotes-routing.module';
@@ -13,7 +14,8 @@ import { QuotesResolver } from './resolvers/quotes.resolver';
   declarations: [
     QuotesComponent,
     QuoteDetailComponent,
-    CommentSectionComponent
+    CommentSectionComponent,
+    CommentItemComponent
   ],
   imports: [
     SharedModule,
