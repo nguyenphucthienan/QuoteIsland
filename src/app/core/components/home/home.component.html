@@ -1,10 +1,16 @@
 <mdb-carousel [isControls]="true" class="carousel slide carousel-fade h-100" [animation]="'fade'">
-  <mdb-carousel-item *ngFor="let image of images; let index = index">
-    <div class="view w-100" [style.background-image]="getBackgroundIndex(index)">
-      <div class="mask rgba-black-slight waves-light"></div>
-      <div class="carousel-caption">
-        <h3 class="h3-responsive">Image {{ index + 1 }}</h3>
-        <p>Lorem ipsum</p>
+  <mdb-carousel-item *ngFor="let image of backgroundImages; let index = index">
+    <div class="view w-100 d-flex justify-content-center align-items-center white-text" [style.background-image]="getBackgroundImage(index)">
+      <div class="mask rgba-black-light waves-light"></div>
+      <div class="quote-content d-flex flex-column">
+        <h1>
+          <i class="fa fa-quote-left"></i>
+          You may fool all the people some of the time; you can even fool some of the people all the time; but you
+          can’t fool all of the people all the time.
+        </h1>
+        <div class="d-flex justify-content-end mt-3">
+          <h3>Abraham Lincoln</h3>
+        </div>
       </div>
     </div>
   </mdb-carousel-item>

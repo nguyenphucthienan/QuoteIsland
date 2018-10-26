@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  images: any = [
+  readonly backgroundImages: any = [
     'https://images.pexels.com/photos/1170572/pexels-photo-1170572.jpeg?auto=compress&cs=tinysrgb',
     'https://images.pexels.com/photos/1492239/pexels-photo-1492239.jpeg?auto=compress&cs=tinysrgb',
     'https://images.pexels.com/photos/450301/pexels-photo-450301.jpeg?auto=compress&cs=tinysrgb',
@@ -21,9 +21,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  getBackgroundIndex(index: number) {
+  getBackgroundImage(index: number) {
     return this.sanitizer
-      .bypassSecurityTrustStyle(`url(${this.images[index]})`);
+      .bypassSecurityTrustStyle(`url(${this.backgroundImages[index]})`);
   }
 
 }
