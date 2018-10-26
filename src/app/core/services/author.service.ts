@@ -23,7 +23,7 @@ export class AuthorService {
     return this.http.get(`${this.authorUrl}/${id}`);
   }
 
-  loveAuthor(id: number) {
+  loveAuthor(id: string) {
     return this.http.post(`${this.authorUrl}/${id}/love`, null);
   }
 

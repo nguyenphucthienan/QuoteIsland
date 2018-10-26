@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Author } from 'src/app/core/models/author.interface';
 
 @Component({
   selector: 'app-author-info-modal',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AuthorInfoModalComponent implements OnInit {
 
-  @Input() author: any;
+  @Input() author: Author;
 
   constructor() { }
 

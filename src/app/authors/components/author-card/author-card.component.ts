@@ -2,6 +2,7 @@ import { Component, Input, NgModuleRef, OnDestroy, OnInit } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
+import { Author } from 'src/app/core/models/author.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthorService } from 'src/app/core/services/author.service';
@@ -22,7 +23,7 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
   };
 
   @Input() headerClasss = 'blue-gradient';
-  @Input() author: any;
+  @Input() author: Author;
 
   private photoHover = false;
   private tokenSubscription: Subscription;
@@ -74,7 +75,7 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
     this.isLoved = !this.isLoved;
 
     this.authorService.loveAuthor(this.author._id)
-      .subscribe(author => {
+      .subscribe((author: Author) => {
         this.author = author;
         this.updateValues();
       });

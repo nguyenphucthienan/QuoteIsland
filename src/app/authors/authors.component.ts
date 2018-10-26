@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 import { CardHelpers } from '../core/helpers/card.helper';
+import { Author } from '../core/models/author.interface';
 import { Pagination } from '../core/models/pagination.interface';
 import { AuthorService } from '../core/services/author.service';
 
@@ -21,7 +22,7 @@ export class AuthorsComponent implements OnInit {
     { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
   ];
 
-  authors: any[] = [];
+  authors: Author[] = [];
   pagination: Pagination;
   sortString: string;
 
