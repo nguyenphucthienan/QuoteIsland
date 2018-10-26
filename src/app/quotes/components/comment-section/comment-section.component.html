@@ -4,7 +4,7 @@
     <div *ngFor="let comment of comments">
       <app-comment-item [comment]="comment" (deleteSuccess)="onDeleteSuccess($event)"></app-comment-item>
     </div>
-    <div>
+    <div *ngIf="isLoggedIn()">
       <form [formGroup]="commentForm">
         <div class="d-flex flex-row">
           <div class="md-form flex-grow-1">

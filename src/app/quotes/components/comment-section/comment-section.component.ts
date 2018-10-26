@@ -5,6 +5,7 @@ import { Comment } from 'src/app/core/models/comment.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-comment-section',
@@ -22,6 +23,7 @@ export class CommentSectionComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private fb: FormBuilder,
+    private authService: AuthService,
     private commentService: CommentService) { }
 
   ngOnInit() {
@@ -33,6 +35,10 @@ export class CommentSectionComponent implements OnInit {
     this.commentForm = this.fb.group({
       content: ['', Validators.required]
     });
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 
   getComments() {
