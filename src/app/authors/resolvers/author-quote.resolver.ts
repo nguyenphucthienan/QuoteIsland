@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Quote } from 'src/app/core/models/quote.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
 
 @Injectable()
-export class AuthorQuotesResolver implements Resolve<any[]> {
+export class AuthorQuotesResolver implements Resolve<Quote[]> {
 
   private readonly defaultPageNumber = 1;
   private readonly defaultPageSize = 8;
@@ -16,7 +17,7 @@ export class AuthorQuotesResolver implements Resolve<any[]> {
     private alertService: AlertService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<any[]> {
+  resolve(route: ActivatedRouteSnapshot): Observable<Quote[]> {
     const authorId = route.paramMap.get('id');
 
     return this.quoteService.getQuotesByAuthor(authorId,

@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Quote } from 'src/app/core/models/quote.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
@@ -12,7 +13,7 @@ import { QuoteService } from 'src/app/core/services/quote.service';
 export class QuoteCardComponent implements OnInit, OnDestroy {
 
   @Input() headerClasss = 'blue-gradient';
-  @Input() quote: any;
+  @Input() quote: Quote;
 
   private tokenSubscription: Subscription;
   private currentUserId: string;
@@ -49,7 +50,7 @@ export class QuoteCardComponent implements OnInit, OnDestroy {
     this.isLoved = !this.isLoved;
 
     this.quoteService.loveQuote(this.quote._id)
-      .subscribe(quote => {
+      .subscribe((quote: Quote) => {
         this.quote = quote;
         this.updateValues();
       });

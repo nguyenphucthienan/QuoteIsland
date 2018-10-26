@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 
 import { CardHelpers } from '../core/helpers/card.helper';
 import { Pagination } from '../core/models/pagination.interface';
+import { Quote } from '../core/models/quote.interface';
 import { QuoteService } from '../core/services/quote.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class QuotesComponent implements OnInit {
     { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
   ];
 
-  quotes: any[] = [];
+  quotes: Quote[] = [];
   pagination: Pagination;
   sortString: string;
 
