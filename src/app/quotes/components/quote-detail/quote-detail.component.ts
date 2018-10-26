@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { QuoteService } from 'src/app/core/services/quote.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -7,13 +11,21 @@ import { environment } from 'src/environments/environment';
   templateUrl: './quote-detail.component.html',
   styleUrls: ['./quote-detail.component.scss']
 })
-export class QuoteDetailComponent implements OnInit {
+export class QuoteDetailComponent implements OnInit, OnDestroy {
 
   bannerImageUrl = environment.bannerImageUrls.quoteDetailPage;
 
-  quote: any;
+  private tokenSubscription: Subscription;
+  private currentUserId: string;
 
-  constructor(private route: ActivatedRoute) { }
+  quote: any;
+  isLoved: boolean;
+  numOfLoves: number;
+
+  constructor(private route: ActivatedRoute,
+    private authService: AuthService,
+    private quoteService: QuoteService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -23,6 +35,44 @@ export class QuoteDetailComponent implements OnInit {
         this.bannerImageUrl = this.quote.photoUrl;
       }
     });
+
+    this.tokenSubscription = this.authService.decodedToken$
+      .subscribe(token => {
+        if (token) {
+          this.currentUserId = token.id;
+          this.updateValues();
+        }
+      });
+  }
+
+  loveQuote() {
+    if (!this.currentUserId) {
+      this.alertService.error('You need to login to love this quote');
+      return;
+    }
+
+    if (this.isLoved) {
+      this.numOfLoves -= 1;
+    } else {
+      this.numOfLoves += 1;
+    }
+
+    this.isLoved = !this.isLoved;
+
+    this.quoteService.loveQuote(this.quote._id)
+      .subscribe(quote => {
+        this.quote = quote;
+        this.updateValues();
+      });
+  }
+
+  private updateValues() {
+    this.isLoved = this.currentUserId && this.quote.loves.includes(this.currentUserId);
+    this.numOfLoves = this.quote.loves.length;
+  }
+
+  ngOnDestroy() {
+    this.tokenSubscription.unsubscribe();
   }
 
 }

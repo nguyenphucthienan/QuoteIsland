@@ -4,7 +4,7 @@
     <h5 class="mt-0 mb-0">
       <a class="username">{{ comment.user.username }}</a>
       <a *ngIf="canDelele" class="pull-right" (click)="deleteComment()">
-        <i class="fa fa-remove red-text"></i>
+        <i class="fa fa-remove"></i>
       </a>
     </h5>
     <p class="datetime mb-0"><i class="fa fa-clock-o"></i> {{ comment.createdAt | date:'medium' }}</p>
