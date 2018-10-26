@@ -3,7 +3,7 @@
   <div class="media-body text-left ml-3">
     <h5 class="mt-0 mb-0">
       <a class="username">{{ comment.user.username }}</a>
-      <a *ngIf="canDelele" class="pull-right">
+      <a *ngIf="canDelele" class="pull-right" (click)="deleteComment()">
         <i class="fa fa-remove red-text"></i>
       </a>
     </h5>

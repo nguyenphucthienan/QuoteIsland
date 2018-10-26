@@ -6,6 +6,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
+import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
@@ -20,7 +21,8 @@ import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.
     PaginationComponent,
     SortBarComponent,
     SortModalComponent,
-    QuoteCardComponent
+    QuoteCardComponent,
+    ConfirmModalComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { SortModalComponent } from './components/sort-bar/sort-modal/sort-modal.
     QuoteCardComponent
   ],
   entryComponents: [
-    SortModalComponent
+    SortModalComponent,
+    ConfirmModalComponent
   ]
 })
 export class SharedModule { }
