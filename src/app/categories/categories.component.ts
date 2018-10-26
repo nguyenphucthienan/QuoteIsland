@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Pagination } from '../core/models/pagination.interface';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from '../core/services/category.service';
+import { environment } from 'src/environments/environment';
+
 import { CardHelpers } from '../core/helpers/card.helper';
+import { Category } from '../core/models/category.interface';
+import { Pagination } from '../core/models/pagination.interface';
+import { CategoryService } from '../core/services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -20,7 +22,7 @@ export class CategoriesComponent implements OnInit {
     { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
   ];
 
-  categories: any[] = [];
+  categories: Category[] = [];
   pagination: Pagination;
   sortString: string;
 

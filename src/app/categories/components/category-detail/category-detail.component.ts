@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardHelpers } from 'src/app/core/helpers/card.helper';
+import { Category } from 'src/app/core/models/category.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
 
@@ -18,7 +19,7 @@ export class CategoryDetailComponent implements OnInit {
     { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
   ];
 
-  category: any;
+  category: Category;
   quotes: any[] = [];
   pagination: Pagination;
   sortString: string;

@@ -2,6 +2,7 @@ import { Component, Input, NgModuleRef, OnDestroy, OnInit } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/core/modal/services/modal.service';
+import { Category } from 'src/app/core/models/category.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CategoryService } from 'src/app/core/services/category.service';
@@ -22,7 +23,7 @@ export class CategoryCardComponent implements OnInit, OnDestroy {
   };
 
   @Input() headerClasss = 'blue-gradient';
-  @Input() category: any;
+  @Input() category: Category;
 
   private photoHover = false;
   private tokenSubscription: Subscription;
@@ -74,7 +75,7 @@ export class CategoryCardComponent implements OnInit, OnDestroy {
     this.isLoved = !this.isLoved;
 
     this.categoryService.loveCategory(this.category._id)
-      .subscribe(category => {
+      .subscribe((category: Category) => {
         this.category = category;
         this.updateValues();
       });

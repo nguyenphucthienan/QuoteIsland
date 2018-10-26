@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/core/models/category.interface';
 
 @Component({
   selector: 'app-category-info-modal',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CategoryInfoModalComponent implements OnInit {
 
-  @Input() category: any;
+  @Input() category: Category;
 
   constructor() { }
 

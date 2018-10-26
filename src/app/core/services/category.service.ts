@@ -23,7 +23,7 @@ export class CategoryService {
     return this.http.get(`${this.categoryUrl}/${id}`);
   }
 
-  loveCategory(id: number) {
+  loveCategory(id: string) {
     return this.http.post(`${this.categoryUrl}/${id}/love`, null);
   }
 }
