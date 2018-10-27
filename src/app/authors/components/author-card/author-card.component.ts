@@ -1,8 +1,8 @@
 import { Component, Input, NgModuleRef, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { ModalService } from 'src/app/core/modal/services/modal.service';
 import { Author } from 'src/app/core/models/author.interface';
+import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthorService } from 'src/app/core/services/author.service';

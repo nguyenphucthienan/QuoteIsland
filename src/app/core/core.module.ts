@@ -15,7 +15,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { AuthRoleGuard } from './guards/auth-role.service';
-import { ModalModule } from './modal/modal.module';
+import { ModalModule } from './modules/modal/modal.module';
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
 import { AuthorService } from './services/author.service';

@@ -1,8 +1,8 @@
 import { Component, ComponentRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ModalComponent } from 'src/app/core/modal/modal.component';
-import { ModalService } from 'src/app/core/modal/services/modal.service';
 import { Comment } from 'src/app/core/models/comment.interface';
+import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
+import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CommentService } from 'src/app/core/services/comment.service';
