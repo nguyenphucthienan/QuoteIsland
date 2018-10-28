@@ -5,6 +5,5 @@
 </app-banner>
 <div class="admin-container container-fluid">
   <app-datatable [tableService]="adminQuoteManagerTableService"></app-datatable>
-  <button type="button" class="btn btn-primary" (click)="addModal.show()">Add Quote</button>
-  <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
+  <button type="button" class="btn btn-primary" (click)="openAddModal()">Add Quote</button>
 </div>

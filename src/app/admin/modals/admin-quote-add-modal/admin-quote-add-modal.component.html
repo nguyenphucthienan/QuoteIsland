@@ -1,36 +1,25 @@
-<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="addModal"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Add Quote</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <form [formGroup]="addQuoteForm">
-          <div class="md-form mb-5">
-            <input type="text" id="author" class="form-control" formControlName="author" mdbInputDirective
-              [mdbValidate]="false">
-            <label for="author">Author</label>
-          </div>
-          <div class="md-form mb-5">
-            <input type="text" id="categories" class="form-control" formControlName="categories" mdbInputDirective
-              [mdbValidate]="false">
-            <label for="categories">Categories</label>
-          </div>
-          <div class="md-form mb-4">
-            <textarea type="text" id="text" class="md-textarea md-textarea-auto form-control" formControlName="text"
-              mdbInputDirective [mdbValidate]="false"></textarea>
-            <label for="text">Text</label>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="success" class="waves-light" mdbWavesEffect (click)="addQuote()">Add</button>
-        <button mdbBtn color="danger" class="waves-light" mdbWavesEffect (click)="hide()">Cancel</button>
-      </div>
+<div class="add-modal container">
+  <form [formGroup]="addForm" (ngSubmit)="addQuote()" class="form">
+    <div class="form-group">
+      <label for="author">Author</label>
+      <select id="author" class="form-control" formControlName="author">
+        <option *ngFor="let author of authors" [value]="author._id">{{ author.fullName }}</option>
+      </select>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="categories">Categories</label>
+      <select id="categories" class="form-control" formControlName="categories">
+        <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="text">Text</label>
+      <textarea type="text" rows="3" id="text" class="form-control" formControlName="text" placeholder="Text"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="photoUrl">Photo</label>
+      <input type="input" id="photoUrl" class="form-control" formControlName="photoUrl" placeholder="Photo URL">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Add</button>
+  </form>
 </div>

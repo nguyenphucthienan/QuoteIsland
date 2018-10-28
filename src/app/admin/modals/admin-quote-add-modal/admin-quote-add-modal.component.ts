@@ -1,6 +1,13 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalDirective } from 'angular-bootstrap-md';
+import { Author } from 'src/app/core/models/author.interface';
+import { Category } from 'src/app/core/models/category.interface';
+import { Quote } from 'src/app/core/models/quote.interface';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { AuthorService } from 'src/app/core/services/author.service';
+import { CategoryService } from 'src/app/core/services/category.service';
+import { QuoteService } from 'src/app/core/services/quote.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-admin-quote-add-modal',
@@ -9,36 +16,45 @@ import { ModalDirective } from 'angular-bootstrap-md';
 })
 export class AdminQuoteAddModalComponent implements OnInit {
 
-  @ViewChild(ModalDirective) modal: ModalDirective;
-  @Output() ok = new EventEmitter();
+  @Output() quoteAdded = new EventEmitter();
 
-  addQuoteForm: FormGroup;
+  addForm: FormGroup;
+  authors: Author[] = [];
+  categories: Category[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private authorService: AuthorService,
+    private categoryService: CategoryService,
+    private quoteService: QuoteService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
-    this.addQuoteForm = this.fb.group({
+    this.addForm = this.fb.group({
       author: ['', Validators.required],
       categories: ['', Validators.required],
-      text: ['', Validators.required]
+      text: ['', Validators.required],
+      photoUrl: ['', Validators.required]
     });
-  }
 
-  show() {
-    this.modal.show();
-  }
-
-  hide() {
-    this.modal.hide();
-  }
-
-  reset() {
-    this.addQuoteForm.reset();
+    forkJoin(
+      this.authorService.getAuthors(1, 9999),
+      this.categoryService.getCategories(1, 9999)
+    ).
+      subscribe((data: any) => {
+        this.authors = data[0].items;
+        this.categories = data[1].items;
+      });
   }
 
   addQuote() {
-    this.ok.emit(this.addQuoteForm.value);
-    this.modal.hide();
+    this.quoteService.createQuote(this.addForm.value)
+      .subscribe(
+        (quote: Quote) => {
+          this.alertService.success('Add quote successfully');
+          this.quoteAdded.emit(quote);
+        },
+        error => this.alertService.error('Add quote failed')
+      );
   }
 
 }

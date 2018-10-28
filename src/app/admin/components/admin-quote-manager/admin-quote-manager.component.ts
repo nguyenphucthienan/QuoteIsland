@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertService } from 'src/app/core/services/alert.service';
-import { QuoteService } from 'src/app/core/services/quote.service';
+import { Component, ComponentRef, NgModuleRef, OnInit, ViewChild } from '@angular/core';
+import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
+import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { DatatableComponent } from 'src/app/shared/components/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
 
@@ -20,23 +20,31 @@ export class AdminQuoteManagerComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
   @ViewChild(AdminQuoteAddModalComponent) addModal;
 
+  private modalComponentRef: ComponentRef<ModalComponent>;
+
   constructor(public adminQuoteManagerTableService: AdminQuoteManagerTableService,
-    private quoteService: QuoteService,
-    private alertService: AlertService) { }
+    private modalService: ModalService,
+    private moduleRef: NgModuleRef<any>) { }
 
   ngOnInit() {
   }
 
-  addQuote(rawQuote) {
-    this.quoteService.createQuote(rawQuote)
-      .subscribe(
-        () => {
-          this.alertService.success('Add quote successfully');
-          this.addModal.reset();
-          this.datatable.refresh();
-        },
-        error => this.alertService.error('Add quote failed')
-      );
+  openAddModal() {
+    this.modalComponentRef = this.modalService.open(AdminQuoteAddModalComponent, {
+      inputs: {
+        title: 'Add New Quote'
+      },
+      childComponent: {
+        outputs: {
+          quoteAdded: this.onQuoteAdded.bind(this)
+        }
+      }
+    }, this.moduleRef);
+  }
+
+  onQuoteAdded() {
+    this.modalComponentRef.instance.close();
+    this.datatable.refresh();
   }
 
 }

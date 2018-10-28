@@ -15,12 +15,12 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
   declarations: [
     AdminComponent,
     AdminUserManagerComponent,
-    AdminQuoteManagerComponent,
-    AdminQuoteAddModalComponent,
     AdminAuthorManagerComponent,
     AdminAuthorAddModalComponent,
     AdminCategoryManagerComponent,
-    AdminCategoryAddModalComponent
+    AdminCategoryAddModalComponent,
+    AdminQuoteManagerComponent,
+    AdminQuoteAddModalComponent
   ],
   imports: [
     SharedModule,
@@ -28,7 +28,8 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
   ],
   entryComponents: [
     AdminAuthorAddModalComponent,
-    AdminCategoryAddModalComponent
+    AdminCategoryAddModalComponent,
+    AdminQuoteAddModalComponent
   ]
 })
 export class AdminModule { }
