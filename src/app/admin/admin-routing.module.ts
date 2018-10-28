@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthRoleGuard } from '../core/guards/auth-role.service';
 import { AdminComponent } from './admin.component';
+import { AdminAuthorManagerComponent } from './components/admin-author-manager/admin-author-manager.component';
 import { AdminQuoteManagerComponent } from './components/admin-quote-manager/admin-quote-manager.component';
 import { AdminUserManagerComponent } from './components/admin-user-manager/admin-user-manager.component';
 
@@ -18,6 +19,12 @@ const routes: Routes = [
     component: AdminUserManagerComponent,
     canActivate: [AuthRoleGuard],
     data: { roles: ['Admin'] }
+  },
+  {
+    path: 'authors',
+    component: AdminAuthorManagerComponent,
+    canActivate: [AuthRoleGuard],
+    data: { roles: ['Admin', 'Moderator'] }
   },
   {
     path: 'quotes',

@@ -1,0 +1,9 @@
+<app-banner [height]="'25%'" [imageUrl]="bannerImageUrl">
+  <div class="d-flex justify-content-center align-items-center">
+    <h1>Author Manager</h1>
+  </div>
+</app-banner>
+<div class="admin-container container-fluid">
+  <app-datatable [tableService]="adminAuthorManagerTableService"></app-datatable>
+  <button type="button" class="btn btn-primary" (click)="openAddModal()">Add Author</button>
+</div>
