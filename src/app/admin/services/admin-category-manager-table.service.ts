@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { AuthorService } from 'src/app/core/services/author.service';
+import { CategoryService } from 'src/app/core/services/category.service';
 import { TableService } from 'src/app/shared/components/datatable/services/table.service';
 
 @Injectable()
-export class AdminAuthorManagerTableService extends TableService {
+export class AdminCategoryManagerTableService extends TableService {
 
   private readonly headElements: any = [
     { id: 'shortenedId', name: 'ID' },
-    { id: 'fullName', name: 'Full Name' },
-    { id: 'born', name: 'Born' },
-    { id: 'died', name: 'Died' },
-    { id: 'nationality', name: 'Nationality' },
+    { id: 'name', name: 'Full Name' },
     { id: 'description', name: 'Description' },
     { id: 'quoteCount', name: 'Quotes' },
     { id: 'loveCount', name: 'Loves' }
   ];
 
-  constructor(private authorService: AuthorService) {
+  constructor(private categoryService: CategoryService) {
     super();
   }
 
@@ -26,7 +23,7 @@ export class AdminAuthorManagerTableService extends TableService {
   }
 
   async getData() {
-    return await this.authorService.getAuthors(
+    return await this.categoryService.getCategories(
       this.pagination.pageNumber,
       this.pagination.pageSize)
       .pipe(
@@ -40,17 +37,14 @@ export class AdminAuthorManagerTableService extends TableService {
 
   async getTableData() {
     const items = await this.getData();
-    return items.map(author => {
+    return items.map(category => {
       return {
-        id: author._id,
-        shortenedId: author._id.substr(-4),
-        fullName: author.fullName,
-        born: author.born && new Date(author.born).toDateString(),
-        died: author.died && new Date(author.died).toDateString(),
-        nationality: author.nationality,
-        description: author.description,
-        quoteCount: author.quoteCount,
-        loveCount: author.loveCount
+        id: category._id,
+        shortenedId: category._id.substr(-4),
+        name: category.name,
+        description: category.description,
+        quoteCount: category.quoteCount,
+        loveCount: category.loveCount
       };
     });
   }
