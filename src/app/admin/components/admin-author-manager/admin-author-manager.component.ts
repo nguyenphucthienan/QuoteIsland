@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertService } from 'src/app/core/services/alert.service';
-import { AuthorService } from 'src/app/core/services/author.service';
+import { Component, NgModuleRef, OnInit, ViewChild, ComponentRef } from '@angular/core';
+import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { DatatableComponent } from 'src/app/shared/components/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
 
+import { AdminAuthorAddModalComponent } from '../../modals/admin-author-add-modal/admin-author-add-modal.component';
 import { AdminAuthorManagerTableService } from '../../services/admin-author-manager-table.service';
+import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 
 @Component({
   selector: 'app-admin-author-manager',
@@ -18,25 +19,31 @@ export class AdminAuthorManagerComponent implements OnInit {
 
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
+  private modalComponentRef: ComponentRef<ModalComponent>;
+
   constructor(public adminAuthorManagerTableService: AdminAuthorManagerTableService,
-    private authorService: AuthorService,
-    private alertService: AlertService) { }
+    private modalService: ModalService,
+    private moduleRef: NgModuleRef<any>) { }
 
   ngOnInit() {
   }
 
   openAddModal() {
+    this.modalComponentRef = this.modalService.open(AdminAuthorAddModalComponent, {
+      inputs: {
+        title: 'Add New Author'
+      },
+      childComponent: {
+        outputs: {
+          authorAdded: this.onAuthorAdded.bind(this)
+        }
+      }
+    }, this.moduleRef);
   }
 
-  addAuthor(author) {
-    this.authorService.createAuthor(author)
-      .subscribe(
-        () => {
-          this.alertService.success('Add author successfully');
-          this.datatable.refresh();
-        },
-        error => this.alertService.error('Add author failed')
-      );
+  onAuthorAdded() {
+    this.modalComponentRef.instance.close();
+    this.datatable.refresh();
   }
 
 }

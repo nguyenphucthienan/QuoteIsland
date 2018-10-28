@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { AdminAuthorManagerComponent } from './components/admin-author-manager/admin-author-manager.component';
 import { AdminQuoteManagerComponent } from './components/admin-quote-manager/admin-quote-manager.component';
 import { AdminUserManagerComponent } from './components/admin-user-manager/admin-user-manager.component';
+import { AdminAuthorAddModalComponent } from './modals/admin-author-add-modal/admin-author-add-modal.component';
 import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admin-quote-add-modal.component';
 
 @NgModule({
@@ -14,11 +15,15 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
     AdminUserManagerComponent,
     AdminQuoteManagerComponent,
     AdminQuoteAddModalComponent,
-    AdminAuthorManagerComponent
+    AdminAuthorManagerComponent,
+    AdminAuthorAddModalComponent
   ],
   imports: [
     SharedModule,
     AdminRoutingModule
+  ],
+  entryComponents: [
+    AdminAuthorAddModalComponent
   ]
 })
 export class AdminModule { }

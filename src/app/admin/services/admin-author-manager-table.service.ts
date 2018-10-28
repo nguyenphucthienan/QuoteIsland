@@ -9,6 +9,8 @@ export class AdminAuthorManagerTableService extends TableService {
   private readonly headElements: any = [
     { id: 'shortenedId', name: 'ID' },
     { id: 'fullName', name: 'Full Name' },
+    { id: 'born', name: 'Born' },
+    { id: 'died', name: 'Died' },
     { id: 'nationality', name: 'Nationality' },
     { id: 'description', name: 'Description' },
     { id: 'quoteCount', name: 'Quotes' },
@@ -43,6 +45,8 @@ export class AdminAuthorManagerTableService extends TableService {
         id: author._id,
         shortenedId: author._id.substr(-4),
         fullName: author.fullName,
+        born: author.born && new Date(author.born).toDateString(),
+        died: author.died && new Date(author.died).toDateString(),
         nationality: author.nationality,
         description: author.description,
         quoteCount: author.quoteCount,
