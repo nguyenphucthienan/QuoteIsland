@@ -3,15 +3,8 @@
     <h1>Quote Manager</h1>
   </div>
 </app-banner>
-<app-panel>
-  <div class="panel-header">Quotes</div>
-  <div class="panel-body">
-    <div class="container-fluid">
-      <app-datatable [headElements]="headElements" [elements]="elements"></app-datatable>
-      <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
-    </div>
-  </div>
-  <div class="panel-footer">
-    <button type="button" class="btn btn-primary" (click)="addModal.show()">Add Quote</button>
-  </div>
-</app-panel>
+<div class="admin-container container-fluid">
+  <app-datatable [tableService]="adminQuoteManagerTableService"></app-datatable>
+  <button type="button" class="btn btn-primary" (click)="addModal.show()">Add Quote</button>
+  <app-admin-quote-add-modal (ok)="addQuote($event)"></app-admin-quote-add-modal>
+</div>

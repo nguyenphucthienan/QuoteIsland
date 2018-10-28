@@ -8,6 +8,7 @@ import {
 } from './components/admin-quote-manager/admin-quote-add-modal/admin-quote-add-modal.component';
 import { AdminQuoteManagerComponent } from './components/admin-quote-manager/admin-quote-manager.component';
 import { AdminUserManagerComponent } from './components/admin-user-manager/admin-user-manager.component';
+import { AdminQuoteManagerTableService } from './services/admin-quote-manager-table.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { AdminUserManagerComponent } from './components/admin-user-manager/admin
   imports: [
     SharedModule,
     AdminRoutingModule
+  ],
+  providers: [
+    AdminQuoteManagerTableService
   ]
 })
 export class AdminModule { }

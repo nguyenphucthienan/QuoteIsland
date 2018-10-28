@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { TableService } from './services/table.service';
+
 @Component({
   selector: 'app-datatable',
   templateUrl: './datatable.component.html',
@@ -7,12 +9,29 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DatatableComponent implements OnInit {
 
-  @Input() headElements: any = [];
-  @Input() elements: any = [];
+  @Input() tableService: TableService;
+
+  headElements: any[] = [];
+  elements: any[] = [];
 
   constructor() { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.headElements = this.tableService.getHeaders();
+    await this.getTableData();
+  }
+
+  private async getTableData() {
+    this.elements = await this.tableService.getTableData();
+  }
+
+  async refresh() {
+    await this.getTableData();
+  }
+
+  onPageChanged(pageNumber: number) {
+    this.tableService.pagination.pageNumber = pageNumber;
+    this.getTableData();
   }
 
 }

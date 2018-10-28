@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
+import { DatatableComponent } from 'src/app/shared/components/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
 
+import { AdminQuoteManagerTableService } from '../../services/admin-quote-manager-table.service';
 import { AdminQuoteAddModalComponent } from './admin-quote-add-modal/admin-quote-add-modal.component';
 
 @Component({
@@ -12,44 +14,16 @@ import { AdminQuoteAddModalComponent } from './admin-quote-add-modal/admin-quote
 })
 export class AdminQuoteManagerComponent implements OnInit {
 
-  @ViewChild(AdminQuoteAddModalComponent) addModal;
-
   readonly bannerImageUrl = environment.bannerImageUrls.adminPage;
 
-  readonly headElements: any = [
-    { id: 'id', name: 'ID' },
-    { id: 'author', name: 'Author' },
-    { id: 'categories', name: 'Categories' },
-    { id: 'text', name: 'Text' }
-  ];
+  @ViewChild(DatatableComponent) datatable: DatatableComponent;
+  @ViewChild(AdminQuoteAddModalComponent) addModal;
 
-  elements: any = [];
-
-  constructor(private quoteService: QuoteService,
+  constructor(public adminQuoteManagerTableService: AdminQuoteManagerTableService,
+    private quoteService: QuoteService,
     private alertService: AlertService) { }
 
   ngOnInit() {
-    this.getQuotes();
-  }
-
-  private getQuotes() {
-    this.quoteService.getQuotes(1, 10)
-      .subscribe((response: any) => {
-        this.elements = this.populateQuotesData(response.items);
-      });
-  }
-
-  private populateQuotesData(quotes) {
-    return quotes.map(quote => {
-      return {
-        id: quote._id,
-        author: quote.author && quote.author.fullName,
-        categories: quote.categories && quote.categories
-          .map(category => category.name)
-          .join(', '),
-        text: quote.text
-      };
-    });
   }
 
   addQuote(rawQuote) {
@@ -58,7 +32,7 @@ export class AdminQuoteManagerComponent implements OnInit {
         () => {
           this.alertService.success('Add quote successfully');
           this.addModal.reset();
-          this.getQuotes();
+          this.datatable.refresh();
         },
         error => this.alertService.error('Add quote failed')
       );
