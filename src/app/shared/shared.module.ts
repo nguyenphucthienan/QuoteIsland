@@ -4,11 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 
 import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { PhotoUploaderComponent } from './components/photo-uploader/photo-uploader.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
@@ -16,6 +18,8 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
 
 @NgModule({
   declarations: [
+    FileSelectDirective,
+    FileDropDirective,
     BannerComponent,
     DatatableComponent,
     PanelComponent,
@@ -23,7 +27,8 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     SortBarComponent,
     SortModalComponent,
     QuoteCardComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    PhotoUploaderComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +48,8 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     PaginationComponent,
     SortBarComponent,
     DatatableComponent,
-    QuoteCardComponent
+    QuoteCardComponent,
+    PhotoUploaderComponent
   ],
   entryComponents: [
     SortModalComponent,

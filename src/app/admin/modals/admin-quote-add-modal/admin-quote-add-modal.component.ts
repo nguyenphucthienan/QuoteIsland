@@ -46,6 +46,10 @@ export class AdminQuoteAddModalComponent implements OnInit {
       });
   }
 
+  photoUploaded(reponse) {
+    this.addForm.controls['photoUrl'].setValue(reponse.secureUrl);
+  }
+
   addQuote() {
     this.quoteService.createQuote(this.addForm.value)
       .subscribe(

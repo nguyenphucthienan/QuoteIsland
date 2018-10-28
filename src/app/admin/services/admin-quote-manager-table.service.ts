@@ -10,7 +10,8 @@ export class AdminQuoteManagerTableService extends TableService {
     { id: 'shortenedId', name: 'ID' },
     { id: 'author', name: 'Author' },
     { id: 'categories', name: 'Categories' },
-    { id: 'text', name: 'Text' }
+    { id: 'text', name: 'Text' },
+    { id: 'loveCount', name: 'Loves' }
   ];
 
   constructor(private quoteService: QuoteService) {
@@ -44,7 +45,8 @@ export class AdminQuoteManagerTableService extends TableService {
         categories: quote.categories && quote.categories
           .map(category => category.name)
           .join(', '),
-        text: quote.text
+        text: quote.text,
+        loveCount: quote.loveCount
       };
     });
   }
