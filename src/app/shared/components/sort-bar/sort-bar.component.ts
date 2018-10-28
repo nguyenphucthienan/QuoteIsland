@@ -3,7 +3,7 @@ import { ModalHolderDirective } from 'src/app/core/modules/modal/directives/moda
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 
-import { SortModalComponent } from '../modals/sort-modal/sort-modal.component';
+import { SortModalComponent } from '../../modals/sort-modal/sort-modal.component';
 
 @Component({
   selector: 'app-sort-bar',

@@ -4,13 +4,14 @@ import { QuoteService } from 'src/app/core/services/quote.service';
 import { DatatableComponent } from 'src/app/shared/components/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
 
+import { AdminQuoteAddModalComponent } from '../../modals/admin-quote-add-modal/admin-quote-add-modal.component';
 import { AdminQuoteManagerTableService } from '../../services/admin-quote-manager-table.service';
-import { AdminQuoteAddModalComponent } from './admin-quote-add-modal/admin-quote-add-modal.component';
 
 @Component({
   selector: 'app-admin-quote-manager',
   templateUrl: './admin-quote-manager.component.html',
-  styleUrls: ['./admin-quote-manager.component.scss']
+  styleUrls: ['./admin-quote-manager.component.scss'],
+  providers: [AdminQuoteManagerTableService]
 })
 export class AdminQuoteManagerComponent implements OnInit {
 

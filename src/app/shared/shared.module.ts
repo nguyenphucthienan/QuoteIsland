@@ -6,12 +6,12 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BannerComponent } from './components/banner/banner.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
-import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
-import { SortModalComponent } from './components/modals/sort-modal/sort-modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
+import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
+import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
 
 @NgModule({
   declarations: [
