@@ -27,14 +27,7 @@ export class QuoteService {
     return this.http.get<Quote>(`${this.quoteUrl}/${id}`);
   }
 
-  createQuote(rawQuote: any): Observable<Quote> {
-    const quote = {
-      author: rawQuote.author,
-      categories: [rawQuote.categories],
-      text: rawQuote.text,
-      photoUrl: rawQuote.photoUrl
-    };
-
+  createQuote(quote: Quote): Observable<Quote> {
     return this.http.post<Quote>(`${this.quoteUrl}`, quote);
   }
 

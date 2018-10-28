@@ -2,15 +2,15 @@
   <form [formGroup]="addForm" (ngSubmit)="addQuote()" class="form">
     <div class="form-group">
       <label for="author">Author</label>
-      <select id="author" class="form-control" formControlName="author">
-        <option *ngFor="let author of authors" [value]="author._id">{{ author.fullName }}</option>
-      </select>
+      <ng-select [items]="authors" [selectOnTab]="true" [clearable]="false" bindValue="_id" bindLabel="fullName"
+        placeholder="Select Author" formControlName="author">
+      </ng-select>
     </div>
     <div class="form-group">
-      <label for="categories">Categories</label>
-      <select id="categories" class="form-control" formControlName="categories">
-        <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
-      </select>
+      <label for="author">Categories</label>
+      <ng-select [items]="categories" [multiple]="true" [closeOnSelect]="false" bindValue="_id" bindLabel="name"
+        placeholder="Select Categories" formControlName="categories">
+      </ng-select>
     </div>
     <div class="form-group">
       <label for="text">Text</label>
@@ -20,6 +20,6 @@
       <label for="photoUrl">Photo</label>
       <input type="input" id="photoUrl" class="form-control" formControlName="photoUrl" placeholder="Photo URL">
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Add</button>
+    <button type="submit" class="btn btn-primary">Add</button>
   </form>
 </div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 import { Author } from 'src/app/core/models/author.interface';
 import { Category } from 'src/app/core/models/category.interface';
 import { Quote } from 'src/app/core/models/quote.interface';
@@ -7,7 +8,6 @@ import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthorService } from 'src/app/core/services/author.service';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-admin-quote-add-modal',
@@ -30,8 +30,8 @@ export class AdminQuoteAddModalComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.fb.group({
-      author: ['', Validators.required],
-      categories: ['', Validators.required],
+      author: [null, Validators.required],
+      categories: [[], Validators.required],
       text: ['', Validators.required],
       photoUrl: ['', Validators.required]
     });

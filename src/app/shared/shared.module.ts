@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BannerComponent } from './components/banner/banner.component';
@@ -36,6 +37,7 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot().ngModule,
+    NgSelectModule,
     BannerComponent,
     PanelComponent,
     PaginationComponent,
