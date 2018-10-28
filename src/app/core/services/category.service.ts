@@ -27,7 +27,12 @@ export class CategoryService {
     return this.http.get<Category>(`${this.categoryUrl}/${id}`);
   }
 
+  createCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(`${this.categoryUrl}`, category);
+  }
+
   loveCategory(id: string): Observable<Category> {
     return this.http.post<Category>(`${this.categoryUrl}/${id}/love`, null);
   }
+
 }

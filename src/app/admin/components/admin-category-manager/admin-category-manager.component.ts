@@ -32,6 +32,11 @@ export class AdminCategoryManagerComponent implements OnInit {
     this.modalComponentRef = this.modalService.open(AdminCategoryAddModalComponent, {
       inputs: {
         title: 'Add New Category'
+      },
+      childComponent: {
+        outputs: {
+          categoryAdded: this.onCategoryAdded.bind(this)
+        }
       }
     }, this.moduleRef);
   }
@@ -40,4 +45,5 @@ export class AdminCategoryManagerComponent implements OnInit {
     this.modalComponentRef.instance.close();
     this.datatable.refresh();
   }
+
 }
