@@ -11,18 +11,18 @@ export class DatatableComponent implements OnInit {
 
   @Input() tableService: TableService;
 
-  headElements: any[] = [];
-  elements: any[] = [];
+  headerElements: any[] = [];
+  tableElements: any[] = [];
 
   constructor() { }
 
   async ngOnInit() {
-    this.headElements = this.tableService.getHeaders();
+    this.headerElements = this.tableService.getHeaders();
     await this.getTableData();
   }
 
   private async getTableData() {
-    this.elements = await this.tableService.getTableData();
+    this.tableElements = await this.tableService.getTableData();
   }
 
   async refresh() {

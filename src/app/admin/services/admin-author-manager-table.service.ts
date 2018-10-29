@@ -25,12 +25,13 @@ export class AdminAuthorManagerTableService extends TableService {
     return this.headElements;
   }
 
-  async getData() {
+  async getRawData() {
     return await this.authorService.getAuthors(
       this.pagination.pageNumber,
       this.pagination.pageSize)
       .pipe(
         map((response: any) => {
+          this.elements = response.items;
           this.pagination = response.pagination;
           return response.items;
         })
@@ -39,8 +40,8 @@ export class AdminAuthorManagerTableService extends TableService {
   }
 
   async getTableData() {
-    const items = await this.getData();
-    return items.map(author => {
+    await this.getRawData();
+    return this.elements.map(author => {
       return {
         id: author._id,
         shortenedId: author._id.substr(-4),
@@ -48,7 +49,7 @@ export class AdminAuthorManagerTableService extends TableService {
         born: author.born && new Date(author.born).toDateString(),
         died: author.died && new Date(author.died).toDateString(),
         nationality: author.nationality,
-        description: author.description,
+        description: author.description && author.description.substr(0, 100),
         quoteCount: author.quoteCount,
         loveCount: author.loveCount
       };

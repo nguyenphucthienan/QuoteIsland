@@ -6,7 +6,7 @@ import { TableService } from 'src/app/shared/components/datatable/services/table
 @Injectable()
 export class AdminCategoryManagerTableService extends TableService {
 
-  private readonly headElements: any = [
+  private readonly headerElements: any = [
     { id: 'shortenedId', name: 'ID' },
     { id: 'name', name: 'Full Name' },
     { id: 'description', name: 'Description' },
@@ -19,15 +19,16 @@ export class AdminCategoryManagerTableService extends TableService {
   }
 
   getHeaders() {
-    return this.headElements;
+    return this.headerElements;
   }
 
-  async getData() {
-    return await this.categoryService.getCategories(
+  getRawData() {
+    return this.categoryService.getCategories(
       this.pagination.pageNumber,
       this.pagination.pageSize)
       .pipe(
         map((response: any) => {
+          this.elements = response.items;
           this.pagination = response.pagination;
           return response.items;
         })
@@ -36,13 +37,13 @@ export class AdminCategoryManagerTableService extends TableService {
   }
 
   async getTableData() {
-    const items = await this.getData();
-    return items.map(category => {
+    await this.getRawData();
+    return this.elements.map(category => {
       return {
         id: category._id,
         shortenedId: category._id.substr(-4),
         name: category.name,
-        description: category.description,
+        description: category.description && category.description.substr(0, 100),
         quoteCount: category.quoteCount,
         loveCount: category.loveCount
       };

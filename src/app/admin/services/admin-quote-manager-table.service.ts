@@ -22,7 +22,7 @@ export class AdminQuoteManagerTableService extends TableService {
     return this.headElements;
   }
 
-  async getData() {
+  async getRawData() {
     return await this.quoteService.getQuotes(
       this.pagination.pageNumber,
       this.pagination.pageSize)
@@ -36,8 +36,8 @@ export class AdminQuoteManagerTableService extends TableService {
   }
 
   async getTableData() {
-    const items = await this.getData();
-    return items.map(quote => {
+    await this.getRawData();
+    return this.elements.map(quote => {
       return {
         id: quote._id,
         shortenedId: quote._id.substr(-4),

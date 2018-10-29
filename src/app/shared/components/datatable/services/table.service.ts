@@ -8,6 +8,7 @@ export abstract class TableService {
   protected defaultPageSize = 10;
 
   pagination: Pagination;
+  elements: any[];
 
   constructor() {
     this.pagination = {
@@ -19,7 +20,11 @@ export abstract class TableService {
 
   public abstract getHeaders();
 
-  protected abstract async getData();
+  public getData() {
+    return this.elements;
+  }
+
+  protected abstract getRawData();
 
   public abstract async getTableData();
 

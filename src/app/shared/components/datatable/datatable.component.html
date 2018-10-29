@@ -2,12 +2,12 @@
   <table class="table table-hover">
     <thead class="primary-color white-text">
       <tr>
-        <th *ngFor="let head of headElements" scope="col">{{ head.name }}</th>
+        <th *ngFor="let header of headerElements" scope="col">{{ header.name }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let el of elements">
-        <td *ngFor="let head of headElements">{{ el[head.id] }}</td>
+      <tr *ngFor="let element of tableElements">
+        <td *ngFor="let header of headerElements">{{ element[header.id] }}</td>
       </tr>
     </tbody>
   </table>
