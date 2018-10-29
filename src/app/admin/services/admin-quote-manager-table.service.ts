@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { StringHelpers } from 'src/app/core/helpers/string.helper';
 import { QuoteService } from 'src/app/core/services/quote.service';
 import { TableService } from 'src/app/shared/components/datatable/services/table.service';
 
 @Injectable()
 export class AdminQuoteManagerTableService extends TableService {
 
-  private readonly headElements: any = [
+  private readonly headerElements: any = [
     { id: 'shortenedId', name: 'ID' },
     { id: 'author', name: 'Author' },
     { id: 'categories', name: 'Categories' },
@@ -19,15 +20,16 @@ export class AdminQuoteManagerTableService extends TableService {
   }
 
   getHeaders() {
-    return this.headElements;
+    return this.headerElements;
   }
 
-  async getRawData() {
-    return await this.quoteService.getQuotes(
+  getRawData() {
+    return this.quoteService.getQuotes(
       this.pagination.pageNumber,
       this.pagination.pageSize)
       .pipe(
         map((response: any) => {
+          this.elements = response.items;
           this.pagination = response.pagination;
           return response.items;
         })
@@ -45,7 +47,7 @@ export class AdminQuoteManagerTableService extends TableService {
         categories: quote.categories && quote.categories
           .map(category => category.name)
           .join(', '),
-        text: quote.text,
+        text: StringHelpers.truncate(quote.text, 100),
         loveCount: quote.loveCount
       };
     });

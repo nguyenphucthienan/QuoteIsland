@@ -7,7 +7,7 @@ import { TableService } from 'src/app/shared/components/datatable/services/table
 @Injectable()
 export class AdminAuthorManagerTableService extends TableService {
 
-  private readonly headElements: any = [
+  private readonly headerElements: any = [
     { id: 'shortenedId', name: 'ID' },
     { id: 'fullName', name: 'Full Name' },
     { id: 'born', name: 'Born' },
@@ -23,11 +23,11 @@ export class AdminAuthorManagerTableService extends TableService {
   }
 
   getHeaders() {
-    return this.headElements;
+    return this.headerElements;
   }
 
-  async getRawData() {
-    return await this.authorService.getAuthors(
+  getRawData() {
+    return this.authorService.getAuthors(
       this.pagination.pageNumber,
       this.pagination.pageSize)
       .pipe(
@@ -47,8 +47,8 @@ export class AdminAuthorManagerTableService extends TableService {
         id: author._id,
         shortenedId: author._id.substr(-4),
         fullName: author.fullName,
-        born: author.born && new Date(author.born).toDateString(),
-        died: author.died && new Date(author.died).toDateString(),
+        born: StringHelpers.toDateString(author.born),
+        died: StringHelpers.toDateString(author.died),
         nationality: author.nationality,
         description: StringHelpers.truncate(author.description, 100),
         quoteCount: author.quoteCount,

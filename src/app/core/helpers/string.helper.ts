@@ -17,4 +17,12 @@ export class StringHelpers {
     return `${value.substr(0, lastindex)}${ellipsis}`;
   }
 
+  static toDateString(value: string) {
+    if (!value) {
+      return null;
+    }
+
+    return new Date(value).toDateString();
+  }
+
 }

@@ -8,7 +8,7 @@ export abstract class TableService {
   protected defaultPageSize = 10;
 
   pagination: Pagination;
-  elements: any[];
+  elements: any[] = [];
 
   constructor() {
     this.pagination = {
