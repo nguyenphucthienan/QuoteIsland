@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { StringHelpers } from 'src/app/core/helpers/string.helper';
 import { AuthorService } from 'src/app/core/services/author.service';
 import { TableService } from 'src/app/shared/components/datatable/services/table.service';
 
@@ -49,7 +50,7 @@ export class AdminAuthorManagerTableService extends TableService {
         born: author.born && new Date(author.born).toDateString(),
         died: author.died && new Date(author.died).toDateString(),
         nationality: author.nationality,
-        description: author.description && author.description.substr(0, 100),
+        description: StringHelpers.truncate(author.description, 100),
         quoteCount: author.quoteCount,
         loveCount: author.loveCount
       };

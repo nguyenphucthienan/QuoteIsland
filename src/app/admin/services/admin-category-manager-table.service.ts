@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { StringHelpers } from 'src/app/core/helpers/string.helper';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { TableService } from 'src/app/shared/components/datatable/services/table.service';
 
@@ -43,7 +44,7 @@ export class AdminCategoryManagerTableService extends TableService {
         id: category._id,
         shortenedId: category._id.substr(-4),
         name: category.name,
-        description: category.description && category.description.substr(0, 100),
+        description: StringHelpers.truncate(category.description, 100),
         quoteCount: category.quoteCount,
         loveCount: category.loveCount
       };
