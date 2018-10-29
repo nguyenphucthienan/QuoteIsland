@@ -27,6 +27,10 @@ export class AdminCategoryAddModalComponent implements OnInit {
     });
   }
 
+  photoUploaded(response) {
+    this.addForm.controls['photoUrl'].setValue(response.secureUrl);
+  }
+
   addCategory() {
     this.categoryService.createCategory(this.addForm.value)
       .subscribe(
