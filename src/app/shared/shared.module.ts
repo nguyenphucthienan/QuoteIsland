@@ -13,6 +13,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { PhotoUploaderComponent } from './components/photo-uploader/photo-uploader.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
+import { HasRoleDirective } from './directives/has-role.directive';
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
 import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
 
@@ -20,6 +21,7 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
   declarations: [
     FileSelectDirective,
     FileDropDirective,
+    HasRoleDirective,
     BannerComponent,
     DatatableComponent,
     PanelComponent,
@@ -43,6 +45,7 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot().ngModule,
     NgSelectModule,
+    HasRoleDirective,
     BannerComponent,
     PanelComponent,
     PaginationComponent,

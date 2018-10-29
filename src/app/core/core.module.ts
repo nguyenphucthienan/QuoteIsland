@@ -7,13 +7,6 @@ import { ProgressAnimationType, ToastrModule } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
 import { SharedModule } from '../shared/shared.module';
-import { AboutComponent } from './components/about/about.component';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HasRoleDirective } from './directives/has-role.directive';
 import { AuthRoleGuard } from './guards/auth-role.service';
 import { ModalModule } from './modules/modal/modal.module';
 import { AlertService } from './services/alert.service';
@@ -43,15 +36,6 @@ const toastrOptions = {
 };
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    HomeComponent,
-    AboutComponent,
-    LoginComponent,
-    RegisterComponent,
-    NotFoundComponent,
-    HasRoleDirective
-  ],
   imports: [
     HttpClientModule,
     RouterModule.forChild([]),
@@ -60,10 +44,6 @@ const toastrOptions = {
     ToastrModule.forRoot(toastrOptions),
     SharedModule,
     ModalModule
-  ],
-  exports: [
-    HeaderComponent,
-    HasRoleDirective
   ],
   providers: [
     AuthService,
