@@ -44,9 +44,10 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
       .subscribe(token => {
         if (token) {
           this.currentUserId = token.id;
-          this.updateValues();
         }
       });
+
+    this.updateValues();
   }
 
   getSanitizedImageUrl() {
@@ -83,7 +84,7 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
 
   private updateValues() {
     this.isLoved = this.currentUserId && this.author.loves.includes(this.currentUserId);
-    this.numOfLoves = this.author.loves.length;
+    this.numOfLoves = this.author.loveCount;
   }
 
   openInfoModal() {

@@ -44,9 +44,10 @@ export class CategoryCardComponent implements OnInit, OnDestroy {
       .subscribe(token => {
         if (token) {
           this.currentUserId = token.id;
-          this.updateValues();
         }
       });
+
+    this.updateValues();
   }
 
   getSanitizedImageUrl() {
@@ -83,7 +84,7 @@ export class CategoryCardComponent implements OnInit, OnDestroy {
 
   private updateValues() {
     this.isLoved = this.currentUserId && this.category.loves.includes(this.currentUserId);
-    this.numOfLoves = this.category.loves.length;
+    this.numOfLoves = this.category.loveCount;
   }
 
   openInfoModal() {
