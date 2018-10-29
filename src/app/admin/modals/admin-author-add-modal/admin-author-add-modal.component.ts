@@ -30,6 +30,10 @@ export class AdminAuthorAddModalComponent implements OnInit {
     });
   }
 
+  photoUploaded(response) {
+    this.addForm.controls['photoUrl'].setValue(response.secureUrl);
+  }
+
   addAuthor() {
     this.authorService.createAuthor(this.addForm.value)
       .subscribe(

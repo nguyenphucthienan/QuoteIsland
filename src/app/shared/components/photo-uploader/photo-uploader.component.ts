@@ -16,7 +16,7 @@ export class PhotoUploaderComponent implements OnInit {
   @Output() uploadFailed = new EventEmitter();
 
   uploader: FileUploader;
-  hasBaseDropZoneOver = false;
+  hasDropZoneOver = false;
 
   constructor() { }
 
@@ -52,8 +52,8 @@ export class PhotoUploaderComponent implements OnInit {
     };
   }
 
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
+  fileOver(e: any): void {
+    this.hasDropZoneOver = e;
   }
 
 }
