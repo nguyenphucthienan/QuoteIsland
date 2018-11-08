@@ -12,8 +12,7 @@ export class AuthService {
 
   private readonly AUTH_URL = `${environment.apiUrl}/auth`;
 
-  jwtHelper = new JwtHelperService();
-
+  private jwtHelper = new JwtHelperService();
   private decodedToken: any;
   private decodedTokenSubject = new BehaviorSubject(this.decodedToken);
   decodedToken$ = this.decodedTokenSubject.asObservable();
