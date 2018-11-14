@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardHelpers } from 'src/app/core/helpers/card.helper';
 import { Author } from 'src/app/core/models/author.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
+import { Quote } from 'src/app/core/models/quote.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class AuthorDetailComponent implements OnInit {
   ];
 
   author: Author;
-  quotes: any[] = [];
+  quotes: Quote[] = [];
   pagination: Pagination;
   sortString: string;
 

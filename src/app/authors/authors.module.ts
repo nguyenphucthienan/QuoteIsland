@@ -6,7 +6,7 @@ import { AuthorsComponent } from './authors.component';
 import { AuthorCardComponent } from './components/author-card/author-card.component';
 import { AuthorDetailComponent } from './components/author-detail/author-detail.component';
 import { AuthorInfoModalComponent } from './components/author-info-modal/author-info-modal.component';
-import { AuthorQuotesResolver } from './resolvers/author-quote.resolver';
+import { AuthorQuotesResolver } from './resolvers/author-quotes.resolver';
 import { AuthorResolver } from './resolvers/author.resolver';
 import { AuthorsResolver } from './resolvers/authors.resolver';
 
