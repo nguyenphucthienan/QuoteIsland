@@ -2,32 +2,34 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { AuthorService } from 'src/app/core/services/author.service';
+import { TableHeader } from 'src/app/datatable/models/table-header.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
 export class AdminAuthorManagerTableService implements TableService {
 
+  headers: TableHeader[] = [
+    { name: '_id', text: 'ID', type: 'IdTableCellComponent' },
+    { name: 'fullName', text: 'Full Name', type: 'TextCellComponent' },
+    { name: 'born', text: 'Born', type: 'TextCellComponent' },
+    { name: 'died', text: 'Died', type: 'TextCellComponent' },
+    { name: 'nationality', text: 'Nationality', type: 'TextCellComponent' },
+    { name: 'description', text: 'Description', type: 'TextCellComponent' },
+    { name: 'quoteCount', text: 'Quotes', type: 'TextCellComponent' },
+    { name: 'loveCount', text: 'Loves', type: 'TextCellComponent' }
+  ];
+
   elements: any[];
+
   pagination: Pagination = {
     pageNumber: 1,
     pageSize: 10
   };
 
-  private readonly headerElements: any = [
-    { id: '_id', name: 'ID', type: 'IdTableCellComponent' },
-    { id: 'fullName', name: 'Full Name', type: 'TextCellComponent' },
-    { id: 'born', name: 'Born', type: 'TextCellComponent' },
-    { id: 'died', name: 'Died', type: 'TextCellComponent' },
-    { id: 'nationality', name: 'Nationality', type: 'TextCellComponent' },
-    { id: 'description', name: 'Description', type: 'TextCellComponent' },
-    { id: 'quoteCount', name: 'Quotes', type: 'TextCellComponent' },
-    { id: 'loveCount', name: 'Loves', type: 'TextCellComponent' }
-  ];
-
   constructor(private authorService: AuthorService) { }
 
   getHeaders() {
-    return this.headerElements;
+    return this.headers;
   }
 
   getRawData() {
@@ -48,7 +50,7 @@ export class AdminAuthorManagerTableService implements TableService {
     await this.getRawData();
     return this.elements.map(author => {
       // return {
-      //   id: author._id,
+      //  name: author._id,
       //   shortenedId: author._id.substr(-4),
       //   fullName: author.fullName,
       //   born: StringHelpers.toDateString(author.born),

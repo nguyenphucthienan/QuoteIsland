@@ -3,29 +3,31 @@ import { map } from 'rxjs/operators';
 import { StringHelpers } from 'src/app/core/helpers/string.helper';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
+import { TableHeader } from 'src/app/datatable/models/table-header.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
 export class AdminQuoteManagerTableService implements TableService {
 
+  headers: TableHeader[] = [
+    { name: 'shortenedId', text: 'ID', type: 'TextTableCellComponent' },
+    { name: 'author', text: 'Author', type: 'TextTableCellComponent' },
+    { name: 'categories', text: 'Categories', type: 'TextTableCellComponent' },
+    { name: 'text', text: 'Text', type: 'TextTableCellComponent' },
+    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent' }
+  ];
+
   elements: any[];
+
   pagination: Pagination = {
     pageNumber: 1,
     pageSize: 10
   };
 
-  private readonly headerElements: any = [
-    { id: 'shortenedId', name: 'ID' },
-    { id: 'author', name: 'Author' },
-    { id: 'categories', name: 'Categories' },
-    { id: 'text', name: 'Text' },
-    { id: 'loveCount', name: 'Loves' }
-  ];
-
   constructor(private quoteService: QuoteService) { }
 
   getHeaders() {
-    return this.headerElements;
+    return this.headers;
   }
 
   getRawData() {
@@ -46,7 +48,7 @@ export class AdminQuoteManagerTableService implements TableService {
     await this.getRawData();
     return this.elements.map(quote => {
       return {
-        id: quote._id,
+        name: quote._id,
         shortenedId: quote._id.substr(-4),
         author: quote.author && quote.author.fullName,
         categories: quote.categories && quote.categories

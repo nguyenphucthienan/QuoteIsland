@@ -3,29 +3,31 @@ import { map } from 'rxjs/operators';
 import { StringHelpers } from 'src/app/core/helpers/string.helper';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { CategoryService } from 'src/app/core/services/category.service';
+import { TableHeader } from 'src/app/datatable/models/table-header.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
 export class AdminCategoryManagerTableService implements TableService {
 
+  headers: TableHeader[] = [
+    { name: 'shortenedId', text: 'ID', type: 'TextTableCellComponent' },
+    { name: 'name', text: 'Full Name', type: 'TextTableCellComponent' },
+    { name: 'description', text: 'Description', type: 'TextTableCellComponent' },
+    { name: 'quoteCount', text: 'Quotes', type: 'TextTableCellComponent' },
+    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent' }
+  ];
+
   elements: any[];
+
   pagination: Pagination = {
     pageNumber: 1,
     pageSize: 10
   };
 
-  private readonly headerElements: any = [
-    { id: 'shortenedId', name: 'ID' },
-    { id: 'name', name: 'Full Name' },
-    { id: 'description', name: 'Description' },
-    { id: 'quoteCount', name: 'Quotes' },
-    { id: 'loveCount', name: 'Loves' }
-  ];
-
   constructor(private categoryService: CategoryService) { }
 
   getHeaders() {
-    return this.headerElements;
+    return this.headers;
   }
 
   getRawData() {
@@ -46,9 +48,9 @@ export class AdminCategoryManagerTableService implements TableService {
     await this.getRawData();
     return this.elements.map(category => {
       return {
-        id: category._id,
+        name: category._id,
         shortenedId: category._id.substr(-4),
-        name: category.name,
+        text: category.name,
         description: StringHelpers.truncate(category.description, 100),
         quoteCount: category.quoteCount,
         loveCount: category.loveCount
