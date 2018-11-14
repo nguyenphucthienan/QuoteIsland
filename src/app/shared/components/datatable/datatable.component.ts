@@ -12,7 +12,7 @@ export class DatatableComponent implements OnInit {
   @Input() tableService: TableService;
 
   headerElements: any[] = [];
-  tableElements: any[] = [];
+  rowElements: any[] = [];
 
   constructor() { }
 
@@ -22,7 +22,7 @@ export class DatatableComponent implements OnInit {
   }
 
   private async getTableData() {
-    this.tableElements = await this.tableService.getTableData();
+    this.rowElements = await this.tableService.getDataRows();
   }
 
   async refresh() {

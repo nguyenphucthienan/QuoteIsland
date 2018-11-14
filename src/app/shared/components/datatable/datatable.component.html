@@ -6,8 +6,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let element of tableElements">
-        <td *ngFor="let header of headerElements">{{ element[header.id] }}</td>
+      <tr *ngFor="let rowElement of rowElements">
+        <td *ngFor="let header of headerElements">
+          <app-table-cell [cellType]="header.type" [cell]="rowElement[header.id]"></app-table-cell>
+        </td>
       </tr>
     </tbody>
   </table>

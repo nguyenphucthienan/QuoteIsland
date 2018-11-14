@@ -7,6 +7,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 
 import { BannerComponent } from './components/banner/banner.component';
+import { IdTableCellComponent } from './components/datatable/cells/id-table-cell/id-table-cell.component';
+import { TableCellComponent } from './components/datatable/cells/table-cell/table-cell.component';
+import { TextTableCellComponent } from './components/datatable/cells/text-table-cell/text-table-cell.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PanelComponent } from './components/panel/panel.component';
@@ -30,7 +33,10 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     SortModalComponent,
     QuoteCardComponent,
     ConfirmModalComponent,
-    PhotoUploaderComponent
+    PhotoUploaderComponent,
+    TableCellComponent,
+    IdTableCellComponent,
+    TextTableCellComponent
   ],
   imports: [
     CommonModule,

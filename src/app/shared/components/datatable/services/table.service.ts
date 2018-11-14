@@ -26,6 +26,6 @@ export abstract class TableService {
 
   protected abstract getRawData();
 
-  public abstract async getTableData();
+  public abstract async getDataRows();
 
 }
