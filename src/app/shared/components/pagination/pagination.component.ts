@@ -60,7 +60,9 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   private fakeArray(numberOfItems: number) {
-    return new Array(numberOfItems);
+    return (numberOfItems > 0)
+      ? new Array(numberOfItems)
+      : [];
   }
 
 }
