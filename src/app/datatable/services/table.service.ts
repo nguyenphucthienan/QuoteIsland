@@ -1,13 +1,15 @@
 import { Pagination } from 'src/app/core/models/pagination.interface';
-import { TableHeader } from '../models/table-header.interface';
+
+import { TableColumn } from '../models/table-column.interface';
+import { TableRow } from '../models/table-row.interface';
 
 export interface TableService {
 
-  headers: TableHeader[];
-  elements: any[];
+  columns: TableColumn[];
+  rows: TableRow[];
   pagination: Pagination;
 
-  getHeaders();
+  getDataColumns();
 
   getRawData();
 

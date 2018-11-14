@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { AuthorService } from 'src/app/core/services/author.service';
-import { TableHeader } from 'src/app/datatable/models/table-header.interface';
+import { TableCell } from 'src/app/datatable/models/table-cell.interface';
+import { TableColumn } from 'src/app/datatable/models/table-column.interface';
+import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
 export class AdminAuthorManagerTableService implements TableService {
 
-  headers: TableHeader[] = [
+  columns: TableColumn[] = [
     { name: '_id', text: 'ID', type: 'IdTableCellComponent' },
     { name: 'fullName', text: 'Full Name', type: 'TextCellComponent' },
     { name: 'born', text: 'Born', type: 'TextCellComponent' },
@@ -19,7 +21,7 @@ export class AdminAuthorManagerTableService implements TableService {
     { name: 'loveCount', text: 'Loves', type: 'TextCellComponent' }
   ];
 
-  elements: any[];
+  rows: TableRow[];
 
   pagination: Pagination = {
     pageNumber: 1,
@@ -28,8 +30,8 @@ export class AdminAuthorManagerTableService implements TableService {
 
   constructor(private authorService: AuthorService) { }
 
-  getHeaders() {
-    return this.headers;
+  getDataColumns() {
+    return this.columns;
   }
 
   getRawData() {
@@ -38,7 +40,6 @@ export class AdminAuthorManagerTableService implements TableService {
       this.pagination.pageSize)
       .pipe(
         map((response: any) => {
-          this.elements = response.items;
           this.pagination = response.pagination;
           return response.items;
         })
@@ -47,22 +48,26 @@ export class AdminAuthorManagerTableService implements TableService {
   }
 
   async getDataRows() {
-    await this.getRawData();
-    return this.elements.map(author => {
-      // return {
-      //  name: author._id,
-      //   shortenedId: author._id.substr(-4),
-      //   fullName: author.fullName,
-      //   born: StringHelpers.toDateString(author.born),
-      //   died: StringHelpers.toDateString(author.died),
-      //   nationality: author.nationality,
-      //   description: StringHelpers.truncate(author.description, 100),
-      //   quoteCount: author.quoteCount,
-      //   loveCount: author.loveCount
-      // };
+    return await this.getRawData()
+      .then(data => {
+        this.rows = data.map(row => {
+          const cells: TableCell = <any>{};
 
-      return author;
-    });
+          for (const key in row) {
+            if (!row.hasOwnProperty(key)) {
+              continue;
+            }
+
+            cells[key] = {
+              value: row[key]
+            };
+          }
+
+          return { cells };
+        });
+
+        return this.rows;
+      });
   }
 
 }

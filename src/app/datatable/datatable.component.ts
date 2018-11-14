@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { TableColumn } from './models/table-column.interface';
+import { TableRow } from './models/table-row.interface';
 import { TableService } from './services/table.service';
-import { TableHeader } from './models/table-header.interface';
 
 @Component({
   selector: 'app-datatable',
@@ -12,18 +13,18 @@ export class DatatableComponent implements OnInit {
 
   @Input() tableService: TableService;
 
-  headers: TableHeader[] = [];
-  elements: any[] = [];
+  columns: TableColumn[] = [];
+  rows: TableRow[] = [];
 
   constructor() { }
 
   async ngOnInit() {
-    this.headers = this.tableService.getHeaders();
+    this.columns = this.tableService.getDataColumns();
     await this.getTableData();
   }
 
   private async getTableData() {
-    this.elements = await this.tableService.getDataRows();
+    this.rows = await this.tableService.getDataRows();
   }
 
   async refresh() {

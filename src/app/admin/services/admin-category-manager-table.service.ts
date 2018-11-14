@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { StringHelpers } from 'src/app/core/helpers/string.helper';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { CategoryService } from 'src/app/core/services/category.service';
-import { TableHeader } from 'src/app/datatable/models/table-header.interface';
+import { TableColumn } from 'src/app/datatable/models/table-column.interface';
+import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
 export class AdminCategoryManagerTableService implements TableService {
 
-  headers: TableHeader[] = [
+  columns: TableColumn[] = [
     { name: 'shortenedId', text: 'ID', type: 'TextTableCellComponent' },
     { name: 'name', text: 'Full Name', type: 'TextTableCellComponent' },
     { name: 'description', text: 'Description', type: 'TextTableCellComponent' },
@@ -17,7 +17,7 @@ export class AdminCategoryManagerTableService implements TableService {
     { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent' }
   ];
 
-  elements: any[];
+  rows: TableRow[];
 
   pagination: Pagination = {
     pageNumber: 1,
@@ -26,8 +26,8 @@ export class AdminCategoryManagerTableService implements TableService {
 
   constructor(private categoryService: CategoryService) { }
 
-  getHeaders() {
-    return this.headers;
+  getDataColumns() {
+    return this.columns;
   }
 
   getRawData() {
@@ -36,7 +36,6 @@ export class AdminCategoryManagerTableService implements TableService {
       this.pagination.pageSize)
       .pipe(
         map((response: any) => {
-          this.elements = response.items;
           this.pagination = response.pagination;
           return response.items;
         })
@@ -45,17 +44,7 @@ export class AdminCategoryManagerTableService implements TableService {
   }
 
   async getDataRows() {
-    await this.getRawData();
-    return this.elements.map(category => {
-      return {
-        name: category._id,
-        shortenedId: category._id.substr(-4),
-        text: category.name,
-        description: StringHelpers.truncate(category.description, 100),
-        quoteCount: category.quoteCount,
-        loveCount: category.loveCount
-      };
-    });
+    return null;
   }
 
 }

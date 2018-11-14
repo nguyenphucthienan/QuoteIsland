@@ -9,12 +9,12 @@ export class IdTableCellComponent implements OnInit {
 
   @Input() cell: any;
 
-  shortenedValue: string;
+  id: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.shortenedValue = this.cell.substr(-4);
+    this.id = this.cell.value.substr(-4);
   }
 
 }
