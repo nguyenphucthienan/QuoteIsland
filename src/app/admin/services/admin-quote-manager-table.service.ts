@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { StringHelpers } from 'src/app/core/helpers/string.helper';
+import { Pagination } from 'src/app/core/models/pagination.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
-import { TableService } from 'src/app/shared/components/datatable/services/table.service';
+import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
-export class AdminQuoteManagerTableService extends TableService {
+export class AdminQuoteManagerTableService implements TableService {
+
+  elements: any[];
+  pagination: Pagination = {
+    pageNumber: 1,
+    pageSize: 10
+  };
 
   private readonly headerElements: any = [
     { id: 'shortenedId', name: 'ID' },
@@ -15,9 +22,7 @@ export class AdminQuoteManagerTableService extends TableService {
     { id: 'loveCount', name: 'Loves' }
   ];
 
-  constructor(private quoteService: QuoteService) {
-    super();
-  }
+  constructor(private quoteService: QuoteService) { }
 
   getHeaders() {
     return this.headerElements;
@@ -37,7 +42,7 @@ export class AdminQuoteManagerTableService extends TableService {
       .toPromise();
   }
 
-  async getTableData() {
+  async getDataRows() {
     await this.getRawData();
     return this.elements.map(quote => {
       return {

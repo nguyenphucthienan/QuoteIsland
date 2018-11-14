@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { StringHelpers } from 'src/app/core/helpers/string.helper';
+import { Pagination } from 'src/app/core/models/pagination.interface';
 import { CategoryService } from 'src/app/core/services/category.service';
-import { TableService } from 'src/app/shared/components/datatable/services/table.service';
+import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
-export class AdminCategoryManagerTableService extends TableService {
+export class AdminCategoryManagerTableService implements TableService {
+
+  elements: any[];
+  pagination: Pagination = {
+    pageNumber: 1,
+    pageSize: 10
+  };
 
   private readonly headerElements: any = [
     { id: 'shortenedId', name: 'ID' },
@@ -15,9 +22,7 @@ export class AdminCategoryManagerTableService extends TableService {
     { id: 'loveCount', name: 'Loves' }
   ];
 
-  constructor(private categoryService: CategoryService) {
-    super();
-  }
+  constructor(private categoryService: CategoryService) { }
 
   getHeaders() {
     return this.headerElements;
@@ -37,7 +42,7 @@ export class AdminCategoryManagerTableService extends TableService {
       .toPromise();
   }
 
-  async getTableData() {
+  async getDataRows() {
     await this.getRawData();
     return this.elements.map(category => {
       return {

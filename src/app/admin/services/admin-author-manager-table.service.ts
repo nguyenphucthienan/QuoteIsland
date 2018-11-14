@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Pagination } from 'src/app/core/models/pagination.interface';
 import { AuthorService } from 'src/app/core/services/author.service';
-import { TableService } from 'src/app/shared/components/datatable/services/table.service';
+import { TableService } from 'src/app/datatable/services/table.service';
 
 @Injectable()
-export class AdminAuthorManagerTableService extends TableService {
+export class AdminAuthorManagerTableService implements TableService {
+
+  elements: any[];
+  pagination: Pagination = {
+    pageNumber: 1,
+    pageSize: 10
+  };
 
   private readonly headerElements: any = [
     { id: '_id', name: 'ID', type: 'IdTableCellComponent' },
@@ -17,9 +24,7 @@ export class AdminAuthorManagerTableService extends TableService {
     { id: 'loveCount', name: 'Loves', type: 'TextCellComponent' }
   ];
 
-  constructor(private authorService: AuthorService) {
-    super();
-  }
+  constructor(private authorService: AuthorService) { }
 
   getHeaders() {
     return this.headerElements;

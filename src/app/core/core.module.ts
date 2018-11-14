@@ -6,6 +6,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ProgressAnimationType, ToastrModule } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
+import { DatatableModule } from '../datatable/datatable.module';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoleGuard } from './guards/auth-role.service';
 import { ModalModule } from './modules/modal/modal.module';
@@ -43,7 +44,8 @@ const toastrOptions = {
     JwtModule.forRoot(jwtOptions),
     ToastrModule.forRoot(toastrOptions),
     SharedModule,
-    ModalModule
+    ModalModule,
+    DatatableModule
   ],
   providers: [
     AuthService,

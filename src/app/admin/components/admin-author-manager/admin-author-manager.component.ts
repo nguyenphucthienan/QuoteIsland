@@ -1,11 +1,11 @@
-import { Component, NgModuleRef, OnInit, ViewChild, ComponentRef } from '@angular/core';
+import { Component, ComponentRef, NgModuleRef, OnInit, ViewChild } from '@angular/core';
+import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
-import { DatatableComponent } from 'src/app/shared/components/datatable/datatable.component';
+import { DatatableComponent } from 'src/app/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
 
 import { AdminAuthorAddModalComponent } from '../../modals/admin-author-add-modal/admin-author-add-modal.component';
 import { AdminAuthorManagerTableService } from '../../services/admin-author-manager-table.service';
-import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 
 @Component({
   selector: 'app-admin-author-manager',

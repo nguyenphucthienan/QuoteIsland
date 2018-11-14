@@ -1,7 +1,7 @@
 import { Component, ComponentRef, NgModuleRef, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
-import { DatatableComponent } from 'src/app/shared/components/datatable/datatable.component';
+import { DatatableComponent } from 'src/app/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
 
 import { AdminQuoteAddModalComponent } from '../../modals/admin-quote-add-modal/admin-quote-add-modal.component';
