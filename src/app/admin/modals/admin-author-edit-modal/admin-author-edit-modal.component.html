@@ -1,0 +1,35 @@
+<div class="edit-modal container">
+  <form [formGroup]="editForm" (ngSubmit)="editAuthor()" class="form">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" class="form-control" formControlName="fullName" placeholder="Author's Name">
+    </div>
+    <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input type="text" id="nationality" class="form-control" formControlName="nationality" placeholder="Author's Nationality">
+    </div>
+    <div class="form-group">
+      <label for="born">Born</label>
+      <input type="date" id="born" class="form-control" formControlName="born">
+    </div>
+    <div class="form-group">
+      <label for="died">Died</label>
+      <input type="date" id="died" class="form-control" formControlName="died">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea type="text" rows="3" id="description" class="form-control" formControlName="description" placeholder="Description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="photoUrl">Photo</label>
+      <input type="input" id="photoUrl" class="form-control" formControlName="photoUrl" placeholder="Photo URL"
+        [attr.disabled]="true">
+    </div>
+    <div class="form-group">
+      <div class="form-group">
+        <app-photo-uploader (uploadSucceed)="photoUploaded($event)"></app-photo-uploader>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Add</button>
+  </form>
+</div>

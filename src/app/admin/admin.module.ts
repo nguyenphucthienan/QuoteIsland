@@ -9,6 +9,7 @@ import { AdminCategoryManagerComponent } from './components/admin-category-manag
 import { AdminQuoteManagerComponent } from './components/admin-quote-manager/admin-quote-manager.component';
 import { AdminUserManagerComponent } from './components/admin-user-manager/admin-user-manager.component';
 import { AdminAuthorAddModalComponent } from './modals/admin-author-add-modal/admin-author-add-modal.component';
+import { AdminAuthorEditModalComponent } from './modals/admin-author-edit-modal/admin-author-edit-modal.component';
 import { AdminCategoryAddModalComponent } from './modals/admin-category-add-modal/admin-category-add-modal.component';
 import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admin-quote-add-modal.component';
 
@@ -18,6 +19,7 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
     AdminUserManagerComponent,
     AdminAuthorManagerComponent,
     AdminAuthorAddModalComponent,
+    AdminAuthorEditModalComponent,
     AdminCategoryManagerComponent,
     AdminCategoryAddModalComponent,
     AdminQuoteManagerComponent,
@@ -30,6 +32,7 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
   ],
   entryComponents: [
     AdminAuthorAddModalComponent,
+    AdminAuthorEditModalComponent,
     AdminCategoryAddModalComponent,
     AdminQuoteAddModalComponent
   ]

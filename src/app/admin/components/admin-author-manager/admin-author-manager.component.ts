@@ -6,10 +6,12 @@ import { AuthorService } from 'src/app/core/services/author.service';
 import { DatatableComponent } from 'src/app/datatable/datatable.component';
 import { TableActionType } from 'src/app/datatable/models/table-action.interface';
 import { TableCellChange } from 'src/app/datatable/models/table-cell-change.interface';
+import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { ConfirmModalComponent } from 'src/app/shared/modals/confirm-modal/confirm-modal.component';
 import { environment } from 'src/environments/environment';
 
 import { AdminAuthorAddModalComponent } from '../../modals/admin-author-add-modal/admin-author-add-modal.component';
+import { AdminAuthorEditModalComponent } from '../../modals/admin-author-edit-modal/admin-author-edit-modal.component';
 import { AdminAuthorManagerTableService } from '../../services/admin-author-manager-table.service';
 
 @Component({
@@ -57,7 +59,7 @@ export class AdminAuthorManagerComponent implements OnInit {
     const action = tableCellChange.newValue;
     switch (action.type) {
       case TableActionType.Edit:
-        this.editAuthor(tableCellChange.row.cells['_id'].value);
+        this.editAuthor(tableCellChange.row);
         break;
       case TableActionType.Delete:
         this.deleteAuthor(tableCellChange.row.cells['_id'].value);
@@ -65,8 +67,25 @@ export class AdminAuthorManagerComponent implements OnInit {
     }
   }
 
-  editAuthor(id: string) {
-    console.log('Edit', id);
+  editAuthor(rowData: TableRow) {
+    this.modalComponentRef = this.modalService.open(AdminAuthorEditModalComponent, {
+      inputs: {
+        title: 'Edit Author'
+      },
+      childComponent: {
+        inputs: {
+          rowData
+        },
+        outputs: {
+          authorEdited: this.onAuthorEdited.bind(this)
+        }
+      }
+    }, this.moduleRef);
+  }
+
+  onAuthorEdited() {
+    this.modalComponentRef.instance.close();
+    this.datatable.refresh();
   }
 
   deleteAuthor(id: string) {
