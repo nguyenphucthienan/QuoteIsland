@@ -6,6 +6,7 @@ import { TableCell } from 'src/app/datatable/models/table-cell.interface';
 import { TableColumn } from 'src/app/datatable/models/table-column.interface';
 import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
+import { TableAction, TableActionType } from 'src/app/datatable/models/table-action.interface';
 
 @Injectable()
 export class AdminAuthorManagerTableService implements TableService {
@@ -18,7 +19,8 @@ export class AdminAuthorManagerTableService implements TableService {
     { name: 'nationality', text: 'Nationality', type: 'TextCellComponent' },
     { name: 'description', text: 'Description', type: 'TextCellComponent' },
     { name: 'quoteCount', text: 'Quotes', type: 'TextCellComponent' },
-    { name: 'loveCount', text: 'Loves', type: 'TextCellComponent' }
+    { name: 'loveCount', text: 'Loves', type: 'TextCellComponent' },
+    { name: 'actions', text: 'Actions', type: 'ActionsCellComponent' }
   ];
 
   rows: TableRow[];
@@ -27,6 +29,11 @@ export class AdminAuthorManagerTableService implements TableService {
     pageNumber: 1,
     pageSize: 10
   };
+
+  actions: TableAction[] = [
+    { class: 'btn-primary', icon: 'fa fa-edit', text: 'Edit', type: TableActionType.Edit },
+    { class: 'btn-danger', icon: 'fa fa-remove', text: 'Delete', type: TableActionType.Delete },
+  ];
 
   constructor(private authorService: AuthorService) { }
 
@@ -62,6 +69,11 @@ export class AdminAuthorManagerTableService implements TableService {
               value: row[key]
             };
           }
+
+          cells['actions'] = {
+            value: this.actions,
+            showText: false
+          };
 
           return { cells };
         });

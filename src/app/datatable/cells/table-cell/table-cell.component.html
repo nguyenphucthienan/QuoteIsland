@@ -1,5 +1,6 @@
 <ng-container [ngSwitch]="cellType">
   <app-id-table-cell *ngSwitchCase="'IdTableCellComponent'" [column]="column" [row]="row" [cell]="cell"></app-id-table-cell>
   <app-text-table-cell *ngSwitchCase="'TextCellComponent'" [column]="column" [row]="row" [cell]="cell"></app-text-table-cell>
+  <app-actions-table-cell *ngSwitchCase="'ActionsCellComponent'" [column]="column" [row]="row" [cell]="cell"></app-actions-table-cell>
   <app-text-table-cell *ngSwitchDefault [cell]="cell"></app-text-table-cell>
 </ng-container>
