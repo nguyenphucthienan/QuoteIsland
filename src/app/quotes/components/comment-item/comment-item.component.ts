@@ -63,13 +63,13 @@ export class CommentItemComponent implements OnInit, OnDestroy {
     this.commentService.deleteComment(this.comment.quote, this.comment._id)
       .subscribe(
         () => {
+          this.modalComponentRef.instance.close();
           this.alertService.success('Delete comment successfully');
           this.deleteSuccess.emit(this.comment);
-          this.modalComponentRef.instance.close();
         },
         error => {
-          this.alertService.error('Delete comment failed');
           this.modalComponentRef.instance.close();
+          this.alertService.error('Delete comment failed');
         }
       );
   }

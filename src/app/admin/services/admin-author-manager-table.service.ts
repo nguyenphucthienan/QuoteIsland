@@ -32,7 +32,7 @@ export class AdminAuthorManagerTableService implements TableService {
 
   actions: TableAction[] = [
     { class: 'btn-primary', icon: 'fa fa-edit', text: 'Edit', type: TableActionType.Edit },
-    { class: 'btn-danger', icon: 'fa fa-remove', text: 'Delete', type: TableActionType.Delete },
+    { class: 'btn-danger', icon: 'fa fa-trash', text: 'Delete', type: TableActionType.Delete },
   ];
 
   constructor(private authorService: AuthorService) { }
