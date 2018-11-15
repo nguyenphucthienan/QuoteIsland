@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SortMode } from 'src/app/core/models/sort-mode.interface';
 
 @Component({
   selector: 'app-sort-modal',
@@ -15,7 +16,7 @@ export class SortModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  select(sortMode) {
+  select(sortMode: SortMode) {
     this.sortChanged.emit(sortMode);
   }
 

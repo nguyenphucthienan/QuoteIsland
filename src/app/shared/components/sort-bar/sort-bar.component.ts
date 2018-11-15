@@ -13,8 +13,10 @@ import { SortModalComponent } from '../../modals/sort-modal/sort-modal.component
 export class SortBarComponent implements OnInit {
 
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
+
   @Input() modalTitle: string;
   @Input() modalSortOptions: any[];
+
   @Output() sortChanged = new EventEmitter();
 
   private modalComponentRef: ComponentRef<ModalComponent>;

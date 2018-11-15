@@ -5,8 +5,8 @@ import { environment } from 'src/environments/environment';
 import { CardHelpers } from '../core/helpers/card.helper';
 import { Author } from '../core/models/author.interface';
 import { Pagination } from '../core/models/pagination.interface';
-import { AuthorService } from '../core/services/author.service';
 import { SortMode } from '../core/models/sort-mode.interface';
+import { AuthorService } from '../core/services/author.service';
 
 @Component({
   selector: 'app-authors',
@@ -17,10 +17,23 @@ export class AuthorsComponent implements OnInit {
 
   readonly bannerImageUrl = environment.bannerImageUrls.authorsPage;
   readonly modalTitle = 'Sort Authors';
+
   readonly modalSortOptions: any[] = [
-    { name: 'Alphabetical', id: '+fullName', iconClassName: 'fa fa-sort-alpha-asc' },
-    { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
-    { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
+    {
+      name: 'Alphabetical',
+      iconClassName: 'fa fa-sort-alpha-asc',
+      sortMode: { sortBy: 'fullName', isSortAscending: true }
+    },
+    {
+      name: 'Latest',
+      iconClassName: 'fa fa-clock-o',
+      sortMode: { sortBy: 'createdAt', isSortAscending: false }
+    },
+    {
+      name: 'Most Love',
+      iconClassName: 'fa fa-heart',
+      sortMode: { sortBy: 'loveCount', isSortAscending: false }
+    }
   ];
 
   authors: Author[] = [];
@@ -54,8 +67,8 @@ export class AuthorsComponent implements OnInit {
     this.getAuthors();
   }
 
-  onSortChanged(sortString: string) {
-    // this.sortString = sortString;
+  onSortChanged(sortMode: SortMode) {
+    this.sortMode = sortMode;
     this.getAuthors();
   }
 

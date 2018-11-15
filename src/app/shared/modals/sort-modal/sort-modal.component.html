@@ -1,6 +1,6 @@
 <div class="sort-modal container">
   <div *ngFor="let option of sortOptions" class="sort-option row d-flex flex-column align-items-center flex-row border border-info rounded"
-    (click)="select(option.id)">
+    (click)="select(option.sortMode)">
     <i [class]="option.iconClassName + ' fa-3x animated rotateIn'"></i>
     <span class="sort-name mt-2">{{ option.name | uppercase }}</span>
   </div>

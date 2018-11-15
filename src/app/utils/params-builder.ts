@@ -28,7 +28,10 @@ export class ParamsBuilder {
       sortString = `-${sortMode.sortBy}`;
     }
 
-    this.params = this.params.set('sort', sortString);
+    if (sortString) {
+      this.params = this.params.set('sort', sortString);
+    }
+
     return this;
   }
 
@@ -40,7 +43,10 @@ export class ParamsBuilder {
       }
     }
 
-    this.params = this.params.set('filter', filterString);
+    if (filterString) {
+      this.params = this.params.set('filter', filterString);
+    }
+
     return this;
   }
 
