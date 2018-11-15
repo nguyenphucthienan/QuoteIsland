@@ -2,11 +2,17 @@
   <table class="table table-hover">
     <thead class="primary-color white-text">
       <tr>
+        <th *ngIf="selectableRow" class="text-center">
+          <input type="checkbox">
+        </th>
         <th *ngFor="let column of columns" scope="col">{{ column.text }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let row of rows">
+        <td *ngIf="selectableRow" class="text-center">
+          <input type="checkbox" [value]="row.selected" (change)="selectRow($event, row)">
+        </td>
         <td *ngFor="let column of columns">
           <app-table-cell [column]="column" [row]="row" [cellType]="column.type" [cell]="row.cells[column.name]"></app-table-cell>
         </td>

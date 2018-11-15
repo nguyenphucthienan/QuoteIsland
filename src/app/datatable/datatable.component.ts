@@ -12,6 +12,7 @@ import { TableService } from './services/table.service';
 export class DatatableComponent implements OnInit {
 
   @Input() tableService: TableService;
+  @Input() selectableRow: boolean;
 
   columns: TableColumn[] = [];
   rows: TableRow[] = [];
@@ -34,6 +35,10 @@ export class DatatableComponent implements OnInit {
   onPageChanged(pageNumber: number) {
     this.tableService.pagination.pageNumber = pageNumber;
     this.getTableData();
+  }
+
+  selectRow(event: any, row: TableRow) {
+    row.selected = event.target.checked;
   }
 
 }
