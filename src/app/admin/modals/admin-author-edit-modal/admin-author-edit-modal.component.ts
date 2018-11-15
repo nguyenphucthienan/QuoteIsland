@@ -27,26 +27,26 @@ export class AdminAuthorEditModalComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
-    const born = new Date(this.rowData.cells['born'].value);
-    const died = new Date(this.rowData.cells['died'].value);
+    const born = this.rowData.cells['born'] ? new Date(this.rowData.cells['born'].value) : null;
+    const died = this.rowData.cells['died'] ? new Date(this.rowData.cells['died'].value) : null;
 
     this.editForm = this.fb.group({
       fullName: [this.rowData.cells['fullName'].value, Validators.required],
       nationality: [this.rowData.cells['nationality'].value, Validators.required],
-      born: [{
+      born: [born ? {
         date: {
           year: born.getFullYear(),
           month: born.getMonth() + 1,
           day: born.getDate()
         }
-      }, Validators.required],
-      died: [{
+      } : null, Validators.required],
+      died: [died ? {
         date: {
           year: died.getFullYear(),
           month: died.getMonth() + 1,
           day: died.getDate()
         }
-      }, Validators.required],
+      } : null, Validators.required],
       description: [this.rowData.cells['description'].value, Validators.required],
       photoUrl: [this.rowData.cells['photoUrl'].value, Validators.required]
     });
