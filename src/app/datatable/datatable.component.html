@@ -3,7 +3,7 @@
     <thead class="primary-color white-text">
       <tr>
         <th *ngIf="selectableRow" class="text-center">
-          <input type="checkbox">
+          <input type="checkbox" [checked]="selectAllOnPage" (change)="selectHeader($event.target.checked)">
         </th>
         <th *ngFor="let column of columns" scope="col">{{ column.text }}</th>
       </tr>
@@ -11,7 +11,7 @@
     <tbody>
       <tr *ngFor="let row of rows">
         <td *ngIf="selectableRow" class="text-center align-middle">
-          <input type="checkbox" [value]="row.selected" (change)="selectRow($event, row)">
+          <input type="checkbox" [checked]="row.selected" (change)="selectRow($event.target.checked, row)">
         </td>
         <td *ngFor="let column of columns" class="align-middle">
           <app-table-cell [column]="column" [row]="row" [cellType]="column.type" [cell]="row.cells[column.name]"
