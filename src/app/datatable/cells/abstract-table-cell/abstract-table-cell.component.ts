@@ -5,20 +5,22 @@ import { TableColumn } from '../../models/table-column.interface';
 import { TableRow } from '../../models/table-row.interface';
 
 @Component({
-  selector: 'app-table-cell',
-  templateUrl: './table-cell.component.html',
-  styleUrls: ['./table-cell.component.scss']
+  selector: 'app-abstract-table-cell',
+  templateUrl: './abstract-table-cell.component.html',
+  styleUrls: ['./abstract-table-cell.component.scss']
 })
-export class TableCellComponent implements OnInit {
+export abstract class AbstractTableCellComponent implements OnInit {
 
-  @Input() column: TableColumn;
-  @Input() row: TableRow;
+  @Input() column?: TableColumn;
+  @Input() row?: TableRow;
   @Input() cell: TableCell;
-  @Input() cellType: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.updateValue();
   }
+
+  abstract updateValue();
 
 }

@@ -8,7 +8,7 @@
     <tbody>
       <tr *ngFor="let row of rows">
         <td *ngFor="let column of columns">
-          <app-table-cell [cellType]="column.type" [cell]="row.cells[column.name]"></app-table-cell>
+          <app-table-cell [column]="column" [row]="row" [cellType]="column.type" [cell]="row.cells[column.name]"></app-table-cell>
         </td>
       </tr>
     </tbody>
