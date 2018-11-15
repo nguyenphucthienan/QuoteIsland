@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IMyDpOptions } from 'mydatepicker';
 import { Author } from 'src/app/core/models/author.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthorService } from 'src/app/core/services/author.service';
@@ -14,6 +15,10 @@ export class AdminAuthorAddModalComponent implements OnInit {
   @Output() authorAdded = new EventEmitter();
 
   addForm: FormGroup;
+
+  myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'mm/dd/yyyy'
+  };
 
   constructor(private fb: FormBuilder,
     private authorService: AuthorService,
@@ -35,7 +40,13 @@ export class AdminAuthorAddModalComponent implements OnInit {
   }
 
   addAuthor() {
-    this.authorService.createAuthor(this.addForm.value)
+    const addFormValue = {
+      ...this.addForm.value,
+      born: this.addForm.value.born.formatted,
+      died: this.addForm.value.died.formatted
+    };
+
+    this.authorService.createAuthor(addFormValue)
       .subscribe(
         (author: Author) => {
           this.alertService.success('Add author successfully');
