@@ -46,4 +46,8 @@ export class AdminAuthorManagerComponent implements OnInit {
     this.datatable.refresh();
   }
 
+  onTableCellChanged(event: any) {
+    console.log('onTableCellChanged', event);
+  }
+
 }

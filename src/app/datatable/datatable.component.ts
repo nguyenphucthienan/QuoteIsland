@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { TableColumn } from './models/table-column.interface';
 import { TableRow } from './models/table-row.interface';
@@ -13,6 +13,8 @@ export class DatatableComponent implements OnInit {
 
   @Input() tableService: TableService;
   @Input() selectableRow: boolean;
+
+  @Output() cellChanged = new EventEmitter<any>();
 
   columns: TableColumn[] = [];
   rows: TableRow[] = [];
@@ -35,6 +37,10 @@ export class DatatableComponent implements OnInit {
   onPageChanged(pageNumber: number) {
     this.tableService.pagination.pageNumber = pageNumber;
     this.getTableData();
+  }
+
+  onCellChanged(event: any) {
+    this.cellChanged.emit(event);
   }
 
   selectRow(event: any, row: TableRow) {

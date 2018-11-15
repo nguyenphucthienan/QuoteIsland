@@ -4,6 +4,6 @@
   </div>
 </app-banner>
 <div class="admin-container container-fluid">
-  <app-datatable [tableService]="adminAuthorManagerTableService" [selectableRow]="true"></app-datatable>
+  <app-datatable [tableService]="adminAuthorManagerTableService" [selectableRow]="true" (cellChanged)="onTableCellChanged($event)"></app-datatable>
   <button type="button" class="btn btn-primary" (click)="openAddModal()">Add Author</button>
 </div>
