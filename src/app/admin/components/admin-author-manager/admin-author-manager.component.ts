@@ -1,4 +1,15 @@
-import { Component, ComponentRef, NgModuleRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ComponentRef,
+  ElementRef,
+  NgModuleRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime, map, switchAll, tap } from 'rxjs/operators';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { AlertService } from 'src/app/core/services/alert.service';
@@ -20,11 +31,14 @@ import { AdminAuthorManagerTableService } from '../../services/admin-author-mana
   styleUrls: ['./admin-author-manager.component.scss'],
   providers: [AdminAuthorManagerTableService]
 })
-export class AdminAuthorManagerComponent implements OnInit {
+export class AdminAuthorManagerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   readonly bannerImageUrl = environment.bannerImageUrls.adminPage;
 
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
+  @ViewChild('search') search: ElementRef;
+
+  searchSubscription: Subscription;
 
   private modalComponentRef: ComponentRef<ModalComponent>;
 
@@ -35,6 +49,34 @@ export class AdminAuthorManagerComponent implements OnInit {
     private moduleRef: NgModuleRef<any>) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.searchSubscription = fromEvent(this.search.nativeElement, 'keyup')
+      .pipe(
+        map((event: any) => event.target.value),
+        debounceTime(500),
+        tap((value: string) => this.searchAuthor(value)),
+        switchAll()
+      )
+      .subscribe();
+  }
+
+  onTableCellChanged(tableCellChange: TableCellChange) {
+    const action = tableCellChange.newValue;
+    switch (action.type) {
+      case TableActionType.Edit:
+        this.editAuthor(tableCellChange.row);
+        break;
+      case TableActionType.Delete:
+        this.deleteAuthor(tableCellChange.row.cells['_id'].value);
+        break;
+    }
+  }
+
+  searchAuthor(value: string) {
+    this.adminAuthorManagerTableService.filterString = `fullName:${value}`;
+    this.datatable.refresh();
   }
 
   openAddModal() {
@@ -53,18 +95,6 @@ export class AdminAuthorManagerComponent implements OnInit {
   onAuthorAdded() {
     this.modalComponentRef.instance.close();
     this.datatable.refresh();
-  }
-
-  onTableCellChanged(tableCellChange: TableCellChange) {
-    const action = tableCellChange.newValue;
-    switch (action.type) {
-      case TableActionType.Edit:
-        this.editAuthor(tableCellChange.row);
-        break;
-      case TableActionType.Delete:
-        this.deleteAuthor(tableCellChange.row.cells['_id'].value);
-        break;
-    }
   }
 
   editAuthor(rowData: TableRow) {
@@ -119,6 +149,10 @@ export class AdminAuthorManagerComponent implements OnInit {
 
   cancelDeleteAuthor() {
     this.modalComponentRef.instance.close();
+  }
+
+  ngOnDestroy() {
+    this.searchSubscription.unsubscribe();
   }
 
 }

@@ -30,6 +30,8 @@ export class AdminAuthorManagerTableService implements TableService {
     pageSize: 10
   };
 
+  filterString: string;
+
   actions: TableAction[] = [
     { class: 'btn-primary', icon: 'fa fa-edit', text: 'Edit', type: TableActionType.Edit },
     { class: 'btn-danger', icon: 'fa fa-trash', text: 'Delete', type: TableActionType.Delete }
@@ -44,7 +46,9 @@ export class AdminAuthorManagerTableService implements TableService {
   getRawData() {
     return this.authorService.getAuthors(
       this.pagination.pageNumber,
-      this.pagination.pageSize)
+      this.pagination.pageSize,
+      undefined,
+      this.filterString)
       .pipe(
         map((response: any) => {
           this.pagination = response.pagination;

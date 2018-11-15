@@ -14,11 +14,15 @@ export class AuthorService {
   constructor(private http: HttpClient) { }
 
   getAuthors(pageNumber = 1, pageSize = 8,
-    sortString = this.defaultSortString): Observable<Author[]> {
-    const params = new HttpParams()
+    sortString = this.defaultSortString, filterString?: string): Observable<Author[]> {
+    let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('sort', sortString);
+
+    if (filterString) {
+      params = params.set('filter', filterString);
+    }
 
     return this.http.get<Author[]>(`${this.authorUrl}`, { params: params });
   }
