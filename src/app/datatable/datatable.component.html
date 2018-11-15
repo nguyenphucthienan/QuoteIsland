@@ -10,11 +10,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of rows">
-        <td *ngIf="selectableRow" class="text-center">
+        <td *ngIf="selectableRow" class="text-center align-middle">
           <input type="checkbox" [value]="row.selected" (change)="selectRow($event, row)">
         </td>
-        <td *ngFor="let column of columns">
-          <app-table-cell [column]="column" [row]="row" [cellType]="column.type" [cell]="row.cells[column.name]" (cellChanged)="onCellChanged($event)"></app-table-cell>
+        <td *ngFor="let column of columns" class="align-middle">
+          <app-table-cell [column]="column" [row]="row" [cellType]="column.type" [cell]="row.cells[column.name]"
+            (cellChanged)="onCellChanged($event)"></app-table-cell>
         </td>
       </tr>
     </tbody>

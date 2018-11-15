@@ -13,14 +13,14 @@ export class AdminAuthorManagerTableService implements TableService {
 
   columns: TableColumn[] = [
     { name: '_id', text: 'ID', type: 'IdTableCellComponent' },
-    { name: 'fullName', text: 'Full Name', type: 'TextCellComponent' },
-    { name: 'born', text: 'Born', type: 'TextCellComponent' },
-    { name: 'died', text: 'Died', type: 'TextCellComponent' },
-    { name: 'nationality', text: 'Nationality', type: 'TextCellComponent' },
-    { name: 'description', text: 'Description', type: 'TextCellComponent' },
-    { name: 'quoteCount', text: 'Quotes', type: 'TextCellComponent' },
-    { name: 'loveCount', text: 'Loves', type: 'TextCellComponent' },
-    { name: 'actions', text: 'Actions', type: 'ActionsCellComponent' }
+    { name: 'fullName', text: 'Full Name', type: 'TextTableCellComponent' },
+    { name: 'born', text: 'Born', type: 'DateTableCellComponent' },
+    { name: 'died', text: 'Died', type: 'DateTableCellComponent' },
+    { name: 'nationality', text: 'Nationality', type: 'TextTableCellComponent' },
+    { name: 'description', text: 'Description', type: 'TextTableCellComponent' },
+    { name: 'quoteCount', text: 'Quotes', type: 'TextTableCellComponent' },
+    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent' },
+    { name: 'actions', text: 'Actions', type: 'ActionsTableCellComponent' }
   ];
 
   rows: TableRow[];
@@ -32,7 +32,7 @@ export class AdminAuthorManagerTableService implements TableService {
 
   actions: TableAction[] = [
     { class: 'btn-primary', icon: 'fa fa-edit', text: 'Edit', type: TableActionType.Edit },
-    { class: 'btn-danger', icon: 'fa fa-trash', text: 'Delete', type: TableActionType.Delete },
+    { class: 'btn-danger', icon: 'fa fa-trash', text: 'Delete', type: TableActionType.Delete }
   ];
 
   constructor(private authorService: AuthorService) { }
