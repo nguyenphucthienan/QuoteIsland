@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { Author } from 'src/app/core/models/author.interface';
 import { Category } from 'src/app/core/models/category.interface';
+import { Pagination } from 'src/app/core/models/pagination.interface';
 import { Quote } from 'src/app/core/models/quote.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthorService } from 'src/app/core/services/author.service';
@@ -17,6 +18,11 @@ import { QuoteService } from 'src/app/core/services/quote.service';
 export class AdminQuoteAddModalComponent implements OnInit {
 
   @Output() quoteAdded = new EventEmitter();
+
+  private readonly defaultPagination: Pagination = {
+    pageNumber: 1,
+    pageSize: 9999
+  };
 
   addForm: FormGroup;
   authors: Author[] = [];
@@ -37,8 +43,8 @@ export class AdminQuoteAddModalComponent implements OnInit {
     });
 
     forkJoin(
-      this.authorService.getAuthors({ pageNumber: 1, pageSize: 9999 }),
-      this.categoryService.getCategories(1, 9999)
+      this.authorService.getAuthors(this.defaultPagination),
+      this.categoryService.getCategories(this.defaultPagination)
     ).
       subscribe((data: any) => {
         this.authors = data[0].items;

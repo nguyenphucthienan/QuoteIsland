@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { FilterMode } from 'src/app/core/models/filter-mode.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
+import { SortMode } from 'src/app/core/models/sort-mode.interface';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { TableColumn } from 'src/app/datatable/models/table-column.interface';
 import { TableRow } from 'src/app/datatable/models/table-row.interface';
@@ -24,6 +26,13 @@ export class AdminCategoryManagerTableService implements TableService {
     pageSize: 10
   };
 
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true
+  };
+
+  filterMode: FilterMode = {};
+
   constructor(private categoryService: CategoryService) { }
 
   getDataColumns() {
@@ -31,9 +40,8 @@ export class AdminCategoryManagerTableService implements TableService {
   }
 
   getRawData() {
-    return this.categoryService.getCategories(
-      this.pagination.pageNumber,
-      this.pagination.pageSize)
+    return this.categoryService.getCategories(this.pagination,
+      this.sortMode, this.filterMode)
       .pipe(
         map((response: any) => {
           this.pagination = response.pagination;

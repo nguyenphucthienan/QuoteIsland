@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { CardHelpers } from '../core/helpers/card.helper';
 import { Category } from '../core/models/category.interface';
 import { Pagination } from '../core/models/pagination.interface';
+import { SortMode } from '../core/models/sort-mode.interface';
+import { SortOption } from '../core/models/sort-option.interface';
 import { CategoryService } from '../core/services/category.service';
 
 @Component({
@@ -16,15 +18,32 @@ export class CategoriesComponent implements OnInit {
 
   readonly bannerImageUrl = environment.bannerImageUrls.categoriesPage;
   readonly modalTitle = 'Sort Categories';
-  readonly modalSortOptions: any[] = [
-    { name: 'Alphabetical', id: '+name', iconClassName: 'fa fa-sort-alpha-asc' },
-    { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
-    { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
+
+  readonly modalSortOptions: SortOption[] = [
+    {
+      name: 'Alphabetical',
+      iconClassName: 'fa fa-sort-alpha-asc',
+      sortMode: { sortBy: 'name', isSortAscending: true }
+    },
+    {
+      name: 'Latest',
+      iconClassName: 'fa fa-clock-o',
+      sortMode: { sortBy: 'createdAt', isSortAscending: false }
+    },
+    {
+      name: 'Most Love',
+      iconClassName: 'fa fa-heart',
+      sortMode: { sortBy: 'loveCount', isSortAscending: false }
+    }
   ];
 
   categories: Category[] = [];
   pagination: Pagination;
-  sortString: string;
+
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true
+  };
 
   constructor(private route: ActivatedRoute,
     private categoryService: CategoryService) { }
@@ -37,8 +56,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getAuthors() {
-    this.categoryService.getCategories(this.pagination.pageNumber,
-      this.pagination.pageSize, this.sortString)
+    this.categoryService.getCategories(this.pagination, this.sortMode)
       .subscribe((response: any) => {
         this.categories = response.items;
         this.pagination = response.pagination;
@@ -50,8 +68,8 @@ export class CategoriesComponent implements OnInit {
     this.getAuthors();
   }
 
-  onSortChanged(sortString: string) {
-    this.sortString = sortString;
+  onSortChanged(sortMode: SortMode) {
+    this.sortMode = sortMode;
     this.getAuthors();
   }
 

@@ -51,7 +51,8 @@ export class AdminAuthorManagerTableService implements TableService {
   }
 
   getRawData() {
-    return this.authorService.getAuthors(this.pagination, this.sortMode, this.filterMode)
+    return this.authorService.getAuthors(this.pagination,
+      this.sortMode, this.filterMode)
       .pipe(
         map((response: any) => {
           this.pagination = response.pagination;

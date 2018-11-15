@@ -55,7 +55,7 @@ export class AdminAuthorManagerComponent implements OnInit, AfterViewInit, OnDes
     this.searchSubscription = fromEvent(this.search.nativeElement, 'keyup')
       .pipe(
         map((event: any) => event.target.value),
-        debounceTime(500),
+        debounceTime(250),
         tap((value: string) => this.searchAuthor(value)),
         switchAll()
       )
@@ -66,10 +66,10 @@ export class AdminAuthorManagerComponent implements OnInit, AfterViewInit, OnDes
     const action = tableCellChange.newValue;
     switch (action.type) {
       case TableActionType.Edit:
-        this.editAuthor(tableCellChange.row);
+        this.openEditModal(tableCellChange.row);
         break;
       case TableActionType.Delete:
-        this.deleteAuthor(tableCellChange.row.cells['_id'].value);
+        this.openDeleteModal(tableCellChange.row.cells['_id'].value);
         break;
     }
   }
@@ -97,7 +97,7 @@ export class AdminAuthorManagerComponent implements OnInit, AfterViewInit, OnDes
     this.datatable.refresh();
   }
 
-  editAuthor(rowData: TableRow) {
+  openEditModal(rowData: TableRow) {
     this.modalComponentRef = this.modalService.open(AdminAuthorEditModalComponent, {
       inputs: {
         title: 'Edit Author'
@@ -118,7 +118,7 @@ export class AdminAuthorManagerComponent implements OnInit, AfterViewInit, OnDes
     this.datatable.refresh();
   }
 
-  deleteAuthor(id: string) {
+  openDeleteModal(id: string) {
     this.modalComponentRef = this.modalService.open(ConfirmModalComponent, {
       inputs: {
         title: 'Confirm'
