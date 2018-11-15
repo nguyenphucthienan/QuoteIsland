@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MyDatePickerModule } from 'mydatepicker';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 
 import { BannerComponent } from './components/banner/banner.component';
@@ -35,6 +36,8 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    NgSelectModule,
+    MyDatePickerModule,
     MDBBootstrapModule.forRoot()
   ],
   exports: [
@@ -43,6 +46,7 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot().ngModule,
     NgSelectModule,
+    MyDatePickerModule,
     HasRoleDirective,
     BannerComponent,
     PanelComponent,

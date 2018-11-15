@@ -10,11 +10,11 @@
     </div>
     <div class="form-group">
       <label for="born">Born</label>
-      <input type="date" id="born" class="form-control" formControlName="born">
+      <my-date-picker id="born" formControlName="born" [options]="myDatePickerOptions"></my-date-picker>
     </div>
     <div class="form-group">
       <label for="died">Died</label>
-      <input type="date" id="died" class="form-control" formControlName="died">
+      <my-date-picker id="died" formControlName="died" [options]="myDatePickerOptions"></my-date-picker>
     </div>
     <div class="form-group">
       <label for="description">Description</label>
@@ -30,6 +30,7 @@
         <app-photo-uploader (uploadSucceed)="photoUploaded($event)"></app-photo-uploader>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Add</button>
+    <hr>
+    <button type="submit" class="btn btn-block btn-primary" [disabled]="editForm.invalid">OK</button>
   </form>
 </div>
