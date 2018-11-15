@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IMyDpOptions } from 'mydatepicker';
+import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { Author } from 'src/app/core/models/author.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthorService } from 'src/app/core/services/author.service';
@@ -16,7 +16,7 @@ export class AdminAuthorAddModalComponent implements OnInit {
 
   addForm: FormGroup;
 
-  myDatePickerOptions: IMyDpOptions = {
+  myDatePickerOptions: INgxMyDpOptions = {
     dateFormat: 'mm/dd/yyyy'
   };
 
@@ -33,6 +33,10 @@ export class AdminAuthorAddModalComponent implements OnInit {
       description: ['', Validators.required],
       photoUrl: ['', Validators.required]
     });
+  }
+
+  clearDate(): void {
+    this.addForm.patchValue({ born: null });
   }
 
   photoUploaded(response) {

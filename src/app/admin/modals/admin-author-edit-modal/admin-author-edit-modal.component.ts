@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IMyDpOptions } from 'mydatepicker';
+import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { Author } from 'src/app/core/models/author.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthorService } from 'src/app/core/services/author.service';
@@ -18,7 +18,7 @@ export class AdminAuthorEditModalComponent implements OnInit {
 
   editForm: FormGroup;
 
-  myDatePickerOptions: IMyDpOptions = {
+  myDatePickerOptions: INgxMyDpOptions = {
     dateFormat: 'mm/dd/yyyy'
   };
 
