@@ -1,4 +1,6 @@
 import { Component, ComponentRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { SortMode } from 'src/app/core/models/sort-mode.interface';
+import { SortOption } from 'src/app/core/models/sort-option.interface';
 import { ModalHolderDirective } from 'src/app/core/modules/modal/directives/modal-holder.directive';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
@@ -15,7 +17,7 @@ export class SortBarComponent implements OnInit {
   @ViewChild(ModalHolderDirective) modalHolder: ModalHolderDirective;
 
   @Input() modalTitle: string;
-  @Input() modalSortOptions: any[];
+  @Input() modalSortOptions: SortOption[];
 
   @Output() sortChanged = new EventEmitter();
 
@@ -44,7 +46,7 @@ export class SortBarComponent implements OnInit {
     });
   }
 
-  onSortChanged(sortMode) {
+  onSortChanged(sortMode: SortMode) {
     this.sortChanged.emit(sortMode);
     this.modalComponentRef.instance.close();
   }

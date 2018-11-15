@@ -6,6 +6,7 @@ import { CardHelpers } from '../core/helpers/card.helper';
 import { Author } from '../core/models/author.interface';
 import { Pagination } from '../core/models/pagination.interface';
 import { SortMode } from '../core/models/sort-mode.interface';
+import { SortOption } from '../core/models/sort-option.interface';
 import { AuthorService } from '../core/services/author.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class AuthorsComponent implements OnInit {
   readonly bannerImageUrl = environment.bannerImageUrls.authorsPage;
   readonly modalTitle = 'Sort Authors';
 
-  readonly modalSortOptions: any[] = [
+  readonly modalSortOptions: SortOption[] = [
     {
       name: 'Alphabetical',
       iconClassName: 'fa fa-sort-alpha-asc',
