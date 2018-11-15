@@ -23,7 +23,7 @@ export class ActionsTableCellComponent extends AbstractTableCellComponent {
   }
 
   onActionClicked(action: TableAction) {
-    this.cellChanged.emit(action);
+    this.onChange(action);
   }
 
 }

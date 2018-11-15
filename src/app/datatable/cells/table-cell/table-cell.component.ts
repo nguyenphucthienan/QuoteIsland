@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { TableCellChange } from '../../models/table-cell-change.interface';
 import { TableCell } from '../../models/table-cell.interface';
 import { TableColumn } from '../../models/table-column.interface';
 import { TableRow } from '../../models/table-row.interface';
@@ -16,7 +17,7 @@ export class TableCellComponent implements OnInit {
   @Input() cell: TableCell;
   @Input() cellType: any;
 
-  @Output() cellChanged = new EventEmitter<any>();
+  @Output() cellChanged = new EventEmitter<TableCellChange>();
 
   constructor() { }
 

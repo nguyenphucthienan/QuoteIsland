@@ -2,6 +2,8 @@ import { Component, ComponentRef, NgModuleRef, OnInit, ViewChild } from '@angula
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { DatatableComponent } from 'src/app/datatable/datatable.component';
+import { TableActionType } from 'src/app/datatable/models/table-action.interface';
+import { TableCellChange } from 'src/app/datatable/models/table-cell-change.interface';
 import { environment } from 'src/environments/environment';
 
 import { AdminAuthorAddModalComponent } from '../../modals/admin-author-add-modal/admin-author-add-modal.component';
@@ -46,8 +48,24 @@ export class AdminAuthorManagerComponent implements OnInit {
     this.datatable.refresh();
   }
 
-  onTableCellChanged(event: any) {
-    console.log('onTableCellChanged', event);
+  onTableCellChanged(tableCellChange: TableCellChange) {
+    const action = tableCellChange.newValue;
+    switch (action.type) {
+      case TableActionType.Edit:
+        this.editAuthor(tableCellChange.row.cells['_id'].value);
+        break;
+      case TableActionType.Delete:
+        this.deleteAuthor(tableCellChange.row.cells['_id'].value);
+        break;
+    }
+  }
+
+  editAuthor(id: string) {
+    console.log('Edit', id);
+  }
+
+  deleteAuthor(id: string) {
+    console.log('Delete', id);
   }
 
 }
