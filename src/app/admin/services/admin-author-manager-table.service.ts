@@ -7,6 +7,8 @@ import { TableColumn } from 'src/app/datatable/models/table-column.interface';
 import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
 import { TableAction, TableActionType } from 'src/app/datatable/models/table-action.interface';
+import { FilterMode } from 'src/app/core/models/filter-mode.interface';
+import { SortMode } from 'src/app/core/models/sort-mode.interface';
 
 @Injectable()
 export class AdminAuthorManagerTableService implements TableService {
@@ -30,7 +32,12 @@ export class AdminAuthorManagerTableService implements TableService {
     pageSize: 10
   };
 
-  filterString: string;
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true
+  };
+
+  filterMode: FilterMode = {};
 
   actions: TableAction[] = [
     { class: 'btn-primary', icon: 'fa fa-edit', text: 'Edit', type: TableActionType.Edit },
@@ -44,11 +51,7 @@ export class AdminAuthorManagerTableService implements TableService {
   }
 
   getRawData() {
-    return this.authorService.getAuthors(
-      this.pagination.pageNumber,
-      this.pagination.pageSize,
-      undefined,
-      this.filterString)
+    return this.authorService.getAuthors(this.pagination, this.sortMode, this.filterMode)
       .pipe(
         map((response: any) => {
           this.pagination = response.pagination;

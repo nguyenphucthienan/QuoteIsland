@@ -75,7 +75,7 @@ export class AdminAuthorManagerComponent implements OnInit, AfterViewInit, OnDes
   }
 
   searchAuthor(value: string) {
-    this.adminAuthorManagerTableService.filterString = `fullName:${value}`;
+    this.adminAuthorManagerTableService.filterMode['fullName'] = value;
     this.datatable.refresh();
   }
 

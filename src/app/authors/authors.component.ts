@@ -6,6 +6,7 @@ import { CardHelpers } from '../core/helpers/card.helper';
 import { Author } from '../core/models/author.interface';
 import { Pagination } from '../core/models/pagination.interface';
 import { AuthorService } from '../core/services/author.service';
+import { SortMode } from '../core/models/sort-mode.interface';
 
 @Component({
   selector: 'app-authors',
@@ -24,7 +25,11 @@ export class AuthorsComponent implements OnInit {
 
   authors: Author[] = [];
   pagination: Pagination;
-  sortString: string;
+
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true
+  };
 
   constructor(private route: ActivatedRoute,
     private authorService: AuthorService) { }
@@ -37,8 +42,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   getAuthors() {
-    this.authorService.getAuthors(this.pagination.pageNumber,
-      this.pagination.pageSize, this.sortString)
+    this.authorService.getAuthors(this.pagination, this.sortMode)
       .subscribe((response: any) => {
         this.authors = response.items;
         this.pagination = response.pagination;
@@ -51,7 +55,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   onSortChanged(sortString: string) {
-    this.sortString = sortString;
+    // this.sortString = sortString;
     this.getAuthors();
   }
 

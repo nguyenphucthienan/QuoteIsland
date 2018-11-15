@@ -4,25 +4,36 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Author } from '../models/author.interface';
+import { Pagination } from '../models/pagination.interface';
+import { SortMode } from '../models/sort-mode.interface';
+import { FilterMode } from '../models/filter-mode.interface';
+import { ParamsBuilder } from 'src/app/utils/params-builder';
 
 @Injectable()
 export class AuthorService {
 
   private readonly authorUrl = `${environment.apiUrl}/authors`;
-  private readonly defaultSortString = '-createdAt';
+
+  private readonly defaultPagination: Pagination = {
+    pageNumber: 1,
+    pageSize: 8
+  };
+
+  private readonly defaultSortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true
+  };
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(pageNumber = 1, pageSize = 8,
-    sortString = this.defaultSortString, filterString?: string): Observable<Author[]> {
-    let params = new HttpParams()
-      .set('pageNumber', pageNumber.toString())
-      .set('pageSize', pageSize.toString())
-      .set('sort', sortString);
-
-    if (filterString) {
-      params = params.set('filter', filterString);
-    }
+  getAuthors(pagination: Pagination = this.defaultPagination,
+    sortMode: SortMode = this.defaultSortMode,
+    filterMode?: FilterMode): Observable<Author[]> {
+    const params = new ParamsBuilder()
+      .applyPagination(pagination)
+      .applySort(sortMode)
+      .applyFilter(filterMode)
+      .build();
 
     return this.http.get<Author[]>(`${this.authorUrl}`, { params: params });
   }

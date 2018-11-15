@@ -37,7 +37,7 @@ export class AdminQuoteAddModalComponent implements OnInit {
     });
 
     forkJoin(
-      this.authorService.getAuthors(1, 9999),
+      this.authorService.getAuthors({ pageNumber: 1, pageSize: 9999 }),
       this.categoryService.getCategories(1, 9999)
     ).
       subscribe((data: any) => {
