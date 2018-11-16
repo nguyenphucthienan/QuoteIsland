@@ -5,7 +5,10 @@
         <th *ngIf="selectableRow" class="text-center">
           <input type="checkbox" [checked]="selectAllOnPage" (change)="selectHeader($event.target.checked)">
         </th>
-        <th *ngFor="let column of columns" scope="col">{{ column.text }}</th>
+        <th *ngFor="let column of columns" scope="col" (click)="changeSortMode(column)" [class.header-clickable]="column.sortable">
+          {{ column.text }}
+          <span *ngIf="column.sortable" [ngClass]="getHeaderIconClass(column)"></span>
+        </th>
       </tr>
     </thead>
     <tbody>

@@ -4,6 +4,8 @@ import { TableColumn } from './models/table-column.interface';
 import { TableRow } from './models/table-row.interface';
 import { TableRowSelectTrackingService } from './services/table-row-select-tracking.service';
 import { TableService } from './services/table.service';
+import { SortMode } from '../core/models/sort-mode.interface';
+import { TableUtils } from '../utils/table-utils';
 
 @Component({
   selector: 'app-datatable',
@@ -71,6 +73,24 @@ export class DatatableComponent implements OnInit {
   private checkSelectAllOnPage() {
     this.selectAllOnPage = this.rows
       .every(row => this.tableRowSelectTrackingService.getStateId(row.cells['_id'].value));
+  }
+
+  getHeaderIconClass(column: TableColumn) {
+    const sortMode: SortMode = this.tableService.sortMode;
+    return TableUtils.getHeaderIconClass(sortMode, column);
+  }
+
+  changeSortMode(column: TableColumn) {
+    const sortMode: SortMode = this.tableService.sortMode;
+
+    if (sortMode.sortBy === column.name) {
+      sortMode.isSortAscending = !sortMode.isSortAscending;
+    } else {
+      sortMode.sortBy = column.name;
+      sortMode.isSortAscending = true;
+    }
+
+    this.getTableData();
   }
 
 }
