@@ -14,7 +14,8 @@ export class CardHelpers {
   ];
 
   static getColorClass(index: number) {
-    return this.colorGradients[index % this.cardsPerPage];
+    // return this.colorGradients[index % this.cardsPerPage];
+    return 'blue-gradient';
   }
 
 }
