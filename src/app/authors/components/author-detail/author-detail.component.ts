@@ -4,6 +4,8 @@ import { CardHelpers } from 'src/app/core/helpers/card.helper';
 import { Author } from 'src/app/core/models/author.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { Quote } from 'src/app/core/models/quote.interface';
+import { SortMode } from 'src/app/core/models/sort-mode.interface';
+import { SortOption } from 'src/app/core/models/sort-option.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
 
 @Component({
@@ -14,16 +16,33 @@ import { QuoteService } from 'src/app/core/services/quote.service';
 export class AuthorDetailComponent implements OnInit {
 
   readonly modalTitle = 'Sort Quotes';
-  readonly modalSortOptions: any[] = [
-    { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
-    { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
-    { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
+
+  readonly modalSortOptions: SortOption[] = [
+    {
+      name: 'Alphabetical',
+      iconClassName: 'fa fa-sort-alpha-asc',
+      sortMode: { sortBy: 'text', isSortAscending: true }
+    },
+    {
+      name: 'Latest',
+      iconClassName: 'fa fa-clock-o',
+      sortMode: { sortBy: 'createdAt', isSortAscending: false }
+    },
+    {
+      name: 'Most Love',
+      iconClassName: 'fa fa-heart',
+      sortMode: { sortBy: 'loveCount', isSortAscending: false }
+    }
   ];
 
   author: Author;
   quotes: Quote[] = [];
   pagination: Pagination;
-  sortString: string;
+
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true
+  };
 
   constructor(private route: ActivatedRoute,
     private quoteService: QuoteService) { }
@@ -37,11 +56,8 @@ export class AuthorDetailComponent implements OnInit {
   }
 
   getQuotes() {
-    this.quoteService.getQuotesByAuthor(
-      this.author._id,
-      this.pagination.pageNumber,
-      this.pagination.pageSize,
-      this.sortString)
+    this.quoteService.getQuotes(this.pagination,
+      this.sortMode, { author: this.author._id })
       .subscribe((response: any) => {
         this.quotes = response.items;
         this.pagination = response.pagination;
@@ -53,8 +69,8 @@ export class AuthorDetailComponent implements OnInit {
     this.getQuotes();
   }
 
-  onSortChanged(sortString: string) {
-    this.sortString = sortString;
+  onSortChanged(sortMode: SortMode) {
+    this.sortMode = sortMode;
     this.getQuotes();
   }
 

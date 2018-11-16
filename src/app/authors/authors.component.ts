@@ -42,7 +42,7 @@ export class AuthorsComponent implements OnInit {
 
   sortMode: SortMode = {
     sortBy: 'createdAt',
-    isSortAscending: true
+    isSortAscending: false
   };
 
   constructor(private route: ActivatedRoute,

@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { CardHelpers } from '../core/helpers/card.helper';
 import { Pagination } from '../core/models/pagination.interface';
 import { Quote } from '../core/models/quote.interface';
+import { SortMode } from '../core/models/sort-mode.interface';
+import { SortOption } from '../core/models/sort-option.interface';
 import { QuoteService } from '../core/services/quote.service';
 
 @Component({
@@ -16,15 +18,32 @@ export class QuotesComponent implements OnInit {
 
   readonly bannerImageUrl = environment.bannerImageUrls.quotesPage;
   readonly modalTitle = 'Sort Quotes';
-  readonly modalSortOptions: any[] = [
-    { name: 'Alphabetical', id: '+text', iconClassName: 'fa fa-sort-alpha-asc' },
-    { name: 'Latest', id: '-createdAt', iconClassName: 'fa fa-clock-o' },
-    { name: 'Most Love', id: '-loveCount', iconClassName: 'fa fa-heart' }
+
+  readonly modalSortOptions: SortOption[] = [
+    {
+      name: 'Alphabetical',
+      iconClassName: 'fa fa-sort-alpha-asc',
+      sortMode: { sortBy: 'text', isSortAscending: true }
+    },
+    {
+      name: 'Latest',
+      iconClassName: 'fa fa-clock-o',
+      sortMode: { sortBy: 'createdAt', isSortAscending: false }
+    },
+    {
+      name: 'Most Love',
+      iconClassName: 'fa fa-heart',
+      sortMode: { sortBy: 'loveCount', isSortAscending: false }
+    }
   ];
 
   quotes: Quote[] = [];
   pagination: Pagination;
-  sortString: string;
+
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: false
+  };
 
   constructor(private route: ActivatedRoute,
     private quoteService: QuoteService) { }
@@ -37,8 +56,7 @@ export class QuotesComponent implements OnInit {
   }
 
   getQuotes() {
-    this.quoteService.getQuotes(this.pagination.pageNumber,
-      this.pagination.pageSize, this.sortString)
+    this.quoteService.getQuotes(this.pagination, this.sortMode)
       .subscribe((response: any) => {
         this.quotes = response.items;
         this.pagination = response.pagination;
@@ -50,8 +68,8 @@ export class QuotesComponent implements OnInit {
     this.getQuotes();
   }
 
-  onSortChanged(sortString: string) {
-    this.sortString = sortString;
+  onSortChanged(sortMode: SortMode) {
+    this.sortMode = sortMode;
     this.getQuotes();
   }
 

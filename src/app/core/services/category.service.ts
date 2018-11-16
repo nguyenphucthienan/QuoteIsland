@@ -21,7 +21,7 @@ export class CategoryService {
 
   private readonly defaultSortMode: SortMode = {
     sortBy: 'createdAt',
-    isSortAscending: true
+    isSortAscending: false
   };
 
   constructor(private http: HttpClient) { }
