@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { FilterMode } from 'src/app/core/models/filter-mode.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
+import { SortMode } from 'src/app/core/models/sort-mode.interface';
 import { AuthorService } from 'src/app/core/services/author.service';
+import { TableAction, TableActionType } from 'src/app/datatable/models/table-action.interface';
 import { TableCell } from 'src/app/datatable/models/table-cell.interface';
 import { TableColumn } from 'src/app/datatable/models/table-column.interface';
 import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
-import { TableAction, TableActionType } from 'src/app/datatable/models/table-action.interface';
-import { FilterMode } from 'src/app/core/models/filter-mode.interface';
-import { SortMode } from 'src/app/core/models/sort-mode.interface';
 
 @Injectable()
 export class AdminAuthorManagerTableService implements TableService {

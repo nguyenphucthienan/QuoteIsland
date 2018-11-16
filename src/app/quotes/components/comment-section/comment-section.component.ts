@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/core/models/comment.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
-import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-comment-section',
@@ -42,9 +42,7 @@ export class CommentSectionComponent implements OnInit {
   }
 
   getComments() {
-    this.commentService.getComments(this.quoteId,
-      this.pagination.pageNumber,
-      this.pagination.pageSize)
+    this.commentService.getComments(this.quoteId, this.pagination)
       .subscribe((response: any) => {
         this.comments = response.items;
         this.pagination = response.pagination;
