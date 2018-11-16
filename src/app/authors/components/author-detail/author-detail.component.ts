@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardHelpers } from 'src/app/core/helpers/card.helper';
 import { Author } from 'src/app/core/models/author.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { Quote } from 'src/app/core/models/quote.interface';
 import { SortMode } from 'src/app/core/models/sort-mode.interface';
 import { SortOption } from 'src/app/core/models/sort-option.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
+import { CardUtils } from 'src/app/utils/card-utils';
 
 @Component({
   selector: 'app-author-detail',
@@ -75,7 +75,7 @@ export class AuthorDetailComponent implements OnInit {
   }
 
   getColorClass(index: number) {
-    return CardHelpers.getColorClass(index);
+    return CardUtils.getColorClass(index);
   }
 
 }

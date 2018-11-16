@@ -1,4 +1,4 @@
-export class CardHelpers {
+export class CardUtils {
 
   private static readonly cardsPerPage = 8;
 

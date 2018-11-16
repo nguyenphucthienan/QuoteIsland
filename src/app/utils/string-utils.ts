@@ -1,4 +1,4 @@
-export class StringHelpers {
+export class StringUtils {
 
   static truncate(value: string, limit = 50, completeWords = true, ellipsis = '...') {
     if (!value) {

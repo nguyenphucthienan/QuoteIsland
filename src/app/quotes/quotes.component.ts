@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-import { CardHelpers } from '../core/helpers/card.helper';
 import { Pagination } from '../core/models/pagination.interface';
 import { Quote } from '../core/models/quote.interface';
 import { SortMode } from '../core/models/sort-mode.interface';
 import { SortOption } from '../core/models/sort-option.interface';
 import { QuoteService } from '../core/services/quote.service';
+import { CardUtils } from '../utils/card-utils';
 
 @Component({
   selector: 'app-quotes',
@@ -74,7 +74,7 @@ export class QuotesComponent implements OnInit {
   }
 
   getColorClass(index: number) {
-    return CardHelpers.getColorClass(index);
+    return CardUtils.getColorClass(index);
   }
 
 }

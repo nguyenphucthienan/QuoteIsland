@@ -4,6 +4,7 @@ import { Quote } from 'src/app/core/models/quote.interface';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
+import { StringUtils } from 'src/app/utils/string-utils';
 
 @Component({
   selector: 'app-quote-card',
@@ -34,6 +35,10 @@ export class QuoteCardComponent implements OnInit, OnDestroy {
       });
 
     this.updateValues();
+  }
+
+  getQuoteText() {
+    return StringUtils.truncate(this.quote.text, 150);
   }
 
   loveQuote() {

@@ -6,7 +6,7 @@
     <blockquote class="blockquote">
       <p class="quote-text mb-0" [routerLink]="['/quotes', quote._id]">
         <i class="fa fa-quote-left"></i>
-        {{ quote.text.length > 150 ? quote.text.substr(0, 150) + '...' : quote.text }}
+        {{ getQuoteText() }}
       </p>
       <footer class="quote-author blockquote-footer float-right" [routerLink]="['/authors', quote.author._id]">
         <cite>{{ quote.author.fullName }}</cite>
