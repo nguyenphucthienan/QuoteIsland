@@ -6,5 +6,6 @@
   <app-date-table-cell *ngSwitchCase="'DateTableCellComponent'" [column]="column" [row]="row" [cell]="cell"></app-date-table-cell>
   <app-actions-table-cell *ngSwitchCase="'ActionsTableCellComponent'" [column]="column" [row]="row" [cell]="cell"
     [cellChanged]="cellChanged"></app-actions-table-cell>
+  <app-array-list-table-cell *ngSwitchCase="'ArrayListTableCellComponent'" [column]="column" [row]="row" [cell]="cell"></app-array-list-table-cell>
   <app-text-table-cell *ngSwitchDefault [column]="column" [row]="row" [cell]="cell"></app-text-table-cell>
 </ng-container>
