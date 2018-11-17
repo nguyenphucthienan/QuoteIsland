@@ -14,11 +14,15 @@ import { AdminCategoryAddModalComponent } from './modals/admin-category-add-moda
 import { AdminCategoryEditModalComponent } from './modals/admin-category-edit-modal/admin-category-edit-modal.component';
 import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admin-quote-add-modal.component';
 import { AdminQuoteEditModalComponent } from './modals/admin-quote-edit-modal/admin-quote-edit-modal.component';
+import { AdminUserAddModalComponent } from './modals/admin-user-add-modal/admin-user-add-modal.component';
+import { AdminUserEditModalComponent } from './modals/admin-user-edit-modal/admin-user-edit-modal.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     AdminUserManagerComponent,
+    AdminUserAddModalComponent,
+    AdminUserEditModalComponent,
     AdminAuthorManagerComponent,
     AdminAuthorAddModalComponent,
     AdminAuthorEditModalComponent,
@@ -27,7 +31,9 @@ import { AdminQuoteEditModalComponent } from './modals/admin-quote-edit-modal/ad
     AdminCategoryEditModalComponent,
     AdminQuoteManagerComponent,
     AdminQuoteAddModalComponent,
-    AdminQuoteEditModalComponent
+    AdminQuoteEditModalComponent,
+    AdminUserAddModalComponent,
+    AdminUserEditModalComponent
   ],
   imports: [
     SharedModule,
@@ -35,6 +41,8 @@ import { AdminQuoteEditModalComponent } from './modals/admin-quote-edit-modal/ad
     DatatableModule
   ],
   entryComponents: [
+    AdminUserAddModalComponent,
+    AdminUserEditModalComponent,
     AdminAuthorAddModalComponent,
     AdminAuthorEditModalComponent,
     AdminCategoryAddModalComponent,

@@ -3,6 +3,6 @@ export interface User {
   username: string;
   firstName: string;
   lastName: string;
-  photoUrl: string;
+  photoUrl?: string;
   roles?: string[];
 }
