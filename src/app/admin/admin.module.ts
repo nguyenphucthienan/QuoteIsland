@@ -11,6 +11,7 @@ import { AdminUserManagerComponent } from './components/admin-user-manager/admin
 import { AdminAuthorAddModalComponent } from './modals/admin-author-add-modal/admin-author-add-modal.component';
 import { AdminAuthorEditModalComponent } from './modals/admin-author-edit-modal/admin-author-edit-modal.component';
 import { AdminCategoryAddModalComponent } from './modals/admin-category-add-modal/admin-category-add-modal.component';
+import { AdminCategoryEditModalComponent } from './modals/admin-category-edit-modal/admin-category-edit-modal.component';
 import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admin-quote-add-modal.component';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
     AdminAuthorEditModalComponent,
     AdminCategoryManagerComponent,
     AdminCategoryAddModalComponent,
+    AdminCategoryEditModalComponent,
     AdminQuoteManagerComponent,
     AdminQuoteAddModalComponent
   ],
@@ -34,6 +36,7 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
     AdminAuthorAddModalComponent,
     AdminAuthorEditModalComponent,
     AdminCategoryAddModalComponent,
+    AdminCategoryEditModalComponent,
     AdminQuoteAddModalComponent
   ]
 })
