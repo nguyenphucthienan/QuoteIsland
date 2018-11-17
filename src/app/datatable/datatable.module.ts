@@ -6,6 +6,7 @@ import { DateTableCellComponent } from './cells/date-table-cell/date-table-cell.
 import { IdTableCellComponent } from './cells/id-table-cell/id-table-cell.component';
 import { TableCellComponent } from './cells/table-cell/table-cell.component';
 import { TextTableCellComponent } from './cells/text-table-cell/text-table-cell.component';
+import { TruncatedTextTableCellComponent } from './cells/truncated-text-table-cell/truncated-text-table-cell.component';
 import { DatatableComponent } from './datatable.component';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { DatatableComponent } from './datatable.component';
     TableCellComponent,
     IdTableCellComponent,
     TextTableCellComponent,
+    TruncatedTextTableCellComponent,
     ActionsTableCellComponent,
     DateTableCellComponent
   ],
