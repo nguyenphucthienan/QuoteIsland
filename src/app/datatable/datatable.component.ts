@@ -81,6 +81,10 @@ export class DatatableComponent implements OnInit {
   }
 
   changeSortMode(column: TableColumn) {
+    if (!column.sortable) {
+      return;
+    }
+
     const sortMode: SortMode = this.tableService.sortMode;
 
     if (sortMode.sortBy === column.name) {
