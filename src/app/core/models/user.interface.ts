@@ -1,8 +1,10 @@
+import { Role } from './role.interface';
+
 export interface User {
-  id: string;
+  _id: string;
   username: string;
   firstName: string;
   lastName: string;
   photoUrl?: string;
-  roles?: string[];
+  roles?: Role[];
 }
