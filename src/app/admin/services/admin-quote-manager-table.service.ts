@@ -4,6 +4,8 @@ import { FilterMode } from 'src/app/core/models/filter-mode.interface';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { SortMode } from 'src/app/core/models/sort-mode.interface';
 import { QuoteService } from 'src/app/core/services/quote.service';
+import { TableAction, TableActionType } from 'src/app/datatable/models/table-action.interface';
+import { TableCell } from 'src/app/datatable/models/table-cell.interface';
 import { TableColumn } from 'src/app/datatable/models/table-column.interface';
 import { TableRow } from 'src/app/datatable/models/table-row.interface';
 import { TableService } from 'src/app/datatable/services/table.service';
@@ -12,11 +14,12 @@ import { TableService } from 'src/app/datatable/services/table.service';
 export class AdminQuoteManagerTableService implements TableService {
 
   columns: TableColumn[] = [
-    { name: 'shortenedId', text: 'ID', type: 'TextTableCellComponent' },
-    { name: 'author', text: 'Author', type: 'TextTableCellComponent' },
-    { name: 'categories', text: 'Categories', type: 'TextTableCellComponent' },
-    { name: 'text', text: 'Text', type: 'TextTableCellComponent' },
-    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent' }
+    { name: '_id', text: 'ID', type: 'IdTableCellComponent', sortable: true },
+    { name: 'author', text: 'Author', type: 'TextTableCellComponent', sortable: true },
+    { name: 'categories', text: 'Categories', type: 'TextTableCellComponent', sortable: true },
+    { name: 'text', text: 'Text', type: 'TruncatedTextTableCellComponent', sortable: true },
+    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent', sortable: true },
+    { name: 'actions', text: 'Actions', type: 'ActionsTableCellComponent', sortable: false }
   ];
 
   rows: TableRow[];
@@ -32,6 +35,11 @@ export class AdminQuoteManagerTableService implements TableService {
   };
 
   filterMode: FilterMode = {};
+
+  actions: TableAction[] = [
+    { class: 'btn-primary', icon: 'fa fa-edit', text: 'Edit', type: TableActionType.Edit },
+    { class: 'btn-danger', icon: 'fa fa-trash', text: 'Delete', type: TableActionType.Delete }
+  ];
 
   constructor(private quoteService: QuoteService) { }
 
@@ -52,7 +60,37 @@ export class AdminQuoteManagerTableService implements TableService {
   }
 
   async getDataRows() {
-    return null;
+    return await this.getRawData()
+      .then(data => {
+        this.rows = data.map(row => {
+          const cells: TableCell = <any>{};
+
+          for (const key in row) {
+            if (!row.hasOwnProperty(key)) {
+              continue;
+            }
+
+            if (key === 'author') {
+              cells[key] = {
+                value: row[key].fullName
+              };
+            } else {
+              cells[key] = {
+                value: row[key]
+              };
+            }
+          }
+
+          cells['actions'] = {
+            value: this.actions,
+            showText: false
+          };
+
+          return { cells };
+        });
+
+        return this.rows;
+      });
   }
 
 }

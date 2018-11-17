@@ -13,6 +13,7 @@ import { AdminAuthorEditModalComponent } from './modals/admin-author-edit-modal/
 import { AdminCategoryAddModalComponent } from './modals/admin-category-add-modal/admin-category-add-modal.component';
 import { AdminCategoryEditModalComponent } from './modals/admin-category-edit-modal/admin-category-edit-modal.component';
 import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admin-quote-add-modal.component';
+import { AdminQuoteEditModalComponent } from './modals/admin-quote-edit-modal/admin-quote-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
     AdminCategoryAddModalComponent,
     AdminCategoryEditModalComponent,
     AdminQuoteManagerComponent,
-    AdminQuoteAddModalComponent
+    AdminQuoteAddModalComponent,
+    AdminQuoteEditModalComponent
   ],
   imports: [
     SharedModule,
@@ -37,7 +39,8 @@ import { AdminQuoteAddModalComponent } from './modals/admin-quote-add-modal/admi
     AdminAuthorEditModalComponent,
     AdminCategoryAddModalComponent,
     AdminCategoryEditModalComponent,
-    AdminQuoteAddModalComponent
+    AdminQuoteAddModalComponent,
+    AdminQuoteEditModalComponent
   ]
 })
 export class AdminModule { }
