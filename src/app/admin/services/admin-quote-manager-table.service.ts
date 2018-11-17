@@ -72,7 +72,7 @@ export class AdminQuoteManagerTableService implements TableService {
 
             if (key === 'author') {
               cells[key] = {
-                value: row[key].fullName
+                value: row[key]
               };
             } else {
               cells[key] = {

@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
-import { debounceTime, map, switchAll, tap } from 'rxjs/operators';
+import { debounceTime, map, tap } from 'rxjs/operators';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { AlertService } from 'src/app/core/services/alert.service';
@@ -56,8 +56,7 @@ export class AdminCategoryManagerComponent implements OnInit, AfterViewInit, OnD
       .pipe(
         map((event: any) => event.target.value),
         debounceTime(250),
-        tap((value: string) => this.searchCategory(value)),
-        switchAll()
+        tap((value: string) => this.searchCategory(value))
       )
       .subscribe();
   }
