@@ -16,6 +16,6 @@
     </div>
   </div>
   <div class="mt-3">
-    <app-datatable [tableService]="adminCategoryManagerTableService"></app-datatable>
+    <app-datatable [tableService]="adminCategoryManagerTableService" (cellChanged)="onTableCellChanged($event)"></app-datatable>
   </div>
 </div>
