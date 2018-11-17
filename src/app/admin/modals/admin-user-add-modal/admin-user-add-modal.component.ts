@@ -25,14 +25,14 @@ export class AdminUserAddModalComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.fb.group({
-      username: [null, Validators.required],
+      username: ['', [Validators.required, Validators.minLength(4)]],
       roles: [[], Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
       photoUrl: ['', Validators.required]
-    });
+    }, { validator: [this.passwordMatchValidator] });
 
     this.roleService.getRoles()
       .subscribe((roles: Role[]) => this.roles = roles);
@@ -51,6 +51,17 @@ export class AdminUserAddModalComponent implements OnInit {
         },
         error => this.alertService.error('Add user failed')
       );
+  }
+
+  private passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('confirmPassword').value
+      ? null
+      : { 'passwordMatch': true };
+  }
+
+  controlHasError(controlName: string, errorName: string): boolean {
+    return this.addForm.get(controlName).touched
+      && this.addForm.get(controlName).hasError(errorName);
   }
 
 }

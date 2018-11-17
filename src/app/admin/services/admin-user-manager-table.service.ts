@@ -18,7 +18,7 @@ export class AdminUserManagerTableService implements TableService {
     { name: 'username', text: 'Username', type: 'TextTableCellComponent', sortable: true },
     { name: 'firstName', text: 'First Name', type: 'TextTableCellComponent', sortable: true },
     { name: 'lastName', text: 'Last Name', type: 'TextTableCellComponent', sortable: true },
-    { name: 'roles', text: 'Roles', type: 'ArrayListTableCellComponent', sortable: true },
+    { name: 'roles', text: 'Roles', type: 'ArrayListTableCellComponent', sortable: false },
     { name: 'createdAt', text: 'Created', type: 'DateTableCellComponent', sortable: true },
     { name: 'actions', text: 'Actions', type: 'ActionsTableCellComponent', sortable: false }
   ];
