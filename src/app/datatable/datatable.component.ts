@@ -50,7 +50,7 @@ export class DatatableComponent implements OnInit {
     this.cellChanged.emit(event);
   }
 
-  selectHeader(checked: boolean) {
+  selectAllHeader(checked: boolean) {
     this.selectAllOnPage = checked;
     this.rows.forEach(row => {
       row.selected = checked;
