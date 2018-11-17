@@ -15,7 +15,7 @@ export class AdminQuoteManagerTableService implements TableService {
 
   columns: TableColumn[] = [
     { name: '_id', text: 'ID', type: 'IdTableCellComponent', sortable: true },
-    { name: 'author', text: 'Author', type: 'TextTableCellComponent', sortable: true },
+    { name: 'author', text: 'Author', type: 'ObjectTextTableCellComponent', sortable: true },
     { name: 'categories', text: 'Categories', type: 'TextTableCellComponent', sortable: true },
     { name: 'text', text: 'Text', type: 'TruncatedTextTableCellComponent', sortable: true },
     { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent', sortable: true },
@@ -72,7 +72,8 @@ export class AdminQuoteManagerTableService implements TableService {
 
             if (key === 'author') {
               cells[key] = {
-                value: row[key]
+                value: row[key],
+                textProperty: 'fullName'
               };
             } else {
               cells[key] = {

@@ -8,6 +8,7 @@ import { TableCellComponent } from './cells/table-cell/table-cell.component';
 import { TextTableCellComponent } from './cells/text-table-cell/text-table-cell.component';
 import { TruncatedTextTableCellComponent } from './cells/truncated-text-table-cell/truncated-text-table-cell.component';
 import { DatatableComponent } from './datatable.component';
+import { ObjectTextTableCellComponent } from './cells/object-text-table-cell/object-text-table-cell.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DatatableComponent } from './datatable.component';
     TextTableCellComponent,
     TruncatedTextTableCellComponent,
     ActionsTableCellComponent,
-    DateTableCellComponent
+    DateTableCellComponent,
+    ObjectTextTableCellComponent
   ],
   imports: [
     SharedModule
