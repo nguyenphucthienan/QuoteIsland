@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class BannerComponent implements OnInit {
 
-  @Input() height = '30%';
+  @Input() height = '350px';
   @Input() imageUrl: string;
 
   constructor(private sanitizer: DomSanitizer) { }

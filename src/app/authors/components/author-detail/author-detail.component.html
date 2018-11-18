@@ -1,7 +1,6 @@
-<app-banner [height]="'35%'" [imageUrl]="author.photoUrl">
-  <div class="d-flex flex-column justify-content-center align-items-center">
-    <h1>{{ author.fullName }}</h1>
-    <p>{{ author.description }}</p>
+<app-banner [imageUrl]="author.photoUrl">
+  <div class="d-flex justify-content-center align-items-center">
+    <h1 class="banner-text text-center">{{ author.fullName }}</h1>
   </div>
 </app-banner>
 <div class="quotes-container container-fluid">

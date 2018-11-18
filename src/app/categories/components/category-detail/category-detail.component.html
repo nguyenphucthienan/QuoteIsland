@@ -1,10 +1,9 @@
-<app-banner [height]="'35%'" [imageUrl]="category.photoUrl">
-  <div class="d-flex flex-column justify-content-center align-items-center">
-    <h1>{{ category.name }}</h1>
-    <p>{{ category.description }}</p>
+<app-banner [imageUrl]="category.photoUrl">
+  <div class="d-flex justify-content-center align-items-center">
+    <h1 class="banner-text text-center">{{ category.name }}</h1>
   </div>
 </app-banner>
-<div class="quotes-container container-fluid">
+<div class="category-detail-container container-fluid">
   <app-sort-bar [modalTitle]="modalTitle" [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
   <div class="dropdown-divider"></div>
   <div class="row">
