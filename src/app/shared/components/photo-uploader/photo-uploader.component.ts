@@ -47,6 +47,7 @@ export class PhotoUploaderComponent implements OnInit {
         this.uploadSucceed.emit(JSON.parse(response));
         this.fileSelect.nativeElement.value = '';
       } else {
+        this.uploader.clearQueue();
         this.uploadFailed.emit();
       }
     };

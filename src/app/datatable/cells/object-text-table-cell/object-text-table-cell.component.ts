@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AbstractTableCellComponent } from '../abstract-table-cell/abstract-table-cell.component';
 

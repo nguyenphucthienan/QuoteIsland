@@ -17,11 +17,18 @@
         <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Admin<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" *appHasRole="['Admin', 'Moderator']" routerLink="/admin" mdbWavesEffect>Main Page</a>
-          <a class="dropdown-item waves-light" *appHasRole="['Admin']" routerLink="/admin/users" mdbWavesEffect>User Manager</a>
-          <a class="dropdown-item waves-light" *appHasRole="['Admin', 'Moderator']" routerLink="/admin/authors" mdbWavesEffect>Author Manager</a>
-          <a class="dropdown-item waves-light" *appHasRole="['Admin', 'Moderator']" routerLink="/admin/categories" mdbWavesEffect>Category Manager</a>
-          <a class="dropdown-item waves-light" *appHasRole="['Admin', 'Moderator']" routerLink="/admin/quotes" mdbWavesEffect>Quote Manager</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect *appHasRole="['Admin']" routerLink="/admin/users">
+            User Manager
+          </a>
+          <a class="dropdown-item waves-light" mdbWavesEffect *appHasRole="['Admin', 'Moderator']" routerLink="/admin/authors">
+            Author Manager
+          </a>
+          <a class="dropdown-item waves-light" mdbWavesEffect *appHasRole="['Admin', 'Moderator']" routerLink="/admin/categories">
+            Category Manager
+          </a>
+          <a class="dropdown-item waves-light" mdbWavesEffect *appHasRole="['Admin', 'Moderator']" routerLink="/admin/quotes">
+            Quote Manager
+          </a>
         </div>
       </li>
     </ul>

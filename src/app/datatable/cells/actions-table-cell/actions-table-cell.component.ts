@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { AbstractTableCellComponent } from '../abstract-table-cell/abstract-table-cell.component';
 import { TableAction } from '../../models/table-action.interface';
+import { AbstractTableCellComponent } from '../abstract-table-cell/abstract-table-cell.component';
 
 @Component({
   selector: 'app-actions-table-cell',
