@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { AuthorService } from './services/author.service';
 import { CategoryService } from './services/category.service';
 import { CommentService } from './services/comment.service';
+import { HomeService } from './services/home.service';
 import { QuoteService } from './services/quote.service';
 import { RoleService } from './services/role.service';
 import { UserService } from './services/user.service';
@@ -50,8 +51,9 @@ const toastrOptions = {
   providers: [
     AuthService,
     RoleService,
-    AlertService,
     AuthRoleGuard,
+    AlertService,
+    HomeService,
     UserService,
     QuoteService,
     AuthorService,

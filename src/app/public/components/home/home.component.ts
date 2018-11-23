@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Quote } from 'src/app/core/models/quote.interface';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
-import { QuoteService } from 'src/app/core/services/quote.service';
+import { HomeService } from 'src/app/core/services/home.service';
 
 import { MoodSelectModalComponent } from '../../modals/mood-select-modal/mood-select-modal.component';
 
@@ -18,13 +18,21 @@ export class HomeComponent implements OnInit {
 
   quotes: Quote[];
 
-  constructor(private quoteService: QuoteService,
+  constructor(private homeService: HomeService,
     private sanitizer: DomSanitizer,
     private modalService: ModalService,
     private moduleRef: NgModuleRef<any>) { }
 
   ngOnInit() {
-    setTimeout(() => this.openMoodModal(), 0);
+    this.homeService.currentQuotes$
+      .subscribe((quotes: Quote[]) => this.quotes = quotes);
+
+    this.homeService.openMoodModal$
+      .subscribe((flag: boolean) => {
+        if (flag) {
+          setTimeout(() => this.openMoodModal(), 0);
+        }
+      });
   }
 
   getBackgroundImage(quote: Quote) {
@@ -49,8 +57,7 @@ export class HomeComponent implements OnInit {
 
   onMoodSelected(item: any) {
     this.modalComponentRef.instance.close();
-    this.quoteService.getRandomQuotes(item._id)
-      .subscribe((quotes: Quote[]) => this.quotes = quotes);
+    this.homeService.changeCategory(item._id);
   }
 
 }
