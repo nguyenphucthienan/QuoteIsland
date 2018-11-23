@@ -28,7 +28,8 @@ export class HomeService {
         this.openMoodModalSubject.next(true);
       }
     } else {
-      this.getQuotes('5bd6b4d1b362ab251c59c3e4');
+      this.getQuotes();
+      this.openMoodModalSubject.next(true);
     }
   }
 
@@ -39,12 +40,20 @@ export class HomeService {
     }));
   }
 
-  private getQuotes(categoryId: string) {
-    this.quoteService.getRandomQuotes(categoryId)
-      .subscribe((quotes: Quote[]) => {
-        this.currentQuotesSubject.next(quotes);
-        this.writeTokenToStorage(categoryId);
-      });
+  private getQuotes(categoryId?: string) {
+    if (categoryId) {
+      this.quoteService.getRandomQuotesByCategoryId(categoryId)
+        .subscribe((quotes: Quote[]) => {
+          this.currentQuotesSubject.next(quotes);
+          this.writeTokenToStorage(categoryId);
+        });
+    } else {
+      this.quoteService.getRandomQuotes()
+        .subscribe((quotes: Quote[]) => {
+          this.currentQuotesSubject.next(quotes);
+          this.writeTokenToStorage(categoryId);
+        });
+    }
   }
 
   changeCategory(categoryId: string) {
