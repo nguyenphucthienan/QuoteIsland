@@ -38,10 +38,6 @@ export class CategoryService {
     return this.http.get<Category[]>(`${this.categoryUrl}`, { params: params });
   }
 
-  getFeaturedCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.categoryUrl}/featured`);
-  }
-
   getCategory(id: string): Observable<Category> {
     return this.http.get<Category>(`${this.categoryUrl}/${id}`);
   }
@@ -60,6 +56,10 @@ export class CategoryService {
 
   loveCategory(id: string): Observable<Category> {
     return this.http.post<Category>(`${this.categoryUrl}/${id}/love`, null);
+  }
+
+  getFeaturedCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.categoryUrl}/featured`);
   }
 
 }

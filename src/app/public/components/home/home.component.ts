@@ -38,7 +38,9 @@ export class HomeComponent implements OnInit {
   openMoodModal() {
     this.modalComponentRef = this.modalService.open(MoodSelectModalComponent, {
       inputs: {
-        title: 'Select Mood'
+        title: 'How do you feel today?',
+        hasBottomClose: true,
+        closeOnBackdrop: true
       },
       childComponent: {
         outputs: {
