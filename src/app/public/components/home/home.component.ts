@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentRef, NgModuleRef, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
+import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
+
+import { MoodSelectModalComponent } from '../../modals/mood-select-modal/mood-select-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +20,36 @@ export class HomeComponent implements OnInit {
     'https://images.pexels.com/photos/1053775/pexels-photo-1053775.jpeg?auto=compress&cs=tinysrgb'
   ];
 
-  constructor(private sanitizer: DomSanitizer) { }
+  private modalComponentRef: ComponentRef<ModalComponent>;
+
+  constructor(private sanitizer: DomSanitizer,
+    private modalService: ModalService,
+    private moduleRef: NgModuleRef<any>) { }
 
   ngOnInit() {
+    setTimeout(() => this.openMoodModal(), 0);
   }
 
   getBackgroundImage(index: number) {
     return this.sanitizer
       .bypassSecurityTrustStyle(`url(${this.backgroundImages[index]})`);
+  }
+
+  openMoodModal() {
+    this.modalComponentRef = this.modalService.open(MoodSelectModalComponent, {
+      inputs: {
+        title: 'Select Mood'
+      },
+      childComponent: {
+        outputs: {
+          moodSelected: this.onMoodSelected.bind(this)
+        }
+      }
+    }, this.moduleRef);
+  }
+
+  onMoodSelected() {
+    this.modalComponentRef.instance.close();
   }
 
 }
