@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MyDatePickerModule } from 'mydatepicker';
-import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 import { BannerComponent } from './components/banner/banner.component';
@@ -20,8 +20,6 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
 
 @NgModule({
   declarations: [
-    FileSelectDirective,
-    FileDropDirective,
     HasRoleDirective,
     BannerComponent,
     PanelComponent,
@@ -38,6 +36,7 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     ReactiveFormsModule,
     RouterModule,
     NgSelectModule,
+    FileUploadModule,
     NgxMyDatePickerModule.forRoot(),
     MDBBootstrapModule.forRoot()
   ],

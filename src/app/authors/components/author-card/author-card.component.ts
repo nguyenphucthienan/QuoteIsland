@@ -25,10 +25,10 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
   @Input() headerClasss = 'blue-gradient';
   @Input() author: Author;
 
-  private photoHover = false;
   private tokenSubscription: Subscription;
   private currentUserId: string;
 
+  photoHover = false;
   isLoved: boolean;
   numOfLoves: number;
 
