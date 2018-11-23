@@ -1,7 +1,8 @@
 <div class="select-modal container">
   <div class="row">
     <div *ngFor="let category of featuredCategories" class="col-6">
-      <div class="mood-option d-flex flex-column justify-content-center align-items-center border border-primary rounded">
+      <div class="mood-option d-flex flex-column justify-content-center align-items-center border border-primary rounded"
+        (click)="selectMood(category)">
         <i [ngClass]="category.icon + ' fa-3x animated rotateIn'"></i>
         <span>{{ category.label }}</span>
       </div>

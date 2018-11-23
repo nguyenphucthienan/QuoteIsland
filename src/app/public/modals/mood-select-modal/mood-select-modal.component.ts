@@ -23,4 +23,8 @@ export class MoodSelectModalComponent implements OnInit {
       .subscribe((categories: any[]) => this.featuredCategories = categories);
   }
 
+  selectMood(item: any) {
+    this.moodSelected.emit(item);
+  }
+
 }

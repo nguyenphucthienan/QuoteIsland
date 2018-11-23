@@ -1,7 +1,9 @@
 import { Component, ComponentRef, NgModuleRef, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Quote } from 'src/app/core/models/quote.interface';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
+import { QuoteService } from 'src/app/core/services/quote.service';
 
 import { MoodSelectModalComponent } from '../../modals/mood-select-modal/mood-select-modal.component';
 
@@ -12,17 +14,12 @@ import { MoodSelectModalComponent } from '../../modals/mood-select-modal/mood-se
 })
 export class HomeComponent implements OnInit {
 
-  readonly backgroundImages: any = [
-    'https://images.pexels.com/photos/1170572/pexels-photo-1170572.jpeg?auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/1492239/pexels-photo-1492239.jpeg?auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/450301/pexels-photo-450301.jpeg?auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/1436129/pexels-photo-1436129.jpeg?auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/1053775/pexels-photo-1053775.jpeg?auto=compress&cs=tinysrgb'
-  ];
-
   private modalComponentRef: ComponentRef<ModalComponent>;
 
-  constructor(private sanitizer: DomSanitizer,
+  quotes: Quote[];
+
+  constructor(private quoteService: QuoteService,
+    private sanitizer: DomSanitizer,
     private modalService: ModalService,
     private moduleRef: NgModuleRef<any>) { }
 
@@ -30,9 +27,9 @@ export class HomeComponent implements OnInit {
     setTimeout(() => this.openMoodModal(), 0);
   }
 
-  getBackgroundImage(index: number) {
+  getBackgroundImage(quote: Quote) {
     return this.sanitizer
-      .bypassSecurityTrustStyle(`url(${this.backgroundImages[index]})`);
+      .bypassSecurityTrustStyle(`url(${quote.photoUrl})`);
   }
 
   openMoodModal() {
@@ -50,8 +47,10 @@ export class HomeComponent implements OnInit {
     }, this.moduleRef);
   }
 
-  onMoodSelected() {
+  onMoodSelected(item: any) {
     this.modalComponentRef.instance.close();
+    this.quoteService.getRandomQuotes(item._id)
+      .subscribe((quotes: Quote[]) => this.quotes = quotes);
   }
 
 }

@@ -1,17 +1,19 @@
 <mdb-carousel [isControls]="true" class="carousel slide carousel-fade h-100" [animation]="'fade'">
-  <mdb-carousel-item *ngFor="let image of backgroundImages; let index = index">
-    <div class="view w-100 d-flex justify-content-center align-items-center white-text" [style.background-image]="getBackgroundImage(index)">
+  <mdb-carousel-item *ngFor="let quote of quotes; let index = index">
+    <div class="view w-100 d-flex justify-content-center align-items-center white-text" [style.background-image]="getBackgroundImage(quote)">
       <div class="mask rgba-black-light waves-light"></div>
       <div class="quote-content d-flex flex-column">
         <h1>
           <i class="fa fa-quote-left"></i>
-          You may fool all the people some of the time; you can even fool some of the people all the time; but you
-          can’t fool all of the people all the time.
+          {{ quote.text }}
         </h1>
         <div class="d-flex justify-content-end mt-3">
-          <h3>Abraham Lincoln</h3>
+          <h3>{{ quote.author.fullName }}</h3>
         </div>
       </div>
     </div>
   </mdb-carousel-item>
 </mdb-carousel>
+<button class="mood-button btn btn-sm btn-primary" (click)="openMoodModal()">
+  <i class="fa fa-smile-o"></i>
+</button>

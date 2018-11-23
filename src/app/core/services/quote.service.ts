@@ -38,6 +38,10 @@ export class QuoteService {
     return this.http.get<Quote[]>(`${this.quoteUrl}`, { params: params });
   }
 
+  getRandomQuotes(categoryId: string): Observable<Quote[]> {
+    return this.http.get<Quote[]>(`${this.quoteUrl}/random/categories/${categoryId}`);
+  }
+
   getQuote(id: string): Observable<Quote> {
     return this.http.get<Quote>(`${this.quoteUrl}/${id}`);
   }
