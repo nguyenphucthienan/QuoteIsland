@@ -69,7 +69,7 @@ export class QuoteDetailComponent implements OnInit, OnDestroy {
 
   private updateValues() {
     this.isLoved = this.currentUserId && this.quote.loves.includes(this.currentUserId);
-    this.numOfLoves = this.quote.loves.length;
+    this.numOfLoves = this.quote.loveCount || this.quote.loves.length;
   }
 
   ngOnDestroy() {

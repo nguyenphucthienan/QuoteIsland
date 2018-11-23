@@ -84,7 +84,7 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
 
   private updateValues() {
     this.isLoved = this.currentUserId && this.author.loves.includes(this.currentUserId);
-    this.numOfLoves = this.author.loveCount;
+    this.numOfLoves = this.author.loveCount || this.author.loves.length;
   }
 
   openInfoModal() {
