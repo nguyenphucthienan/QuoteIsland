@@ -18,7 +18,7 @@ export class CommentSectionComponent implements OnInit {
   @Input() quoteId: string;
 
   commentForm: FormGroup;
-  comments: Comment[];
+  comments: Comment[] = [];
   pagination: Pagination;
 
   constructor(private route: ActivatedRoute,

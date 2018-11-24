@@ -28,8 +28,8 @@ export class AdminAuthorAddModalComponent implements OnInit {
     this.addForm = this.fb.group({
       fullName: ['', Validators.required],
       nationality: ['', Validators.required],
-      born: ['', Validators.required],
-      died: ['', Validators.required],
+      born: [''],
+      died: [''],
       description: ['', Validators.required],
       photoUrl: ['', Validators.required]
     });

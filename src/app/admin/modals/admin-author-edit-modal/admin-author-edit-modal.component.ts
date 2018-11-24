@@ -39,14 +39,14 @@ export class AdminAuthorEditModalComponent implements OnInit {
           month: born.getMonth() + 1,
           day: born.getDate()
         }
-      } : null, Validators.required],
+      } : null],
       died: [died ? {
         date: {
           year: died.getFullYear(),
           month: died.getMonth() + 1,
           day: died.getDate()
         }
-      } : null, Validators.required],
+      } : null],
       description: [this.rowData.cells['description'].value, Validators.required],
       photoUrl: [this.rowData.cells['photoUrl'].value, Validators.required]
     });

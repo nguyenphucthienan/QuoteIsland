@@ -24,7 +24,7 @@ export class HomeService {
       const date = new Date(home.date);
       date.setDate(date.getDate() + 1);
 
-      if (date < new Date()) {
+      if (date.getTime() < (new Date()).getTime()) {
         this.openMoodModalSubject.next(true);
       }
     } else {
