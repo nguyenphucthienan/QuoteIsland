@@ -14,14 +14,14 @@ import { TableService } from 'src/app/datatable/services/table.service';
 export class AdminAuthorManagerTableService implements TableService {
 
   columns: TableColumn[] = [
-    { name: '_id', text: 'ID', type: 'IdTableCellComponent', sortable: true },
+    { name: '_id', text: 'ID', type: 'IdTableCellComponent', sortable: true, center: true },
     { name: 'fullName', text: 'Full Name', type: 'TextTableCellComponent', sortable: true },
     { name: 'born', text: 'Born', type: 'DateTableCellComponent', sortable: true },
     { name: 'died', text: 'Died', type: 'DateTableCellComponent', sortable: true },
     { name: 'nationality', text: 'Nationality', type: 'TextTableCellComponent', sortable: true },
-    { name: 'description', text: 'Description', type: 'TextTableCellComponent', sortable: true },
-    { name: 'quoteCount', text: 'Quotes', type: 'TextTableCellComponent', sortable: true },
-    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent', sortable: true },
+    { name: 'description', text: 'Description', type: 'TruncatedTextTableCellComponent', sortable: true },
+    { name: 'quoteCount', text: 'Quotes', type: 'TextTableCellComponent', sortable: true, center: true },
+    { name: 'loveCount', text: 'Loves', type: 'TextTableCellComponent', sortable: true, center: true },
     { name: 'actions', text: 'Actions', type: 'ActionsTableCellComponent', sortable: false }
   ];
 
