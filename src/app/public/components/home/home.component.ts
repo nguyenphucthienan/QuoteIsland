@@ -4,7 +4,6 @@ import { Quote } from 'src/app/core/models/quote.interface';
 import { ModalComponent } from 'src/app/core/modules/modal/modal.component';
 import { ModalService } from 'src/app/core/modules/modal/services/modal.service';
 import { HomeService } from 'src/app/core/services/home.service';
-
 import { MoodSelectModalComponent } from '../../modals/mood-select-modal/mood-select-modal.component';
 
 @Component({

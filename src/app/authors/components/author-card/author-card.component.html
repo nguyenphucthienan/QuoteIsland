@@ -1,11 +1,9 @@
-<div class="card mt-3 mb-3">
-  <div [ngClass]="'card-header white-text ' + headerClasss">
-    <a type="button" class="btn-floating"><i class="fa fa-lg fa-star"></i></a>
-  </div>
+<div class="card card-shadow h-100">
+  <div [ngClass]="'card-header white-text ' + headerClasss"></div>
   <div class="card-body d-flex justify-content-center align-items-center" [style.background-image]="getSanitizedImageUrl()"
     (mouseover)="photoHover = true" (mouseleave)="photoHover = false" [routerLink]="['/authors', author._id]">
     <div *ngIf="!photoHover" class="d-flex flex-column justify-content-center align-items-center white-text">
-      <p class="author-name">{{ author.fullName }}</p>
+      <p class="author-name text-center">{{ author.fullName }}</p>
       <p>{{ author.quoteCount | i18nPlural: quotePluralMapping | uppercase }}</p>
     </div>
   </div>
