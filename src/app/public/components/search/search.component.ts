@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/core/models/pagination.interface';
 import { AuthorService } from 'src/app/core/services/author.service';
@@ -40,7 +40,8 @@ export class SearchComponent implements OnInit {
 
   readonly bannerImageUrl = environment.bannerImageUrls.searchPage;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+    private route: ActivatedRoute,
     private quoteService: QuoteService,
     private authorService: AuthorService,
     private categoryService: CategoryService) { }
@@ -83,6 +84,17 @@ export class SearchComponent implements OnInit {
   onPageChanged(pageNumber: number) {
     this.pagination.pageNumber = pageNumber;
     this.selectTab(this.tabNames.quotes);
+  }
+
+  itemSelected(item: any) {
+    const id = item._id;
+    if (this.currentTab === this.tabNames.quotes) {
+      this.router.navigate(['/quotes', id]);
+    } else if (this.currentTab === this.tabNames.authors) {
+      this.router.navigate(['/authors', id]);
+    } else if (this.currentTab === this.tabNames.categories) {
+      this.router.navigate(['/categories', id]);
+    }
   }
 
 }
