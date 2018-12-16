@@ -6,6 +6,7 @@ export const environment = {
   bannerImageUrls: {
     registerPage: './assets/banners/register.jpeg',
     loginPage: './assets/banners/login.jpeg',
+    searchPage: './assets/banners/search.jpeg',
     aboutPage: './assets/banners/about.jpeg',
     notFoundPage: './assets/banners/not-found.jpeg',
     adminPage: './assets/banners/admin.jpeg',

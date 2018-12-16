@@ -35,9 +35,9 @@
     </ul>
   </links>
   <links>
-    <form class="form-inline waves-light ml-auto" mdbWavesEffect>
+    <form class="form-inline waves-light ml-auto" mdbWavesEffect (ngSubmit)="search(searchInput.value)">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+        <input #searchInput type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
         <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit" mdbWavesEffect>Search</button>
       </div>
     </form>

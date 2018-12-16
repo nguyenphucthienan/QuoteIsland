@@ -6,9 +6,11 @@ import { HomeComponent } from './public/components/home/home.component';
 import { LoginComponent } from './public/components/login/login.component';
 import { NotFoundComponent } from './public/components/not-found/not-found.component';
 import { RegisterComponent } from './public/components/register/register.component';
+import { SearchComponent } from './public/components/search/search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'search', component: SearchComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

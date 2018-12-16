@@ -27,4 +27,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  search(value: string) {
+    this.router.navigate(['/search'], { queryParams: { value } });
+  }
+
 }
