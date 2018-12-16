@@ -13,6 +13,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { PanelComponent } from './components/panel/panel.component';
 import { PhotoUploaderComponent } from './components/photo-uploader/photo-uploader.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
+import { SimpleCardComponent } from './components/simple-card/simple-card.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
@@ -26,9 +27,10 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     PaginationComponent,
     SortBarComponent,
     SortModalComponent,
+    SimpleCardComponent,
     QuoteCardComponent,
     ConfirmModalComponent,
-    PhotoUploaderComponent
+    PhotoUploaderComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +55,7 @@ import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
     PanelComponent,
     PaginationComponent,
     SortBarComponent,
+    SimpleCardComponent,
     QuoteCardComponent,
     PhotoUploaderComponent
   ],
