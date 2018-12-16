@@ -28,7 +28,11 @@ export class HeaderComponent implements OnInit {
   }
 
   search(value: string) {
-    this.router.navigate(['/search'], { queryParams: { value } });
+    if (value.length < 3) {
+      this.alertService.info('Search value must be at least 3 characters');
+    } else {
+      this.router.navigate(['/search'], { queryParams: { value } });
+    }
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/core/models/pagination.interface';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthorService } from 'src/app/core/services/author.service';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { QuoteService } from 'src/app/core/services/quote.service';
@@ -44,7 +45,8 @@ export class SearchComponent implements OnInit {
     private route: ActivatedRoute,
     private quoteService: QuoteService,
     private authorService: AuthorService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.route.queryParamMap
@@ -57,6 +59,11 @@ export class SearchComponent implements OnInit {
   selectTab(tabName: string) {
     this.currentTab = tabName;
     this.items = [];
+
+    if (this.value.length < 3) {
+      this.alertService.info('Search value must be at least 3 characters');
+      return;
+    }
 
     if (tabName === this.tabNames.quotes) {
       this.textProperty = this.textProperties.quotes;
