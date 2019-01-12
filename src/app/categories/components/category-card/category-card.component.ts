@@ -16,7 +16,6 @@ import { CategoryInfoModalComponent } from '../category-info-modal/category-info
 })
 export class CategoryCardComponent implements OnInit, OnDestroy {
 
-  readonly infoModalTitle = 'Category Info';
   readonly quotePluralMapping = {
     '=0': '0 quote',
     'other': '# quotes'
@@ -90,7 +89,7 @@ export class CategoryCardComponent implements OnInit, OnDestroy {
   openInfoModal() {
     this.modalService.open(CategoryInfoModalComponent, {
       inputs: {
-        title: this.infoModalTitle,
+        title: this.category.name,
         hasBottomClose: true,
         closeOnBackdrop: true
       },

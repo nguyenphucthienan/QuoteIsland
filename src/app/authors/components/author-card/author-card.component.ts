@@ -16,7 +16,6 @@ import { AuthorInfoModalComponent } from '../author-info-modal/author-info-modal
 })
 export class AuthorCardComponent implements OnInit, OnDestroy {
 
-  readonly infoModalTitle = 'Author Info';
   readonly quotePluralMapping = {
     '=0': '0 quote',
     'other': '# quotes'
@@ -90,7 +89,7 @@ export class AuthorCardComponent implements OnInit, OnDestroy {
   openInfoModal() {
     this.modalService.open(AuthorInfoModalComponent, {
       inputs: {
-        title: this.infoModalTitle,
+        title: this.author.fullName,
         hasBottomClose: true,
         closeOnBackdrop: true
       },
